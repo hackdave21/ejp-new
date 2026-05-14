@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communications | EJP Admin</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A5F',
+                        accent: '#F5A623',
+                        success: '#27AE60',
+                        danger: '#E74C3C',
+                        dark: '#0F1B2D',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+                        'slide-in-right': 'slideInRight 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { transform: 'translateY(15px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        slideInRight: {
+                            '0%': { transform: 'translateX(100%)' },
+                            '100%': { transform: 'translateX(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .sidebar-link.active { background-color: rgba(245, 166, 35, 0.1); color: #F5A623; border-right: 4px solid #F5A623; }
+        .sidebar-link:not(.active):hover { background-color: rgba(255, 255, 255, 0.05); }
+        
+        .tab-btn.active { border-bottom: 2px solid #F5A623; color: #1E3A5F; font-weight: 700; }
+        
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        
+        .rich-text-toolbar button { padding: 4px 8px; border-radius: 4px; color: #64748b; transition: all 0.2s; }
+        .rich-text-toolbar button:hover { background: #f1f5f9; color: #1E3A5F; }
+    </style>
+</head>
+<body class="bg-[#F4F7FE] font-sans text-[#1A1A2E] overflow-hidden">
+    
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Sidebar Admin (Unified) -->
+        <aside class="w-[280px] bg-dark text-white flex flex-col h-full z-50">
+            <div class="p-8 flex items-center gap-4">
+                <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center border border-accent">
+                    <span class="text-accent font-serif font-bold text-xl">EJP</span>
+                </div>
+                <div><h1 class="font-serif font-bold text-lg leading-tight">Admin Panel</h1></div>
+            </div>
+            <nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto custom-scrollbar">
+                <a href="dashboard.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/50">
+                    <i class="fas fa-chart-pie w-5"></i><span class="font-medium">Tableau de bord</span>
+                </a>
+                <a href="membres.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/50">
+                    <i class="fas fa-users w-5"></i><span class="font-medium">Membres</span>
+                </a>
+                <a href="chefs.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/50">
+                    <i class="fas fa-user-tie w-5"></i><span class="font-medium">Chefs & Groupes</span>
+                </a>
+                <a href="formations.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/50">
+                    <i class="fas fa-graduation-cap w-5"></i><span class="font-medium">Formations</span>
+                </a>
+                <a href="cultes.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/50">
+                    <i class="fas fa-church w-5"></i><span class="font-medium">Cultes</span>
+                </a>
+                <a href="reunions.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/50">
+                    <i class="fas fa-file-alt w-5"></i><span class="font-medium">PV Réunions</span>
+                </a>
+                <a href="evenements.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/50">
+                    <i class="fas fa-calendar-check w-5"></i><span class="font-medium">Événements</span>
+                </a>
+                <a href="communications.html" class="sidebar-link active flex items-center gap-3 px-4 py-3 rounded-lg transition-all">
+                    <i class="fas fa-paper-plane w-5"></i><span class="font-medium">Communications</span>
+                </a>
+                <a href="parametres.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/50">
+                    <i class="fas fa-sliders-h w-5"></i><span class="font-medium">Paramètres</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col h-screen overflow-hidden">
+            
+            <!-- Top Navbar -->
+            <header class="h-20 bg-white border-b border-gray-100 flex items-center justify-between px-8 shrink-0">
+                <h2 class="text-xl font-bold text-primary">📢 Communications</h2>
+                <button id="add-comm-btn" class="bg-accent text-primary font-bold px-6 py-2.5 rounded-xl hover:scale-105 transition-transform flex items-center gap-2">
+                    <i class="fas fa-paper-plane"></i> Nouvelle Campagne
+                </button>
+            </header>
+
+            <!-- Scrollable Body -->
+            <div class="flex-1 overflow-y-auto p-8 custom-scrollbar space-y-8">
+                
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-3xl border border-gray-50 shadow-sm flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-50 text-primary rounded-2xl flex items-center justify-center text-xl">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Emails (Mois)</p>
+                            <p class="text-2xl font-bold text-primary">12,450</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl border border-gray-50 shadow-sm flex items-center gap-4">
+                        <div class="w-12 h-12 bg-green-50 text-success rounded-2xl flex items-center justify-center text-xl">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Taux d'Ouverture</p>
+                            <p class="text-2xl font-bold text-primary">68%</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl border border-gray-50 shadow-sm flex items-center gap-4">
+                        <div class="w-12 h-12 bg-amber-50 text-accent rounded-2xl flex items-center justify-center text-xl">
+                            <i class="fas fa-mouse-pointer"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Taux de Clic</p>
+                            <p class="text-2xl font-bold text-primary">24%</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl border border-gray-50 shadow-sm flex items-center gap-4">
+                        <div class="w-12 h-12 bg-purple-50 text-purple-500 rounded-2xl flex items-center justify-center text-xl">
+                            <i class="fas fa-bell"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Push (Mois)</p>
+                            <p class="text-2xl font-bold text-primary">8</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Section: Tabs & List -->
+                <section class="bg-white rounded-3xl shadow-sm border border-gray-50 overflow-hidden">
+                    
+                    <!-- Tabs -->
+                    <div class="flex gap-8 px-8 pt-6 border-b border-gray-100">
+                        <button class="tab-btn active pb-4 text-xs font-bold uppercase tracking-widest">✉️ Emails</button>
+                        <button class="tab-btn pb-4 text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-primary transition-colors">📱 Push Notifs</button>
+                        <button class="tab-btn pb-4 text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-primary transition-colors">📌 Annonces App</button>
+                    </div>
+
+                    <!-- Campaigns Table -->
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-gray-50/50">
+                            <tr class="text-gray-400 text-[10px] font-bold uppercase tracking-widest">
+                                <th class="py-4 px-8">Campagne / Objet</th>
+                                <th class="py-4 px-8">Cible</th>
+                                <th class="py-4 px-8">Date</th>
+                                <th class="py-4 px-8">Statut</th>
+                                <th class="py-4 px-8">Performance</th>
+                                <th class="py-4 px-8 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-50">
+                            <!-- Row 1 -->
+                            <tr class="hover:bg-gray-50 transition-colors group">
+                                <td class="py-4 px-8">
+                                    <p class="font-bold text-primary font-serif">Rappel: Retraite des Leaders</p>
+                                    <p class="text-[10px] text-gray-400">Newsletter Hebdo</p>
+                                </td>
+                                <td class="py-4 px-8 text-gray-500">Tous les Chefs (45)</td>
+                                <td class="py-4 px-8 text-gray-500">12 Mai 2026</td>
+                                <td class="py-4 px-8">
+                                    <span class="px-3 py-1 bg-success/10 text-success text-[10px] font-bold rounded-full uppercase tracking-widest">Envoyé</span>
+                                </td>
+                                <td class="py-4 px-8">
+                                    <div class="flex items-center gap-4 text-[10px] font-bold text-gray-400">
+                                        <span title="Ouvertures"><i class="fas fa-eye text-success"></i> 95%</span>
+                                        <span title="Clics"><i class="fas fa-mouse-pointer text-accent"></i> 40%</span>
+                                    </div>
+                                </td>
+                                <td class="py-4 px-8 text-right">
+                                    <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button class="w-8 h-8 rounded-lg bg-gray-50 text-gray-400 hover:bg-primary hover:text-white transition-all"><i class="fas fa-chart-bar text-xs"></i></button>
+                                        <button class="w-8 h-8 rounded-lg bg-gray-50 text-gray-400 hover:bg-primary hover:text-white transition-all"><i class="fas fa-copy text-xs"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <!-- Row 2 -->
+                            <tr class="hover:bg-gray-50 transition-colors group">
+                                <td class="py-4 px-8">
+                                    <p class="font-bold text-primary font-serif">Nouveau Module: Vie en Communauté</p>
+                                    <p class="text-[10px] text-gray-400">Notification Formation</p>
+                                </td>
+                                <td class="py-4 px-8 text-gray-500">Tous les Membres (124)</td>
+                                <td class="py-4 px-8 text-gray-500">15 Mai 2026</td>
+                                <td class="py-4 px-8">
+                                    <span class="px-3 py-1 bg-amber-50 text-amber-500 text-[10px] font-bold rounded-full uppercase tracking-widest">Programmé</span>
+                                </td>
+                                <td class="py-4 px-8 text-gray-400 text-xs italic">-</td>
+                                <td class="py-4 px-8 text-right">
+                                    <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button class="w-8 h-8 rounded-lg bg-gray-50 text-gray-400 hover:bg-primary hover:text-white transition-all"><i class="fas fa-edit text-xs"></i></button>
+                                        <button class="w-8 h-8 rounded-lg bg-danger/10 text-danger hover:bg-danger hover:text-white transition-all"><i class="fas fa-trash text-xs"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Row 3 -->
+                            <tr class="hover:bg-gray-50 transition-colors group">
+                                <td class="py-4 px-8">
+                                    <p class="font-bold text-gray-400 font-serif">Bilan Mensuel Avril</p>
+                                    <p class="text-[10px] text-gray-400">Rapport</p>
+                                </td>
+                                <td class="py-4 px-8 text-gray-400">Chefs de Groupe (8)</td>
+                                <td class="py-4 px-8 text-gray-400">-</td>
+                                <td class="py-4 px-8">
+                                    <span class="px-3 py-1 bg-gray-100 text-gray-500 text-[10px] font-bold rounded-full uppercase tracking-widest">Brouillon</span>
+                                </td>
+                                <td class="py-4 px-8 text-gray-400 text-xs italic">-</td>
+                                <td class="py-4 px-8 text-right">
+                                    <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button class="w-8 h-8 rounded-lg bg-gray-50 text-gray-400 hover:bg-primary hover:text-white transition-all"><i class="fas fa-edit text-xs"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Drawer: New Campaign -->
+    <div id="add-drawer" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-dark/60 backdrop-blur-sm animate-fade-in" onclick="document.getElementById('add-drawer').classList.add('hidden')"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-full max-w-3xl bg-white shadow-2xl animate-slide-in-right flex flex-col">
+            <header class="p-10 border-b border-gray-100 flex items-center justify-between shrink-0">
+                <h3 class="text-2xl font-bold text-primary font-serif">Nouvelle Campagne</h3>
+                <button onclick="document.getElementById('add-drawer').classList.add('hidden')" class="w-10 h-10 rounded-full hover:bg-gray-100 text-gray-400 transition-colors"><i class="fas fa-times text-xl"></i></button>
+            </header>
+            
+            <div class="flex-1 overflow-y-auto p-10 custom-scrollbar space-y-8">
+                
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Canal</label>
+                        <select class="w-full bg-[#F4F7FE] border-none rounded-xl py-3 px-4 text-sm text-gray-500 outline-none">
+                            <option>✉️ Email</option>
+                            <option>📱 Notification Push</option>
+                            <option>📌 Annonce In-App</option>
+                        </select>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Audience Cible</label>
+                        <select class="w-full bg-[#F4F7FE] border-none rounded-xl py-3 px-4 text-sm text-gray-500 outline-none">
+                            <option>Tous les membres</option>
+                            <option>Tous les Chefs</option>
+                            <option>Groupe Spécifique...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Objet / Titre</label>
+                    <input type="text" class="w-full bg-[#F4F7FE] border-none rounded-xl py-3 px-4 text-sm focus:ring-1 focus:ring-accent" placeholder="Titre accrocheur...">
+                </div>
+
+                <!-- Rich Text Editor Simulation -->
+                <div class="space-y-1">
+                    <label class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Contenu du message</label>
+                    <div class="border border-gray-200 rounded-2xl overflow-hidden focus-within:ring-1 focus-within:ring-accent focus-within:border-accent transition-all">
+                        <div class="rich-text-toolbar bg-gray-50 border-b border-gray-200 p-2 flex gap-1 items-center">
+                            <button><i class="fas fa-bold"></i></button>
+                            <button><i class="fas fa-italic"></i></button>
+                            <button><i class="fas fa-underline"></i></button>
+                            <div class="w-px h-4 bg-gray-300 mx-2"></div>
+                            <button><i class="fas fa-list-ul"></i></button>
+                            <button><i class="fas fa-list-ol"></i></button>
+                            <div class="w-px h-4 bg-gray-300 mx-2"></div>
+                            <button><i class="fas fa-link"></i></button>
+                            <button><i class="fas fa-image"></i></button>
+                        </div>
+                        <textarea class="w-full bg-white border-none py-4 px-6 text-sm text-primary min-h-[250px] outline-none resize-none" placeholder="Rédigez votre message ici. Vous pouvez utiliser les variables [nom], [prenom]..."></textarea>
+                    </div>
+                </div>
+
+                <div class="p-6 bg-blue-50 rounded-2xl flex items-center justify-between">
+                    <div>
+                        <h4 class="text-sm font-bold text-primary">Programmer l'envoi</h4>
+                        <p class="text-xs text-gray-500 mt-1">Définissez une date et heure pour un envoi différé.</p>
+                    </div>
+                    <input type="datetime-local" class="bg-white border-none rounded-xl py-2 px-4 text-sm text-gray-500 shadow-sm focus:ring-1 focus:ring-accent">
+                </div>
+            </div>
+
+            <footer class="p-10 border-t border-gray-100 shrink-0 flex gap-4">
+                <button type="button" class="flex-1 py-4 bg-white border border-gray-200 text-gray-500 font-bold rounded-2xl hover:bg-gray-50 transition-colors">Enregistrer Brouillon</button>
+                <button type="button" class="flex-[2] py-4 bg-primary text-white font-bold rounded-2xl hover:bg-dark transition-colors shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+                    <i class="fas fa-paper-plane"></i> Envoyer la campagne
+                </button>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('add-comm-btn').onclick = () => {
+            document.getElementById('add-drawer').classList.remove('hidden');
+        };
+        
+        // Tabs Logic
+        const tabs = document.querySelectorAll('.tab-btn');
+        tabs.forEach(tab => {
+            tab.onclick = () => {
+                tabs.forEach(t => t.classList.remove('active', 'text-primary'));
+                tabs.forEach(t => t.classList.add('text-gray-400'));
+                tab.classList.add('active', 'text-primary');
+                tab.classList.remove('text-gray-400');
+            }
+        });
+    </script>
+</body>
+</html>

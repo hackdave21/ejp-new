@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord Chef | EJP</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A5F', // Navy
+                        accent: '#F5A623',  // Gold
+                        success: '#27AE60',
+                        danger: '#E74C3C',
+                        dark: '#0F1B2D',
+                        chef: '#115E59', // Deep Teal
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { transform: 'translateY(15px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .sidebar-link.active { background-color: rgba(17, 94, 89, 0.1); color: #115E59; border-right: 4px solid #115E59; }
+        .sidebar-link:not(.active):hover { background-color: rgba(0, 0, 0, 0.02); }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-[#F4F7FE] font-sans text-[#1A1A2E] overflow-hidden">
+    
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Sidebar Chef -->
+        <aside class="w-[280px] bg-white border-r border-gray-100 flex flex-col h-full z-50 shrink-0">
+            <div class="p-8 flex items-center gap-4">
+                <div class="w-12 h-12 bg-chef rounded-xl flex items-center justify-center border border-white shadow-md">
+                    <span class="text-white font-serif font-bold text-xl">EJP</span>
+                </div>
+                <div>
+                    <h1 class="font-serif font-bold text-lg leading-tight text-primary">Portail Chef</h1>
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-chef">Responsable Famille</p>
+                </div>
+            </div>
+            
+            <div class="px-8 pb-4">
+                <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-xl border border-gray-100">
+                    <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm">AM</div>
+                    <div>
+                        <p class="font-bold text-sm text-primary">Chef Amos</p>
+                        <p class="text-xs text-gray-500">Famille Béthanie</p>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto custom-scrollbar">
+                <a href="dashboard.html" class="sidebar-link active flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-gray-500">
+                    <i class="fas fa-chart-pie w-5"></i><span class="font-medium">Vue d'ensemble</span>
+                </a>
+                <a href="membres.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-gray-500">
+                    <i class="fas fa-users w-5"></i><span class="font-medium">Ma Famille</span>
+                </a>
+                <a href="demandes.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-gray-500">
+                    <i class="fas fa-file-signature w-5"></i>
+                    <span class="font-medium">Demandes</span>
+                    <span class="ml-auto bg-danger text-white text-[10px] font-bold px-2 py-0.5 rounded-full">3</span>
+                </a>
+                <a href="reunions.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-gray-500">
+                    <i class="fas fa-file-alt w-5"></i><span class="font-medium">PV Réunions</span>
+                </a>
+            </nav>
+            
+            <div class="p-4 border-t border-gray-100">
+                <a href="login.html" class="flex items-center gap-3 px-4 py-3 rounded-lg text-danger hover:bg-danger/10 transition-colors font-medium">
+                    <i class="fas fa-sign-out-alt w-5"></i> Déconnexion
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col h-screen overflow-hidden">
+            
+            <!-- Top Navbar -->
+            <header class="h-20 bg-white/80 backdrop-blur-md border-b border-gray-100 flex items-center justify-between px-8 shrink-0">
+                <h2 class="text-xl font-bold text-primary font-serif">👋 Bonjour, Chef Amos</h2>
+                <div class="flex items-center gap-4">
+                    <button class="w-10 h-10 rounded-full bg-white border border-gray-100 text-gray-400 hover:text-primary transition-colors flex items-center justify-center relative shadow-sm">
+                        <i class="fas fa-bell"></i>
+                        <span class="absolute top-2 right-2 w-2 h-2 bg-danger rounded-full border border-white"></span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Scrollable Body -->
+            <div class="flex-1 overflow-y-auto p-8 custom-scrollbar space-y-8">
+                
+                <!-- KPI Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-3xl border border-gray-50 shadow-sm flex items-center gap-4 animate-fade-in-up" style="animation-delay: 0.1s">
+                        <div class="w-14 h-14 bg-blue-50 text-primary rounded-2xl flex items-center justify-center text-xl">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Disciples</p>
+                            <div class="flex items-baseline gap-2">
+                                <p class="text-3xl font-bold text-primary font-serif">24</p>
+                                <span class="text-xs text-success font-bold"><i class="fas fa-arrow-up"></i> 2 ce mois</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl border border-gray-50 shadow-sm flex items-center gap-4 animate-fade-in-up" style="animation-delay: 0.2s">
+                        <div class="w-14 h-14 bg-emerald-50 text-chef rounded-2xl flex items-center justify-center text-xl">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">Progression Moy.</p>
+                            <div class="flex items-baseline gap-2">
+                                <p class="text-3xl font-bold text-primary font-serif">68%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-3xl border border-gray-50 shadow-sm flex items-center justify-between animate-fade-in-up" style="animation-delay: 0.3s">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 bg-red-50 text-danger rounded-2xl flex items-center justify-center text-xl">
+                                <i class="fas fa-file-signature"></i>
+                            </div>
+                            <div>
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-widest">À valider</p>
+                                <p class="text-3xl font-bold text-primary font-serif">3</p>
+                            </div>
+                        </div>
+                        <a href="demandes.html" class="px-4 py-2 bg-gray-50 text-gray-500 font-bold text-xs rounded-xl hover:bg-chef hover:text-white transition-all">Gérer</a>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    
+                    <!-- Attention Required -->
+                    <section class="bg-white rounded-3xl border border-gray-50 shadow-sm p-6 animate-fade-in-up" style="animation-delay: 0.4s">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="font-bold text-primary font-serif">⚠️ Nécessitent votre attention</h3>
+                            <span class="text-xs text-gray-400 font-medium">Basé sur l'assiduité</span>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <!-- Alert 1 -->
+                            <div class="flex items-center justify-between p-4 bg-amber-50 rounded-2xl border border-amber-100">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-white text-amber-500 flex items-center justify-center font-bold text-xs shadow-sm">SP</div>
+                                    <div>
+                                        <p class="font-bold text-sm text-primary">Sarah P.</p>
+                                        <p class="text-xs text-amber-600">Absente aux 2 derniers cultes</p>
+                                    </div>
+                                </div>
+                                <button class="w-8 h-8 rounded-full bg-white text-gray-400 hover:text-primary transition-colors shadow-sm"><i class="fas fa-phone"></i></button>
+                            </div>
+                            <!-- Alert 2 -->
+                            <div class="flex items-center justify-between p-4 bg-blue-50 rounded-2xl border border-blue-100">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-white text-blue-500 flex items-center justify-center font-bold text-xs shadow-sm">MK</div>
+                                    <div>
+                                        <p class="font-bold text-sm text-primary">Marc K.</p>
+                                        <p class="text-xs text-blue-600">Aucune formation suivie ce mois</p>
+                                    </div>
+                                </div>
+                                <button class="w-8 h-8 rounded-full bg-white text-gray-400 hover:text-primary transition-colors shadow-sm"><i class="fas fa-envelope"></i></button>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Recent Activity -->
+                    <section class="bg-white rounded-3xl border border-gray-50 shadow-sm p-6 animate-fade-in-up" style="animation-delay: 0.5s">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="font-bold text-primary font-serif">Activité de la Famille</h3>
+                            <a href="#" class="text-xs text-accent font-bold hover:underline">Voir tout</a>
+                        </div>
+                        
+                        <div class="relative border-l-2 border-gray-100 ml-3 space-y-6">
+                            <!-- Item 1 -->
+                            <div class="relative pl-6">
+                                <div class="absolute -left-[9px] top-1 w-4 h-4 bg-success rounded-full border-4 border-white shadow-sm"></div>
+                                <p class="text-xs text-gray-400 mb-1">Aujourd'hui, 10:30</p>
+                                <p class="text-sm font-medium text-primary">Jean a complété le module <span class="font-bold">"Vie Communautaire"</span>.</p>
+                            </div>
+                            <!-- Item 2 -->
+                            <div class="relative pl-6">
+                                <div class="absolute -left-[9px] top-1 w-4 h-4 bg-accent rounded-full border-4 border-white shadow-sm"></div>
+                                <p class="text-xs text-gray-400 mb-1">Hier, 15:45</p>
+                                <p class="text-sm font-medium text-primary">Nouvelle demande de progression soumise par <span class="font-bold">Marie L.</span></p>
+                            </div>
+                            <!-- Item 3 -->
+                            <div class="relative pl-6">
+                                <div class="absolute -left-[9px] top-1 w-4 h-4 bg-chef rounded-full border-4 border-white shadow-sm"></div>
+                                <p class="text-xs text-gray-400 mb-1">10 Mai 2026</p>
+                                <p class="text-sm font-medium text-primary"><span class="font-bold">Paul E.</span> a rejoint votre Famille de Disciples. Souhaitez-lui la bienvenue !</p>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+</body>
+</html>

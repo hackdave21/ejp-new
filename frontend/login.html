@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion | EJP - Église des Jeunes Prodiges</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A5F',
+                        accent: '#F5A623',
+                        success: '#27AE60',
+                        danger: '#E74C3C',
+                        dark: '#0F1B2D',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'fade-up': 'fadeUp 0.6s ease-out forwards',
+                        'shake': 'shake 0.5s ease-in-out',
+                        'pulse-glow': 'pulseGlow 2s infinite',
+                    },
+                    keyframes: {
+                        fadeUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        shake: {
+                            '0%, 100%': { transform: 'translateX(0)' },
+                            '25%': { transform: 'translateX(-10px)' },
+                            '75%': { transform: 'translateX(10px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 0 0 rgba(245, 166, 35, 0.4)' },
+                            '50%': { boxShadow: '0 0 0 10px rgba(245, 166, 35, 0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #1E3A5F 0%, #0F1B2D 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0) 40%,
+                rgba(255, 255, 255, 0.4) 50%,
+                rgba(255, 255, 255, 0) 60%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(45deg);
+            transition: all 0.3s;
+            opacity: 0;
+        }
+
+        .shimmer-btn:hover::after {
+            animation: shimmer 1.5s infinite;
+            opacity: 1;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-150%) rotate(45deg); }
+            100% { transform: translateX(150%) rotate(45deg); }
+        }
+
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill='%23F5A623' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        input:focus {
+            box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.4);
+            outline: none;
+        }
+
+        .error-border {
+            border-color: #E74C3C !important;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2) !important;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center p-4">
+    <div class="bg-pattern"></div>
+
+    <div class="w-full max-w-6xl flex flex-col lg:flex-row glass-card rounded-3xl overflow-hidden relative z-10 animate-fade-up">
+        
+        <!-- Illustration Side (Desktop Only) -->
+        <div class="hidden lg:flex lg:w-1/2 bg-primary relative items-center justify-center p-12 overflow-hidden">
+            <div class="absolute inset-0 opacity-40 mix-blend-overlay">
+                <img src="assets/login_illustration.png" alt="EJP Community" class="w-full h-full object-cover">
+            </div>
+            <div class="relative z-10 text-center">
+                <h2 class="text-white text-4xl font-serif mb-6 leading-tight">"Que personne ne méprise ta jeunesse."</h2>
+                <p class="text-accent text-xl font-light">1 Timothée 4:12</p>
+                <div class="mt-12 w-24 h-1 bg-accent mx-auto rounded-full"></div>
+            </div>
+        </div>
+
+        <!-- Login Form Side -->
+        <div class="w-full lg:w-1/2 p-8 lg:p-16 flex flex-col justify-center bg-white/5 backdrop-blur-sm">
+            <div class="text-center mb-10">
+                <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-accent shadow-lg shadow-accent/20">
+                    <span class="text-accent text-3xl font-serif tracking-widest font-bold">EJP</span>
+                </div>
+                <h1 class="text-white text-2xl font-serif mb-2">Bienvenue</h1>
+                <p class="text-white/60 font-light">Accédez à votre espace membre</p>
+            </div>
+
+            <form id="loginForm" class="space-y-6">
+                <!-- Username/Email -->
+                <div>
+                    <label class="block text-white/80 text-sm font-medium mb-2 ml-1" for="identifier">Identifiant ou e-mail</label>
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-white/40 group-focus-within:text-accent transition-colors">
+                            <i class="fas fa-user text-sm"></i>
+                        </div>
+                        <input type="text" id="identifier" placeholder="Votre identifiant" 
+                            class="w-full bg-white/10 border border-white/20 rounded-xl py-3 pl-11 pr-4 text-white placeholder-white/30 transition-all duration-300">
+                    </div>
+                    <p id="identifierError" class="text-danger text-xs mt-1 ml-1 hidden animate-fade-in">Ce champ est obligatoire</p>
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <div class="flex justify-between items-center mb-2 ml-1">
+                        <label class="block text-white/80 text-sm font-medium" for="password">Mot de passe</label>
+                        <a href="#" class="text-accent text-xs hover:underline">Mot de passe oublié ?</a>
+                    </div>
+                    <div class="relative group">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-white/40 group-focus-within:text-accent transition-colors">
+                            <i class="fas fa-lock text-sm"></i>
+                        </div>
+                        <input type="password" id="password" placeholder="••••••••" 
+                            class="w-full bg-white/10 border border-white/20 rounded-xl py-3 pl-11 pr-12 text-white placeholder-white/30 transition-all duration-300">
+                        <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-4 flex items-center text-white/40 hover:text-white transition-colors">
+                            <i class="fas fa-eye text-sm" id="eyeIcon"></i>
+                        </button>
+                    </div>
+                    <p id="passwordError" class="text-danger text-xs mt-1 ml-1 hidden animate-fade-in">Le mot de passe est requis</p>
+                </div>
+
+                <!-- Remember Me -->
+                <div class="flex items-center">
+                    <input type="checkbox" id="remember" class="w-4 h-4 rounded border-white/20 bg-white/10 text-accent focus:ring-accent accent-accent">
+                    <label for="remember" class="ml-2 text-white/60 text-sm cursor-pointer select-none">Rester connecté</label>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submitBtn" class="shimmer-btn w-full bg-accent hover:bg-accent/90 text-primary font-bold py-4 rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-accent/20 flex items-center justify-center">
+                    <span id="btnText">Se connecter</span>
+                    <div id="btnLoader" class="hidden">
+                        <svg class="animate-spin h-5 w-5 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </div>
+                </button>
+            </form>
+
+            <div class="mt-8 text-center">
+                <p class="text-white/40 text-sm">Pas encore membre ? <a href="#" class="text-white hover:text-accent font-medium transition-colors">Rejoignez-nous</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnLoader = document.getElementById('btnLoader');
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+        const card = document.querySelector('.glass-card');
+
+        // Toggle Password Visibility
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            eyeIcon.classList.toggle('fa-eye');
+            eyeIcon.classList.toggle('fa-eye-slash');
+        });
+
+        // Form Validation & Submission
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const identifier = document.getElementById('identifier');
+            const password = document.getElementById('password');
+            const idError = document.getElementById('identifierError');
+            const pwError = document.getElementById('passwordError');
+            
+            let isValid = true;
+
+            // Reset errors
+            identifier.classList.remove('error-border');
+            password.classList.remove('error-border');
+            idError.classList.add('hidden');
+            pwError.classList.add('hidden');
+
+            if (!identifier.value.trim()) {
+                identifier.classList.add('error-border');
+                idError.classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (!password.value.trim()) {
+                password.classList.add('error-border');
+                pwError.classList.remove('hidden');
+                isValid = false;
+            }
+
+            if (!isValid) {
+                shakeCard();
+                return;
+            }
+
+            // Start Loading
+            setLoading(true);
+
+            // Simulate API Call
+            setTimeout(() => {
+                if (identifier.value === 'demo' && password.value === 'ejp2026') {
+                    // Success
+                    window.location.href = 'dashboard.html';
+                } else {
+                    // Failure
+                    setLoading(false);
+                    shakeCard();
+                    alert('Identifiants invalides. Essayez demo / ejp2026');
+                }
+            }, 1500);
+        });
+
+        function setLoading(isLoading) {
+            if (isLoading) {
+                submitBtn.disabled = true;
+                btnText.classList.add('hidden');
+                btnLoader.classList.remove('hidden');
+            } else {
+                submitBtn.disabled = false;
+                btnText.classList.remove('hidden');
+                btnLoader.classList.add('hidden');
+            }
+        }
+
+        function shakeCard() {
+            card.classList.remove('animate-fade-up');
+            card.classList.add('animate-shake');
+            setTimeout(() => {
+                card.classList.remove('animate-shake');
+            }, 500);
+        }
+
+        // Add some floating animation to the background pattern
+        document.addEventListener('mousemove', (e) => {
+            const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
+            const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
+            document.querySelector('.bg-pattern').style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+    </script>
+</body>
+</html>

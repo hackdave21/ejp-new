@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ma Progression | EJP - Église des Jeunes Prodiges</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1E3A5F',
+                        accent: '#F5A623',
+                        success: '#27AE60',
+                        danger: '#E74C3C',
+                        dark: '#0F1B2D',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'pulse-ring': 'pulseRing 1.5s cubic-bezier(0.24, 0, 0.38, 1) infinite',
+                        'slide-in-up': 'slideInUp 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        pulseRing: {
+                            '0%': { transform: 'scale(0.8)', opacity: '0.8' },
+                            '100%': { transform: 'scale(2.2)', opacity: '0' },
+                        },
+                        slideInUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .sidebar-link.active { background-color: #F5A623; color: #1E3A5F; }
+        .sidebar-link.active::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background-color: #1E3A5F; }
+        .sidebar-link:not(.active):hover { background-color: rgba(245, 166, 35, 0.1); color: #F5A623; }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 40px;
+            bottom: -20px;
+            width: 2px;
+            background-color: #e2e8f0;
+            z-index: 0;
+        }
+        .timeline-item:last-child::after { display: none; }
+        .timeline-item.completed::after { background-color: #F5A623; }
+        
+        .node {
+            position: relative;
+            z-index: 10;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .pulse-effect {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 4px solid #F5A623;
+            animation: pulse-ring 2s infinite;
+            pointer-events: none;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-[#F8F9FA] font-sans text-[#1A1A2E] overflow-hidden">
+    
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Sidebar (Reused) -->
+        <aside id="sidebar" class="fixed inset-y-0 left-0 z-50 w-[260px] bg-dark text-white transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+            <div class="flex flex-col h-full">
+                <div class="p-6 flex items-center gap-3">
+                    <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center border border-accent">
+                        <span class="text-accent font-serif font-bold">EJP</span>
+                    </div>
+                    <span class="text-xl font-serif font-bold tracking-tight">EJP Member</span>
+                </div>
+                <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto custom-scrollbar">
+                    <a href="dashboard.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                        <i class="fas fa-home w-5"></i>
+                        <span class="font-medium">Tableau de bord</span>
+                    </a>
+                    <a href="formations.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                        <i class="fas fa-graduation-cap w-5"></i>
+                        <span class="font-medium">Mes formations</span>
+                    </a>
+                    <a href="progression.html" class="sidebar-link active relative flex items-center gap-3 px-4 py-3 rounded-lg transition-all">
+                        <i class="fas fa-chart-line w-5"></i>
+                        <span class="font-medium">Ma progression</span>
+                    </a>
+                    <a href="evenements.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                        <i class="fas fa-calendar-alt w-5"></i>
+                        <span class="font-medium">Événements</span>
+                    </a>
+                    <a href="notifications.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                        <i class="fas fa-bell w-5"></i>
+                        <span class="font-medium">Notifications</span>
+                    </a>
+                    <a href="compte.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                        <i class="fas fa-cog w-5"></i>
+                        <span class="font-medium">Mon compte</span>
+                    </a>
+                </nav>
+            </div>
+        </aside>
+
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black/50 z-40 hidden lg:hidden"></div>
+
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col lg:ml-[260px] h-screen overflow-hidden">
+            
+            <!-- Top Header -->
+            <header class="sticky top-0 z-30 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <button id="mobile-menu-btn" class="lg:hidden text-primary text-2xl"><i class="fas fa-bars"></i></button>
+                    <h2 class="text-xl font-bold text-primary">📈 Ma Progression</h2>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="text-right hidden sm:block">
+                        <p class="text-sm font-bold text-primary">Jean Kodjo</p>
+                        <p class="text-[10px] font-semibold text-accent uppercase">Star ⭐</p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-primary font-bold">JK</div>
+                </div>
+            </header>
+
+            <!-- Scrollable Body -->
+            <div class="flex-1 overflow-y-auto p-6 custom-scrollbar space-y-8">
+                
+                <!-- Hero Section -->
+                <section class="bg-primary rounded-3xl p-8 text-white relative overflow-hidden shadow-xl animate-slide-in-up">
+                    <div class="relative z-10 flex flex-col md:flex-row items-center gap-8">
+                        <div class="flex-1">
+                            <h1 class="text-3xl font-serif mb-4">Votre voyage spirituel</h1>
+                            <p class="text-white/70">"Celui qui a commencé en vous cette bonne œuvre la rendra parfaite." — Philippiens 1:6</p>
+                        </div>
+                        <div class="hidden md:block">
+                            <div class="w-32 h-32 border-4 border-accent/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-map-signs text-5xl text-accent"></i>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="grid lg:grid-cols-3 gap-8">
+                    
+                    <!-- Left Column: Timeline -->
+                    <div class="lg:col-span-2 space-y-8">
+                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                            <h3 class="text-xl font-bold text-primary mb-8">Parcours visuel</h3>
+                            
+                            <div class="space-y-12">
+                                <!-- Level 1 -->
+                                <div class="timeline-item completed flex gap-6 relative animate-fade-in-up" style="animation-delay: 0.1s">
+                                    <div class="node bg-accent text-white">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <span class="text-lg font-bold text-primary">🟢 Niveau 1 : Nouveau Membre</span>
+                                            <span class="px-2 py-0.5 bg-success/10 text-success text-[10px] font-bold rounded">COMPLÉTÉ</span>
+                                        </div>
+                                        <p class="text-sm text-gray-500">Validé le 15/01/2026</p>
+                                    </div>
+                                </div>
+
+                                <!-- Level 2 -->
+                                <div class="timeline-item completed flex gap-6 relative animate-fade-in-up" style="animation-delay: 0.2s">
+                                    <div class="node bg-accent text-white">
+                                        <div class="pulse-effect"></div>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <span class="text-lg font-bold text-primary">🌟 Niveau 2 : Star</span>
+                                            <span class="px-2 py-0.5 bg-accent/20 text-accent text-[10px] font-bold rounded">ACTUEL</span>
+                                        </div>
+                                        <p class="text-sm text-gray-500">Depuis le 10/03/2026</p>
+                                    </div>
+                                </div>
+
+                                <!-- Level 3 -->
+                                <div class="timeline-item flex gap-6 relative animate-fade-in-up" style="animation-delay: 0.3s">
+                                    <div class="node bg-gray-100 text-gray-400">
+                                        <i class="fas fa-plane"></i>
+                                    </div>
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <span class="text-lg font-bold text-gray-400">✈️ Niveau 3 : Pilote</span>
+                                            <span class="px-2 py-0.5 bg-gray-100 text-gray-400 text-[10px] font-bold rounded">EN COURS</span>
+                                        </div>
+                                        <p class="text-sm text-gray-400">Conditions à remplir ci-dessous</p>
+                                    </div>
+                                </div>
+
+                                <!-- Level 4 -->
+                                <div class="timeline-item flex gap-6 relative opacity-50 animate-fade-in-up" style="animation-delay: 0.4s">
+                                    <div class="node bg-gray-100 text-gray-400">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <span class="text-lg font-bold text-gray-400">🏛️ Niveau 4 : Pilier</span>
+                                        </div>
+                                        <p class="text-sm text-gray-400">Verrouillé</p>
+                                    </div>
+                                </div>
+
+                                <!-- Level 5 -->
+                                <div class="timeline-item flex gap-6 relative opacity-50 animate-fade-in-up" style="animation-delay: 0.5s">
+                                    <div class="node bg-gray-100 text-gray-400">
+                                        <i class="fas fa-lock"></i>
+                                    </div>
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-1">
+                                            <span class="text-lg font-bold text-gray-400">🌍 Niveau 5 : Missionnaire</span>
+                                        </div>
+                                        <p class="text-sm text-gray-400">Verrouillé</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- History -->
+                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                            <h3 class="text-xl font-bold text-primary mb-6">Historique des statuts</h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left">
+                                    <thead>
+                                        <tr class="text-gray-400 text-xs uppercase tracking-wider border-b border-gray-100">
+                                            <th class="pb-4 font-medium">Date</th>
+                                            <th class="pb-4 font-medium">Statut</th>
+                                            <th class="pb-4 font-medium">Validé par</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-sm">
+                                        <tr class="border-b border-gray-50">
+                                            <td class="py-4">10/03/2026</td>
+                                            <td class="py-4"><span class="font-bold text-primary">Star ⭐</span></td>
+                                            <td class="py-4">Chef Amos</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="py-4">15/01/2026</td>
+                                            <td class="py-4"><span class="font-bold text-primary">Nouveau Membre</span></td>
+                                            <td class="py-4">Système</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Conditions & Sessions -->
+                    <div class="space-y-8">
+                        <!-- Progression Conditions -->
+                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                            <h3 class="text-lg font-bold text-primary mb-6">Devenir Pilote ✈️</h3>
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-center gap-3">
+                                    <div class="w-6 h-6 bg-success/10 text-success rounded-full flex items-center justify-center text-xs">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    <span class="text-sm text-gray-600">Formation initiale complétée</span>
+                                </li>
+                                <li class="space-y-2">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-6 h-6 bg-amber-500/10 text-amber-500 rounded-full flex items-center justify-center text-xs">
+                                            <i class="fas fa-sync fa-spin" style="animation-duration: 3s"></i>
+                                        </div>
+                                        <span class="text-sm text-gray-600">Sessions de service : <span class="font-bold">8/12</span></span>
+                                    </div>
+                                    <div class="ml-9 w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                                        <div class="h-full bg-accent rounded-full" style="width: 66%"></div>
+                                    </div>
+                                </li>
+                                <li class="flex items-center gap-3 opacity-40">
+                                    <div class="w-6 h-6 bg-gray-200 text-gray-400 rounded-full flex items-center justify-center text-xs">
+                                        <i class="fas fa-times"></i>
+                                    </div>
+                                    <span class="text-sm text-gray-400">Demande validée par le Chef</span>
+                                </li>
+                            </ul>
+                            <button class="w-full py-4 bg-gray-100 text-gray-400 font-bold rounded-2xl cursor-not-allowed">
+                                Faire ma demande
+                            </button>
+                        </div>
+
+                        <!-- Sessions Stats -->
+                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-lg font-bold text-primary">Service</h3>
+                                <div id="session-counter" class="text-3xl font-bold text-accent">0</div>
+                            </div>
+                            <p class="text-sm text-gray-500 mb-6">Sessions enregistrées ce trimestre</p>
+                            
+                            <!-- Simple SVG Bar Chart -->
+                            <div class="flex items-end justify-between h-32 gap-2 mb-6">
+                                <div class="flex-1 flex flex-col items-center gap-2">
+                                    <div class="w-full bg-accent/20 rounded-t-lg transition-all duration-1000" style="height: 40%"></div>
+                                    <span class="text-[10px] text-gray-400">Jan</span>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center gap-2">
+                                    <div class="w-full bg-accent/20 rounded-t-lg transition-all duration-1000" style="height: 70%"></div>
+                                    <span class="text-[10px] text-gray-400">Fev</span>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center gap-2">
+                                    <div class="w-full bg-accent rounded-t-lg transition-all duration-1000" style="height: 90%"></div>
+                                    <span class="text-[10px] text-gray-400">Mar</span>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center gap-2">
+                                    <div class="w-full bg-accent/20 rounded-t-lg transition-all duration-1000" style="height: 20%"></div>
+                                    <span class="text-[10px] text-gray-400">Avr</span>
+                                </div>
+                            </div>
+
+                            <button class="w-full py-3 text-xs font-bold text-primary border border-gray-100 rounded-xl hover:bg-gray-50">Voir le détail des sessions</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mobile Sidebar
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            sidebarOverlay.classList.toggle('hidden');
+        }
+        mobileMenuBtn?.addEventListener('click', toggleSidebar);
+        sidebarOverlay?.addEventListener('click', toggleSidebar);
+
+        // Counter Animation
+        function animateCounter(id, target, duration) {
+            const el = document.getElementById(id);
+            let start = 0;
+            const increment = target / (duration / 16);
+            
+            function update() {
+                start += increment;
+                if (start < target) {
+                    el.textContent = Math.floor(start);
+                    requestAnimationFrame(update);
+                } else {
+                    el.textContent = target;
+                }
+            }
+            update();
+        }
+
+        // Run animations on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                animateCounter('session-counter', 8, 1000);
+            }, 500);
+        });
+
+        // Simple Intersection Observer for timeline sequential fade-in (if not using Tailwind delay)
+        // Already handled with tailwind delays for this demo.
+    </script>
+</body>
+</html>
