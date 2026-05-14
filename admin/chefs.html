@@ -15,14 +15,14 @@
             --color-text-muted: #6B7280;
             --color-border: #E5E7EB;
         }
-        .dark {
+                .dark {
             --color-bg: #000000;
-            --color-surface: #111111;
+            --color-surface: #000000;
             --color-primary: #FFFFFF;
             --color-primary-text: #000000;
             --color-text: #F9FAFB;
             --color-text-muted: #9CA3AF;
-            --color-border: #374151;
+            --color-border: #1F2937;
         }
 
         @font-face {
@@ -189,8 +189,8 @@
                             <div class="flex items-center justify-between mb-6">
                                 <div class="w-12 h-12 bg-blue-50 text-primary rounded-2xl flex items-center justify-center font-bold text-lg">D</div>
                                 <div class="flex gap-2">
-                                    <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted hover:bg-gray-100"><i class="fas fa-edit text-xs"></i></button>
-                                    <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted hover:bg-gray-100"><i class="fas fa-eye text-xs"></i></button>
+                                    <button class="w-8 h-8 rounded-lg bg-surface text-muted hover:bg-surface"><i class="fas fa-edit text-xs"></i></button>
+                                    <button class="w-8 h-8 rounded-lg bg-surface text-muted hover:bg-surface"><i class="fas fa-eye text-xs"></i></button>
                                 </div>
                             </div>
                             <h4 class="text-xl font-bold text-primary mb-1">Groupe David</h4>
@@ -201,7 +201,7 @@
                                     <span class="text-muted font-bold uppercase">Membres</span>
                                     <span class="text-primary font-bold">24 / 50</span>
                                 </div>
-                                <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+                                <div class="w-full h-2 bg-surface rounded-full overflow-hidden">
                                     <div class="progress-fill h-full bg-accent rounded-full" style="width: 0%" data-width="48%"></div>
                                 </div>
                                 <div class="flex items-center justify-between text-xs">
@@ -216,8 +216,8 @@
                             <div class="flex items-center justify-between mb-6">
                                 <div class="w-12 h-12 bg-amber-50 text-accent rounded-2xl flex items-center justify-center font-bold text-lg">E</div>
                                 <div class="flex gap-2">
-                                    <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted hover:bg-gray-100"><i class="fas fa-edit text-xs"></i></button>
-                                    <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted hover:bg-gray-100"><i class="fas fa-eye text-xs"></i></button>
+                                    <button class="w-8 h-8 rounded-lg bg-surface text-muted hover:bg-surface"><i class="fas fa-edit text-xs"></i></button>
+                                    <button class="w-8 h-8 rounded-lg bg-surface text-muted hover:bg-surface"><i class="fas fa-eye text-xs"></i></button>
                                 </div>
                             </div>
                             <h4 class="text-xl font-bold text-primary mb-1">Groupe Esther</h4>
@@ -228,7 +228,7 @@
                                     <span class="text-muted font-bold uppercase">Membres</span>
                                     <span class="text-primary font-bold">18 / 40</span>
                                 </div>
-                                <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+                                <div class="w-full h-2 bg-surface rounded-full overflow-hidden">
                                     <div class="progress-fill h-full bg-accent rounded-full" style="width: 0%" data-width="45%"></div>
                                 </div>
                                 <div class="flex items-center justify-between text-xs">
@@ -243,8 +243,8 @@
                             <div class="flex items-center justify-between mb-6">
                                 <div class="w-12 h-12 bg-purple-50 text-purple-500 rounded-2xl flex items-center justify-center font-bold text-lg">G</div>
                                 <div class="flex gap-2">
-                                    <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted hover:bg-gray-100"><i class="fas fa-edit text-xs"></i></button>
-                                    <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted hover:bg-gray-100"><i class="fas fa-eye text-xs"></i></button>
+                                    <button class="w-8 h-8 rounded-lg bg-surface text-muted hover:bg-surface"><i class="fas fa-edit text-xs"></i></button>
+                                    <button class="w-8 h-8 rounded-lg bg-surface text-muted hover:bg-surface"><i class="fas fa-eye text-xs"></i></button>
                                 </div>
                             </div>
                             <h4 class="text-xl font-bold text-primary mb-1">Groupe Gédéon</h4>
@@ -255,7 +255,7 @@
                                     <span class="text-muted font-bold uppercase">Membres</span>
                                     <span class="text-primary font-bold">32 / 50</span>
                                 </div>
-                                <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+                                <div class="w-full h-2 bg-surface rounded-full overflow-hidden">
                                     <div class="progress-fill h-full bg-accent rounded-full" style="width: 0%" data-width="64%"></div>
                                 </div>
                                 <div class="flex items-center justify-between text-xs">
@@ -273,7 +273,7 @@
                     <h3 class="text-lg font-bold text-primary font-serif mb-6">Liste des Chefs</h3>
                     <div class="bg-surface rounded-3xl shadow-sm border border-border overflow-hidden">
                         <table class="w-full text-left text-sm">
-                            <thead class="bg-gray-50 border-b border-border">
+                            <thead class="bg-surface border-b border-border">
                                 <tr class="text-muted text-[10px] font-bold uppercase tracking-widest">
                                     <th class="py-4 px-8">Nom</th>
                                     <th class="py-4 px-8">Rôle</th>
@@ -321,5 +321,11 @@
             }, 300);
         });
     </script>
+
+    <!-- Theme Toggle Floating Button -->
+    <button onclick="toggleTheme()" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-primary text-primary-text shadow-2xl flex items-center justify-center text-xl hover:scale-110 transition-transform border border-border">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+    </button>
 </body>
 </html>

@@ -15,14 +15,14 @@
             --color-text-muted: #6B7280;
             --color-border: #E5E7EB;
         }
-        .dark {
+                .dark {
             --color-bg: #000000;
-            --color-surface: #111111;
+            --color-surface: #000000;
             --color-primary: #FFFFFF;
             --color-primary-text: #000000;
             --color-text: #F9FAFB;
             --color-text-muted: #9CA3AF;
-            --color-border: #374151;
+            --color-border: #1F2937;
         }
 
         @font-face {
@@ -135,7 +135,7 @@
             </div>
             
             <div class="px-8 pb-4">
-                <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-xl border border-border">
+                <div class="flex items-center gap-3 bg-surface p-3 rounded-xl border border-border">
                     <div class="w-10 h-10 rounded-full bg-primary text-primary-text flex items-center justify-center font-bold text-sm">AM</div>
                     <div>
                         <p class="font-bold text-sm text-primary">Chef Amos</p>
@@ -184,7 +184,7 @@
                 
                 <div class="bg-surface rounded-3xl border border-border shadow-sm overflow-hidden animate-fade-in-up">
                     <table class="w-full text-left text-sm">
-                        <thead class="bg-gray-50/50">
+                        <thead class="bg-surface/50">
                             <tr class="text-muted text-[10px] font-bold uppercase tracking-widest">
                                 <th class="py-4 px-8">Disciple</th>
                                 <th class="py-4 px-8">Niveau Actuel</th>
@@ -196,7 +196,7 @@
                         <tbody class="divide-y divide-gray-50">
                             
                             <!-- Row 1 -->
-                            <tr class="hover:bg-gray-50 transition-colors group cursor-pointer" onclick="openMemberDrawer('Jean Kodjo')">
+                            <tr class="hover:bg-surface transition-colors group cursor-pointer" onclick="openMemberDrawer('Jean Kodjo')">
                                 <td class="py-4 px-8">
                                     <div class="flex items-center gap-3">
                                         <div class="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center font-bold text-xs shadow-sm">JK</div>
@@ -213,7 +213,7 @@
                                 </td>
                                 <td class="py-4 px-8">
                                     <div class="flex items-center gap-3">
-                                        <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden w-24">
+                                        <div class="flex-1 h-2 bg-surface rounded-full overflow-hidden w-24">
                                             <div class="h-full bg-success" style="width: 100%"></div>
                                         </div>
                                         <span class="text-xs font-bold text-muted">100%</span>
@@ -228,14 +228,14 @@
                                     </div>
                                 </td>
                                 <td class="py-4 px-8 text-right">
-                                    <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted group-hover:bg-chef group-hover:text-white transition-all">
+                                    <button class="w-8 h-8 rounded-lg bg-surface text-muted group-hover:bg-chef group-hover:text-white transition-all">
                                         <i class="fas fa-chevron-right text-xs"></i>
                                     </button>
                                 </td>
                             </tr>
 
                             <!-- Row 2 -->
-                            <tr class="hover:bg-gray-50 transition-colors group cursor-pointer" onclick="openMemberDrawer('Sarah P.')">
+                            <tr class="hover:bg-surface transition-colors group cursor-pointer" onclick="openMemberDrawer('Sarah P.')">
                                 <td class="py-4 px-8">
                                     <div class="flex items-center gap-3">
                                         <div class="w-10 h-10 rounded-full bg-gray-200 text-muted flex items-center justify-center font-bold text-xs shadow-sm">SP</div>
@@ -246,13 +246,13 @@
                                     </div>
                                 </td>
                                 <td class="py-4 px-8">
-                                    <span class="px-3 py-1 bg-gray-100 text-muted text-xs font-bold rounded-full inline-flex items-center gap-1">
+                                    <span class="px-3 py-1 bg-surface text-muted text-xs font-bold rounded-full inline-flex items-center gap-1">
                                         <i class="fas fa-seedling"></i> Nouveau
                                     </span>
                                 </td>
                                 <td class="py-4 px-8">
                                     <div class="flex items-center gap-3">
-                                        <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden w-24">
+                                        <div class="flex-1 h-2 bg-surface rounded-full overflow-hidden w-24">
                                             <div class="h-full bg-accent" style="width: 30%"></div>
                                         </div>
                                         <span class="text-xs font-bold text-muted">30%</span>
@@ -263,18 +263,18 @@
                                         <span class="w-2 h-6 bg-success rounded-sm opacity-100" title="Présent"></span>
                                         <span class="w-2 h-6 bg-danger rounded-sm opacity-100" title="Absent"></span>
                                         <span class="w-2 h-6 bg-danger rounded-sm opacity-100" title="Absent"></span>
-                                        <span class="w-2 h-6 bg-gray-100 rounded-sm opacity-100" title="À venir"></span>
+                                        <span class="w-2 h-6 bg-surface rounded-sm opacity-100" title="À venir"></span>
                                     </div>
                                 </td>
                                 <td class="py-4 px-8 text-right">
-                                    <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted group-hover:bg-chef group-hover:text-white transition-all">
+                                    <button class="w-8 h-8 rounded-lg bg-surface text-muted group-hover:bg-chef group-hover:text-white transition-all">
                                         <i class="fas fa-chevron-right text-xs"></i>
                                     </button>
                                 </td>
                             </tr>
 
                              <!-- Row 3 -->
-                             <tr class="hover:bg-gray-50 transition-colors group cursor-pointer" onclick="openMemberDrawer('Marc K.')">
+                             <tr class="hover:bg-surface transition-colors group cursor-pointer" onclick="openMemberDrawer('Marc K.')">
                                 <td class="py-4 px-8">
                                     <div class="flex items-center gap-3">
                                         <div class="w-10 h-10 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-xs shadow-sm">MK</div>
@@ -291,7 +291,7 @@
                                 </td>
                                 <td class="py-4 px-8">
                                     <div class="flex items-center gap-3">
-                                        <div class="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden w-24">
+                                        <div class="flex-1 h-2 bg-surface rounded-full overflow-hidden w-24">
                                             <div class="h-full bg-success" style="width: 100%"></div>
                                         </div>
                                         <span class="text-xs font-bold text-muted">100%</span>
@@ -306,7 +306,7 @@
                                     </div>
                                 </td>
                                 <td class="py-4 px-8 text-right">
-                                    <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted group-hover:bg-chef group-hover:text-white transition-all">
+                                    <button class="w-8 h-8 rounded-lg bg-surface text-muted group-hover:bg-chef group-hover:text-white transition-all">
                                         <i class="fas fa-chevron-right text-xs"></i>
                                     </button>
                                 </td>
@@ -324,13 +324,13 @@
         <div class="absolute inset-0 bg-dark/60 backdrop-blur-sm animate-fade-in" onclick="document.getElementById('member-drawer').classList.add('hidden')"></div>
         <div class="absolute right-0 top-0 bottom-0 w-full max-w-xl bg-surface shadow-2xl animate-slide-in-right flex flex-col">
             
-            <header class="p-8 bg-gray-50 border-b border-border flex items-start justify-between shrink-0">
+            <header class="p-8 bg-surface border-b border-border flex items-start justify-between shrink-0">
                 <div class="flex items-center gap-4">
                     <div class="w-16 h-16 rounded-2xl bg-gray-200 text-muted flex items-center justify-center font-bold text-xl shadow-sm" id="drawer-avatar">SP</div>
                     <div>
                         <h3 class="text-xl font-bold text-primary font-serif" id="drawer-name">Sarah P.</h3>
                         <p class="text-xs text-muted mt-1">Membre depuis le 12 Fév 2026</p>
-                        <span class="px-2 py-0.5 bg-gray-200 text-gray-600 text-[10px] font-bold rounded-sm inline-flex items-center mt-2 uppercase tracking-widest">
+                        <span class="px-2 py-0.5 bg-gray-200 text-muted text-[10px] font-bold rounded-sm inline-flex items-center mt-2 uppercase tracking-widest">
                             Nouveau Membre
                         </span>
                     </div>
@@ -382,12 +382,12 @@
                         <div class="relative pl-4 border-l-2 border-border">
                             <div class="absolute -left-[5px] top-1.5 w-2 h-2 bg-gray-300 rounded-full"></div>
                             <p class="text-[10px] text-muted font-bold mb-1">08 Mai 2026</p>
-                            <p class="text-sm text-gray-600">Sarah a des difficultés d'horaire avec son nouveau travail, ce qui explique ses absences récentes. Nous avons prié ensemble à ce sujet.</p>
+                            <p class="text-sm text-muted">Sarah a des difficultés d'horaire avec son nouveau travail, ce qui explique ses absences récentes. Nous avons prié ensemble à ce sujet.</p>
                         </div>
                         <div class="relative pl-4 border-l-2 border-border">
                             <div class="absolute -left-[5px] top-1.5 w-2 h-2 bg-gray-300 rounded-full"></div>
                             <p class="text-[10px] text-muted font-bold mb-1">12 Fév 2026</p>
-                            <p class="text-sm text-gray-600">Premier contact établi. Sarah est très motivée pour commencer les formations.</p>
+                            <p class="text-sm text-muted">Premier contact établi. Sarah est très motivée pour commencer les formations.</p>
                         </div>
                     </div>
                 </div>
@@ -405,5 +405,11 @@
             document.getElementById('member-drawer').classList.remove('hidden');
         }
     </script>
+
+    <!-- Theme Toggle Floating Button -->
+    <button onclick="toggleTheme()" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-primary text-primary-text shadow-2xl flex items-center justify-center text-xl hover:scale-110 transition-transform border border-border">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+    </button>
 </body>
 </html>

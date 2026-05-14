@@ -15,14 +15,14 @@
             --color-text-muted: #6B7280;
             --color-border: #E5E7EB;
         }
-        .dark {
+                .dark {
             --color-bg: #000000;
-            --color-surface: #111111;
+            --color-surface: #000000;
             --color-primary: #FFFFFF;
             --color-primary-text: #000000;
             --color-text: #F9FAFB;
             --color-text-muted: #9CA3AF;
-            --color-border: #374151;
+            --color-border: #1F2937;
         }
 
         @font-face {
@@ -160,7 +160,7 @@
     </script>
 </head>
 
-<body class="bg-[#F8F9FA] font-sans text-text overflow-hidden">
+<body class="bg-surface font-sans text-text overflow-hidden">
     
     <div class="flex h-screen overflow-hidden">
         
@@ -243,7 +243,7 @@
                                 <span class="text-sm font-bold text-primary">7 sur 10 formations complétées</span>
                                 <span class="text-sm font-bold text-accent">70%</span>
                             </div>
-                            <div class="w-full h-4 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="w-full h-4 bg-surface rounded-full overflow-hidden">
                                 <div id="global-progress" class="h-full bg-accent rounded-full transition-all duration-1000 ease-out w-0" style="width: 70%"></div>
                             </div>
                         </div>
@@ -268,7 +268,7 @@
                     
                     <!-- Module 1 -->
                     <div class="accordion-item bg-surface rounded-2xl shadow-sm border border-border overflow-hidden open">
-                        <button class="accordion-trigger w-full px-6 py-5 flex items-center justify-between bg-gray-50/50 hover:bg-gray-50 transition-colors">
+                        <button class="accordion-trigger w-full px-6 py-5 flex items-center justify-between bg-surface/50 hover:bg-surface transition-colors">
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 bg-primary text-accent rounded-xl flex items-center justify-center shadow-inner">
                                     <i class="fas fa-cross text-xl"></i>
@@ -286,7 +286,7 @@
                         <div class="accordion-content">
                             <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 <!-- Video Card 1 -->
-                                <div class="group bg-[#F8F9FA] rounded-xl border border-border p-4 transition-all hover:-translate-y-1 hover:shadow-md">
+                                <div class="group bg-surface rounded-xl border border-border p-4 transition-all hover:-translate-y-1 hover:shadow-md">
                                     <div class="relative aspect-video bg-dark rounded-lg mb-4 overflow-hidden">
                                         <div class="absolute inset-0 flex items-center justify-center">
                                             <i class="fas fa-play text-white/50 text-4xl group-hover:scale-110 transition-transform"></i>
@@ -297,11 +297,11 @@
                                     </div>
                                     <h4 class="font-bold text-primary mb-1">Introduction à la vision de l'EJP</h4>
                                     <p class="text-xs text-muted mb-4">Durée: 12:45 • Vue le 20/03/2026</p>
-                                    <button class="open-modal w-full py-2 bg-surface border border-border text-primary text-sm font-bold rounded-lg hover:bg-gray-50 transition-colors">Revoir</button>
+                                    <button class="open-modal w-full py-2 bg-surface border border-border text-primary text-sm font-bold rounded-lg hover:bg-surface transition-colors">Revoir</button>
                                 </div>
 
                                 <!-- Video Card 2 -->
-                                <div class="group bg-[#F8F9FA] rounded-xl border border-border p-4 transition-all hover:-translate-y-1 hover:shadow-md">
+                                <div class="group bg-surface rounded-xl border border-border p-4 transition-all hover:-translate-y-1 hover:shadow-md">
                                     <div class="relative aspect-video bg-dark rounded-lg mb-4 overflow-hidden">
                                         <div class="absolute inset-0 flex items-center justify-center">
                                             <i class="fas fa-play text-white/50 text-4xl group-hover:scale-110 transition-transform"></i>
@@ -312,7 +312,7 @@
                                     </div>
                                     <h4 class="font-bold text-primary mb-1">Les valeurs de l'église</h4>
                                     <p class="text-xs text-muted mb-4">Durée: 18:20 • Vue le 21/03/2026</p>
-                                    <button class="open-modal w-full py-2 bg-surface border border-border text-primary text-sm font-bold rounded-lg hover:bg-gray-50 transition-colors">Revoir</button>
+                                    <button class="open-modal w-full py-2 bg-surface border border-border text-primary text-sm font-bold rounded-lg hover:bg-surface transition-colors">Revoir</button>
                                 </div>
 
                                 <!-- Video Card 3 -->
@@ -335,7 +335,7 @@
 
                     <!-- Module 2 -->
                     <div class="accordion-item bg-surface rounded-2xl shadow-sm border border-border overflow-hidden">
-                        <button class="accordion-trigger w-full px-6 py-5 flex items-center justify-between bg-gray-50/50 hover:bg-gray-50 transition-colors">
+                        <button class="accordion-trigger w-full px-6 py-5 flex items-center justify-between bg-surface/50 hover:bg-surface transition-colors">
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 bg-primary/80 text-accent rounded-xl flex items-center justify-center">
                                     <i class="fas fa-users text-xl"></i>
@@ -369,7 +369,7 @@
 
                     <!-- Module 3 -->
                     <div class="accordion-item bg-surface rounded-2xl shadow-sm border border-border overflow-hidden">
-                        <button class="accordion-trigger w-full px-6 py-5 flex items-center justify-between bg-gray-50/50 hover:bg-gray-50 transition-colors">
+                        <button class="accordion-trigger w-full px-6 py-5 flex items-center justify-between bg-surface/50 hover:bg-surface transition-colors">
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 bg-primary/60 text-accent rounded-xl flex items-center justify-center">
                                     <i class="fas fa-seedling text-xl"></i>
@@ -526,5 +526,11 @@
             }, 500);
         });
     </script>
+
+    <!-- Theme Toggle Floating Button -->
+    <button onclick="toggleTheme()" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-primary text-primary-text shadow-2xl flex items-center justify-center text-xl hover:scale-110 transition-transform border border-border">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+    </button>
 </body>
 </html>

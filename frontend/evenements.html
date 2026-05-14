@@ -15,14 +15,14 @@
             --color-text-muted: #6B7280;
             --color-border: #E5E7EB;
         }
-        .dark {
+                .dark {
             --color-bg: #000000;
-            --color-surface: #111111;
+            --color-surface: #000000;
             --color-primary: #FFFFFF;
             --color-primary-text: #000000;
             --color-text: #F9FAFB;
             --color-text-muted: #9CA3AF;
-            --color-border: #374151;
+            --color-border: #1F2937;
         }
 
         @font-face {
@@ -129,7 +129,7 @@
     </script>
 </head>
 
-<body class="bg-[#F8F9FA] font-sans text-text overflow-hidden">
+<body class="bg-surface font-sans text-text overflow-hidden">
     
     <div class="flex h-screen overflow-hidden">
         
@@ -312,21 +312,21 @@
                         <div class="overflow-x-auto">
                             <table class="w-full text-left">
                                 <tbody class="text-sm">
-                                    <tr class="border-b border-border hover:bg-gray-50 transition-colors">
+                                    <tr class="border-b border-border hover:bg-surface transition-colors">
                                         <td class="p-4 w-12"><i class="fas fa-history text-gray-300"></i></td>
                                         <td class="py-4 font-bold text-primary">Célébration de Pâques</td>
                                         <td class="py-4 text-muted italic">12 Avril 2026</td>
                                         <td class="py-4 text-muted">Temple Central</td>
                                         <td class="py-4 pr-6 text-right"><button class="text-accent font-bold hover:underline">Détails</button></td>
                                     </tr>
-                                    <tr class="border-b border-border hover:bg-gray-50 transition-colors">
+                                    <tr class="border-b border-border hover:bg-surface transition-colors">
                                         <td class="p-4 w-12"><i class="fas fa-history text-gray-300"></i></td>
                                         <td class="py-4 font-bold text-primary">Forum des Jeunes</td>
                                         <td class="py-4 text-muted italic">28 Mars 2026</td>
                                         <td class="py-4 text-muted">Salle Polyvalente</td>
                                         <td class="py-4 pr-6 text-right"><button class="text-accent font-bold hover:underline">Détails</button></td>
                                     </tr>
-                                    <tr class="hover:bg-gray-50 transition-colors">
+                                    <tr class="hover:bg-surface transition-colors">
                                         <td class="p-4 w-12"><i class="fas fa-history text-gray-300"></i></td>
                                         <td class="py-4 font-bold text-primary">Journée d'Évangélisation</td>
                                         <td class="py-4 text-muted italic">15 Février 2026</td>
@@ -360,11 +360,11 @@
             <!-- Modal Content -->
             <div class="p-8">
                 <div class="flex flex-wrap gap-4 mb-6">
-                    <div class="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-xl text-sm font-medium text-gray-600">
+                    <div class="flex items-center gap-2 bg-surface px-4 py-2 rounded-xl text-sm font-medium text-muted">
                         <i class="far fa-calendar-alt text-accent"></i>
                         <span id="modal-date"></span>
                     </div>
-                    <div class="flex items-center gap-2 bg-gray-100 px-4 py-2 rounded-xl text-sm font-medium text-gray-600">
+                    <div class="flex items-center gap-2 bg-surface px-4 py-2 rounded-xl text-sm font-medium text-muted">
                         <i class="fas fa-map-marker-alt text-accent"></i>
                         <span id="modal-location"></span>
                     </div>
@@ -375,7 +375,7 @@
                 
                 <div class="flex gap-4">
                     <button class="flex-1 py-4 bg-primary text-primary-text font-bold rounded-2xl hover:bg-dark transition-colors">S'inscrire</button>
-                    <button id="share-btn" class="w-16 h-16 flex items-center justify-center border-2 border-border rounded-2xl hover:bg-gray-50 text-primary transition-colors">
+                    <button id="share-btn" class="w-16 h-16 flex items-center justify-center border-2 border-border rounded-2xl hover:bg-surface text-primary transition-colors">
                         <i class="fas fa-share-alt"></i>
                     </button>
                 </div>
@@ -445,5 +445,11 @@
             alert('Lien de l\'événement copié dans le presse-papiers !');
         });
     </script>
+
+    <!-- Theme Toggle Floating Button -->
+    <button onclick="toggleTheme()" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-primary text-primary-text shadow-2xl flex items-center justify-center text-xl hover:scale-110 transition-transform border border-border">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+    </button>
 </body>
 </html>

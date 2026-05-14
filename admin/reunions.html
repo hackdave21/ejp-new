@@ -15,14 +15,14 @@
             --color-text-muted: #6B7280;
             --color-border: #E5E7EB;
         }
-        .dark {
+                .dark {
             --color-bg: #000000;
-            --color-surface: #111111;
+            --color-surface: #000000;
             --color-primary: #FFFFFF;
             --color-primary-text: #000000;
             --color-text: #F9FAFB;
             --color-text-muted: #9CA3AF;
-            --color-border: #374151;
+            --color-border: #1F2937;
         }
 
         @font-face {
@@ -204,13 +204,13 @@
                             <div class="flex -space-x-3">
                                 <div class="w-8 h-8 rounded-full border-2 border-white bg-blue-100 text-primary flex items-center justify-center font-bold text-[10px]">AM</div>
                                 <div class="w-8 h-8 rounded-full border-2 border-white bg-pink-100 text-pink-600 flex items-center justify-center font-bold text-[10px]">MK</div>
-                                <div class="w-8 h-8 rounded-full border-2 border-white bg-gray-100 text-muted flex items-center justify-center font-bold text-[10px]">+4</div>
+                                <div class="w-8 h-8 rounded-full border-2 border-white bg-surface text-muted flex items-center justify-center font-bold text-[10px]">+4</div>
                             </div>
                             <span class="text-[10px] text-muted font-bold uppercase tracking-tighter">Participants</span>
                         </div>
 
                         <div class="flex gap-2">
-                            <button class="flex-1 py-2.5 bg-gray-50 text-muted font-bold text-xs rounded-xl hover:bg-primary hover:text-primary-text transition-all">Consulter</button>
+                            <button class="flex-1 py-2.5 bg-surface text-muted font-bold text-xs rounded-xl hover:bg-primary hover:text-primary-text transition-all">Consulter</button>
                             <button class="w-11 h-11 flex items-center justify-center border border-border rounded-xl text-muted hover:text-danger transition-colors">
                                 <i class="fas fa-file-pdf"></i>
                             </button>
@@ -231,13 +231,13 @@
                         <div class="flex items-center gap-2 mb-8">
                             <div class="flex -space-x-3">
                                 <div class="w-8 h-8 rounded-full border-2 border-white bg-green-100 text-green-600 flex items-center justify-center font-bold text-[10px]">PA</div>
-                                <div class="w-8 h-8 rounded-full border-2 border-white bg-gray-100 text-muted flex items-center justify-center font-bold text-[10px]">+2</div>
+                                <div class="w-8 h-8 rounded-full border-2 border-white bg-surface text-muted flex items-center justify-center font-bold text-[10px]">+2</div>
                             </div>
                             <span class="text-[10px] text-muted font-bold uppercase tracking-tighter">Participants</span>
                         </div>
 
                         <div class="flex gap-2">
-                            <button class="flex-1 py-2.5 bg-gray-50 text-muted font-bold text-xs rounded-xl hover:bg-primary hover:text-primary-text transition-all">Consulter</button>
+                            <button class="flex-1 py-2.5 bg-surface text-muted font-bold text-xs rounded-xl hover:bg-primary hover:text-primary-text transition-all">Consulter</button>
                             <button class="w-11 h-11 flex items-center justify-center border border-border rounded-xl text-muted hover:text-danger transition-colors">
                                 <i class="fas fa-file-pdf"></i>
                             </button>
@@ -259,13 +259,13 @@
                             <div class="flex -space-x-3">
                                 <div class="w-8 h-8 rounded-full border-2 border-white bg-blue-100 text-primary flex items-center justify-center font-bold text-[10px]">AM</div>
                                 <div class="w-8 h-8 rounded-full border-2 border-white bg-pink-100 text-pink-600 flex items-center justify-center font-bold text-[10px]">MK</div>
-                                <div class="w-8 h-8 rounded-full border-2 border-white bg-gray-100 text-muted flex items-center justify-center font-bold text-[10px]">+12</div>
+                                <div class="w-8 h-8 rounded-full border-2 border-white bg-surface text-muted flex items-center justify-center font-bold text-[10px]">+12</div>
                             </div>
                             <span class="text-[10px] text-muted font-bold uppercase tracking-tighter">Participants</span>
                         </div>
 
                         <div class="flex gap-2">
-                            <button class="flex-1 py-2.5 bg-gray-50 text-muted font-bold text-xs rounded-xl hover:bg-primary hover:text-primary-text transition-all">Consulter</button>
+                            <button class="flex-1 py-2.5 bg-surface text-muted font-bold text-xs rounded-xl hover:bg-primary hover:text-primary-text transition-all">Consulter</button>
                             <button class="w-11 h-11 flex items-center justify-center border border-border rounded-xl text-muted hover:text-danger transition-colors">
                                 <i class="fas fa-file-pdf"></i>
                             </button>
@@ -283,7 +283,7 @@
         <div class="absolute right-0 top-0 bottom-0 w-full max-w-2xl bg-surface shadow-2xl animate-slide-in-right flex flex-col">
             <header class="p-10 border-b border-border flex items-center justify-between shrink-0">
                 <h3 class="text-2xl font-bold text-primary font-serif">Nouveau Procès Verbal</h3>
-                <button onclick="document.getElementById('add-drawer').classList.add('hidden')" class="w-10 h-10 rounded-full hover:bg-gray-100 text-muted transition-colors"><i class="fas fa-times text-xl"></i></button>
+                <button onclick="document.getElementById('add-drawer').classList.add('hidden')" class="w-10 h-10 rounded-full hover:bg-surface text-muted transition-colors"><i class="fas fa-times text-xl"></i></button>
             </header>
             
             <div class="flex-1 overflow-y-auto p-10 custom-scrollbar space-y-8">
@@ -335,5 +335,11 @@
             document.getElementById('add-drawer').classList.remove('hidden');
         };
     </script>
+
+    <!-- Theme Toggle Floating Button -->
+    <button onclick="toggleTheme()" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-primary text-primary-text shadow-2xl flex items-center justify-center text-xl hover:scale-110 transition-transform border border-border">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+    </button>
 </body>
 </html>

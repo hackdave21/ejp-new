@@ -15,14 +15,14 @@
             --color-text-muted: #6B7280;
             --color-border: #E5E7EB;
         }
-        .dark {
+                .dark {
             --color-bg: #000000;
-            --color-surface: #111111;
+            --color-surface: #000000;
             --color-primary: #FFFFFF;
             --color-primary-text: #000000;
             --color-text: #F9FAFB;
             --color-text-muted: #9CA3AF;
-            --color-border: #374151;
+            --color-border: #1F2937;
         }
 
         @font-face {
@@ -290,7 +290,7 @@
                             </div>
 
                             <div class="space-y-4">
-                                <div class="flex items-center justify-between p-4 bg-[#F8F9FA] rounded-2xl border border-border hover:border-accent/20 transition-all group">
+                                <div class="flex items-center justify-between p-4 bg-surface rounded-2xl border border-border hover:border-accent/20 transition-all group">
                                     <div class="flex items-center gap-4">
                                         <div class="w-10 h-10 rounded-full bg-blue-100 text-primary flex items-center justify-center font-bold">MK</div>
                                         <div>
@@ -304,7 +304,7 @@
                                     </div>
                                 </div>
 
-                                <div class="flex items-center justify-between p-4 bg-[#F8F9FA] rounded-2xl border border-border hover:border-accent/20 transition-all group">
+                                <div class="flex items-center justify-between p-4 bg-surface rounded-2xl border border-border hover:border-accent/20 transition-all group">
                                     <div class="flex items-center gap-4">
                                         <div class="w-10 h-10 rounded-full bg-amber-100 text-accent flex items-center justify-center font-bold">JS</div>
                                         <div>
@@ -373,7 +373,7 @@
                             
                             <div class="space-y-8 relative">
                                 <!-- Vertical Line -->
-                                <div class="absolute left-4 top-2 bottom-2 w-0.5 bg-gray-50"></div>
+                                <div class="absolute left-4 top-2 bottom-2 w-0.5 bg-surface"></div>
                                 
                                 <!-- Activity 1 -->
                                 <div class="relative pl-12 animate-slide-in-right" style="animation-delay: 0.1s">
@@ -450,5 +450,11 @@
             }, 300);
         });
     </script>
+
+    <!-- Theme Toggle Floating Button -->
+    <button onclick="toggleTheme()" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-primary text-primary-text shadow-2xl flex items-center justify-center text-xl hover:scale-110 transition-transform border border-border">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+    </button>
 </body>
 </html>

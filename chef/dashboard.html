@@ -15,14 +15,14 @@
             --color-text-muted: #6B7280;
             --color-border: #E5E7EB;
         }
-        .dark {
+                .dark {
             --color-bg: #000000;
-            --color-surface: #111111;
+            --color-surface: #000000;
             --color-primary: #FFFFFF;
             --color-primary-text: #000000;
             --color-text: #F9FAFB;
             --color-text-muted: #9CA3AF;
-            --color-border: #374151;
+            --color-border: #1F2937;
         }
 
         @font-face {
@@ -130,7 +130,7 @@
             </div>
             
             <div class="px-8 pb-4">
-                <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-xl border border-border">
+                <div class="flex items-center gap-3 bg-surface p-3 rounded-xl border border-border">
                     <div class="w-10 h-10 rounded-full bg-primary text-primary-text flex items-center justify-center font-bold text-sm">AM</div>
                     <div>
                         <p class="font-bold text-sm text-primary">Chef Amos</p>
@@ -215,7 +215,7 @@
                                 <p class="text-3xl font-bold text-primary font-serif">3</p>
                             </div>
                         </div>
-                        <a href="demandes.html" class="px-4 py-2 bg-gray-50 text-muted font-bold text-xs rounded-xl hover:bg-chef hover:text-white transition-all">Gérer</a>
+                        <a href="demandes.html" class="px-4 py-2 bg-surface text-muted font-bold text-xs rounded-xl hover:bg-chef hover:text-white transition-all">Gérer</a>
                     </div>
                 </div>
 
@@ -288,5 +288,11 @@
         </main>
     </div>
 
+
+    <!-- Theme Toggle Floating Button -->
+    <button onclick="toggleTheme()" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-primary text-primary-text shadow-2xl flex items-center justify-center text-xl hover:scale-110 transition-transform border border-border">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+    </button>
 </body>
 </html>

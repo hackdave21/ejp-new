@@ -15,14 +15,14 @@
             --color-text-muted: #6B7280;
             --color-border: #E5E7EB;
         }
-        .dark {
+                .dark {
             --color-bg: #000000;
-            --color-surface: #111111;
+            --color-surface: #000000;
             --color-primary: #FFFFFF;
             --color-primary-text: #000000;
             --color-text: #F9FAFB;
             --color-text-muted: #9CA3AF;
-            --color-border: #374151;
+            --color-border: #1F2937;
         }
 
         @font-face {
@@ -192,7 +192,7 @@
                         </div>
                         <div class="flex items-center gap-6">
                             <div class="hidden md:flex gap-2">
-                                <button class="px-4 py-2 bg-gray-50 text-muted text-[10px] font-bold uppercase rounded-lg hover:bg-gray-100 transition-colors">Éditer le module</button>
+                                <button class="px-4 py-2 bg-surface text-muted text-[10px] font-bold uppercase rounded-lg hover:bg-surface transition-colors">Éditer le module</button>
                                 <button class="px-4 py-2 bg-danger/10 text-danger text-[10px] font-bold uppercase rounded-lg hover:bg-danger hover:text-white transition-colors"><i class="fas fa-trash"></i></button>
                             </div>
                             <i class="fas fa-chevron-down chevron transition-transform text-muted"></i>
@@ -205,7 +205,7 @@
                             <!-- Video Item -->
                             <div class="flex items-center justify-between p-4 bg-surface rounded-2xl border border-border group">
                                 <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center text-muted cursor-move">
+                                    <div class="w-10 h-10 bg-surface rounded-lg flex items-center justify-center text-muted cursor-move">
                                         <i class="fas fa-grip-vertical"></i>
                                     </div>
                                     <div class="w-20 aspect-video bg-dark rounded-lg flex items-center justify-center relative overflow-hidden">
@@ -220,7 +220,7 @@
                                     </div>
                                 </div>
                                 <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted hover:bg-gray-200 transition-all"><i class="fas fa-edit text-xs"></i></button>
+                                    <button class="w-8 h-8 rounded-lg bg-surface text-muted hover:bg-gray-200 transition-all"><i class="fas fa-edit text-xs"></i></button>
                                     <button class="w-8 h-8 rounded-lg bg-danger/10 text-danger hover:bg-danger hover:text-white transition-all"><i class="fas fa-times text-xs"></i></button>
                                 </div>
                             </div>
@@ -228,7 +228,7 @@
                             <!-- Video Item 2 -->
                             <div class="flex items-center justify-between p-4 bg-surface rounded-2xl border border-border group">
                                 <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center text-muted cursor-move">
+                                    <div class="w-10 h-10 bg-surface rounded-lg flex items-center justify-center text-muted cursor-move">
                                         <i class="fas fa-grip-vertical"></i>
                                     </div>
                                     <div class="w-20 aspect-video bg-dark rounded-lg flex items-center justify-center relative overflow-hidden">
@@ -243,7 +243,7 @@
                                     </div>
                                 </div>
                                 <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted hover:bg-gray-200 transition-all"><i class="fas fa-edit text-xs"></i></button>
+                                    <button class="w-8 h-8 rounded-lg bg-surface text-muted hover:bg-gray-200 transition-all"><i class="fas fa-edit text-xs"></i></button>
                                     <button class="w-8 h-8 rounded-lg bg-danger/10 text-danger hover:bg-danger hover:text-white transition-all"><i class="fas fa-times text-xs"></i></button>
                                 </div>
                             </div>
@@ -314,5 +314,11 @@
             document.getElementById('add-drawer').classList.remove('hidden');
         };
     </script>
+
+    <!-- Theme Toggle Floating Button -->
+    <button onclick="toggleTheme()" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-primary text-primary-text shadow-2xl flex items-center justify-center text-xl hover:scale-110 transition-transform border border-border">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+    </button>
 </body>
 </html>

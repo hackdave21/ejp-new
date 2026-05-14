@@ -15,14 +15,14 @@
             --color-text-muted: #6B7280;
             --color-border: #E5E7EB;
         }
-        .dark {
+                .dark {
             --color-bg: #000000;
-            --color-surface: #111111;
+            --color-surface: #000000;
             --color-primary: #FFFFFF;
             --color-primary-text: #000000;
             --color-text: #F9FAFB;
             --color-text-muted: #9CA3AF;
-            --color-border: #374151;
+            --color-border: #1F2937;
         }
 
         @font-face {
@@ -244,7 +244,7 @@
 
                     <div class="bg-surface rounded-3xl shadow-sm border border-border overflow-hidden">
                         <table class="w-full text-left text-sm">
-                            <thead class="bg-gray-50 border-b border-border">
+                            <thead class="bg-surface border-b border-border">
                                 <tr class="text-muted text-[10px] font-bold uppercase tracking-widest">
                                     <th class="py-4 px-8">Date & Type</th>
                                     <th class="py-4 px-8">Thème</th>
@@ -254,7 +254,7 @@
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-gray-50">
-                                <tr class="hover:bg-gray-50 transition-colors group">
+                                <tr class="hover:bg-surface transition-colors group">
                                     <td class="py-6 px-8">
                                         <p class="font-bold text-primary">07 Mai 2026</p>
                                         <p class="text-[10px] text-muted uppercase">Culte de Dimanche</p>
@@ -268,12 +268,12 @@
                                     </td>
                                     <td class="py-6 px-8 text-right">
                                         <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                            <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted hover:bg-primary hover:text-primary-text transition-all"><i class="fas fa-chart-bar text-xs"></i></button>
-                                            <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted hover:bg-primary hover:text-primary-text transition-all"><i class="fas fa-file-pdf text-xs"></i></button>
+                                            <button class="w-8 h-8 rounded-lg bg-surface text-muted hover:bg-primary hover:text-primary-text transition-all"><i class="fas fa-chart-bar text-xs"></i></button>
+                                            <button class="w-8 h-8 rounded-lg bg-surface text-muted hover:bg-primary hover:text-primary-text transition-all"><i class="fas fa-file-pdf text-xs"></i></button>
                                         </div>
                                     </td>
                                 </tr>
-                                <tr class="hover:bg-gray-50 transition-colors group">
+                                <tr class="hover:bg-surface transition-colors group">
                                     <td class="py-6 px-8">
                                         <p class="font-bold text-primary">04 Mai 2026</p>
                                         <p class="text-[10px] text-muted uppercase">Culte de Semaine</p>
@@ -287,8 +287,8 @@
                                     </td>
                                     <td class="py-6 px-8 text-right">
                                         <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                            <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted hover:bg-primary hover:text-primary-text transition-all"><i class="fas fa-chart-bar text-xs"></i></button>
-                                            <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted hover:bg-primary hover:text-primary-text transition-all"><i class="fas fa-file-pdf text-xs"></i></button>
+                                            <button class="w-8 h-8 rounded-lg bg-surface text-muted hover:bg-primary hover:text-primary-text transition-all"><i class="fas fa-chart-bar text-xs"></i></button>
+                                            <button class="w-8 h-8 rounded-lg bg-surface text-muted hover:bg-primary hover:text-primary-text transition-all"><i class="fas fa-file-pdf text-xs"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -309,15 +309,15 @@
                 <div class="grid grid-cols-3 gap-4">
                     <div class="space-y-1">
                         <label class="text-[10px] font-bold text-muted uppercase">Hommes</label>
-                        <input type="number" class="w-full bg-gray-50 border-none rounded-xl py-3 px-4 text-center font-bold text-primary" value="40">
+                        <input type="number" class="w-full bg-surface border-none rounded-xl py-3 px-4 text-center font-bold text-primary" value="40">
                     </div>
                     <div class="space-y-1">
                         <label class="text-[10px] font-bold text-muted uppercase">Femmes</label>
-                        <input type="number" class="w-full bg-gray-50 border-none rounded-xl py-3 px-4 text-center font-bold text-primary" value="55">
+                        <input type="number" class="w-full bg-surface border-none rounded-xl py-3 px-4 text-center font-bold text-primary" value="55">
                     </div>
                     <div class="space-y-1">
                         <label class="text-[10px] font-bold text-muted uppercase">Enfants</label>
-                        <input type="number" class="w-full bg-gray-50 border-none rounded-xl py-3 px-4 text-center font-bold text-primary" value="13">
+                        <input type="number" class="w-full bg-surface border-none rounded-xl py-3 px-4 text-center font-bold text-primary" value="13">
                     </div>
                 </div>
                 <div class="p-4 bg-primary rounded-2xl text-center">
@@ -336,5 +336,11 @@
             document.getElementById('attendance-modal').classList.remove('hidden');
         });
     </script>
+
+    <!-- Theme Toggle Floating Button -->
+    <button onclick="toggleTheme()" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-primary text-primary-text shadow-2xl flex items-center justify-center text-xl hover:scale-110 transition-transform border border-border">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+    </button>
 </body>
 </html>

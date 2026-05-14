@@ -15,14 +15,14 @@
             --color-text-muted: #6B7280;
             --color-border: #E5E7EB;
         }
-        .dark {
+                .dark {
             --color-bg: #000000;
-            --color-surface: #111111;
+            --color-surface: #000000;
             --color-primary: #FFFFFF;
             --color-primary-text: #000000;
             --color-text: #F9FAFB;
             --color-text-muted: #9CA3AF;
-            --color-border: #374151;
+            --color-border: #1F2937;
         }
 
         @font-face {
@@ -138,7 +138,7 @@
             </div>
             
             <div class="px-8 pb-4">
-                <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-xl border border-border">
+                <div class="flex items-center gap-3 bg-surface p-3 rounded-xl border border-border">
                     <div class="w-10 h-10 rounded-full bg-primary text-primary-text flex items-center justify-center font-bold text-sm">AM</div>
                     <div>
                         <p class="font-bold text-sm text-primary">Chef Amos</p>
@@ -177,7 +177,7 @@
                     </h2>
                 </div>
                 <div class="flex items-center gap-4">
-                    <div class="bg-gray-100 p-1 rounded-xl flex text-sm font-bold text-muted">
+                    <div class="bg-surface p-1 rounded-xl flex text-sm font-bold text-muted">
                         <button class="px-4 py-1.5 bg-surface text-primary rounded-lg shadow-sm">En attente (3)</button>
                         <button class="px-4 py-1.5 hover:text-primary transition-colors">Traitées</button>
                     </div>
@@ -362,7 +362,7 @@
             <textarea id="reject-reason" class="w-full bg-bg border-none rounded-2xl py-4 px-6 text-sm text-primary min-h-[120px] focus:ring-1 focus:ring-chef outline-none mb-6" placeholder="Ex: Il te manque encore 2 modules de formation à valider..."></textarea>
             
             <div class="flex gap-4">
-                <button onclick="closeRejectModal()" class="flex-1 py-3 bg-surface border border-border text-muted font-bold rounded-xl hover:bg-gray-50 transition-colors">Annuler</button>
+                <button onclick="closeRejectModal()" class="flex-1 py-3 bg-surface border border-border text-muted font-bold rounded-xl hover:bg-surface transition-colors">Annuler</button>
                 <button onclick="submitReject()" class="flex-1 py-3 bg-danger text-white font-bold rounded-xl hover:bg-red-700 transition-colors shadow-md shadow-danger/20">Confirmer le refus</button>
             </div>
         </div>
@@ -442,5 +442,11 @@
             }, 300);
         }
     </script>
+
+    <!-- Theme Toggle Floating Button -->
+    <button onclick="toggleTheme()" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-primary text-primary-text shadow-2xl flex items-center justify-center text-xl hover:scale-110 transition-transform border border-border">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+    </button>
 </body>
 </html>

@@ -15,14 +15,14 @@
             --color-text-muted: #6B7280;
             --color-border: #E5E7EB;
         }
-        .dark {
+                .dark {
             --color-bg: #000000;
-            --color-surface: #111111;
+            --color-surface: #000000;
             --color-primary: #FFFFFF;
             --color-primary-text: #000000;
             --color-text: #F9FAFB;
             --color-text-muted: #9CA3AF;
-            --color-border: #374151;
+            --color-border: #1F2937;
         }
 
         @font-face {
@@ -155,7 +155,7 @@
     </script>
 </head>
 
-<body class="bg-[#F8F9FA] font-sans text-text overflow-hidden">
+<body class="bg-surface font-sans text-text overflow-hidden">
     
     <div class="flex h-screen overflow-hidden">
         
@@ -274,13 +274,13 @@
 
                                 <!-- Level 3 -->
                                 <div class="timeline-item flex gap-6 relative animate-fade-in-up" style="animation-delay: 0.3s">
-                                    <div class="node bg-gray-100 text-muted">
+                                    <div class="node bg-surface text-muted">
                                         <i class="fas fa-plane"></i>
                                     </div>
                                     <div>
                                         <div class="flex items-center gap-2 mb-1">
                                             <span class="text-lg font-bold text-muted">✈️ Niveau 3 : Pilote</span>
-                                            <span class="px-2 py-0.5 bg-gray-100 text-muted text-[10px] font-bold rounded">EN COURS</span>
+                                            <span class="px-2 py-0.5 bg-surface text-muted text-[10px] font-bold rounded">EN COURS</span>
                                         </div>
                                         <p class="text-sm text-muted">Conditions à remplir ci-dessous</p>
                                     </div>
@@ -288,7 +288,7 @@
 
                                 <!-- Level 4 -->
                                 <div class="timeline-item flex gap-6 relative opacity-50 animate-fade-in-up" style="animation-delay: 0.4s">
-                                    <div class="node bg-gray-100 text-muted">
+                                    <div class="node bg-surface text-muted">
                                         <i class="fas fa-lock"></i>
                                     </div>
                                     <div>
@@ -301,7 +301,7 @@
 
                                 <!-- Level 5 -->
                                 <div class="timeline-item flex gap-6 relative opacity-50 animate-fade-in-up" style="animation-delay: 0.5s">
-                                    <div class="node bg-gray-100 text-muted">
+                                    <div class="node bg-surface text-muted">
                                         <i class="fas fa-lock"></i>
                                     </div>
                                     <div>
@@ -353,16 +353,16 @@
                                     <div class="w-6 h-6 bg-success/10 text-success rounded-full flex items-center justify-center text-xs">
                                         <i class="fas fa-check"></i>
                                     </div>
-                                    <span class="text-sm text-gray-600">Formation initiale complétée</span>
+                                    <span class="text-sm text-muted">Formation initiale complétée</span>
                                 </li>
                                 <li class="space-y-2">
                                     <div class="flex items-center gap-3">
                                         <div class="w-6 h-6 bg-amber-500/10 text-amber-500 rounded-full flex items-center justify-center text-xs">
                                             <i class="fas fa-sync fa-spin" style="animation-duration: 3s"></i>
                                         </div>
-                                        <span class="text-sm text-gray-600">Sessions de service : <span class="font-bold">8/12</span></span>
+                                        <span class="text-sm text-muted">Sessions de service : <span class="font-bold">8/12</span></span>
                                     </div>
-                                    <div class="ml-9 w-full h-1.5 bg-gray-100 rounded-full overflow-hidden">
+                                    <div class="ml-9 w-full h-1.5 bg-surface rounded-full overflow-hidden">
                                         <div class="h-full bg-accent rounded-full" style="width: 66%"></div>
                                     </div>
                                 </li>
@@ -373,7 +373,7 @@
                                     <span class="text-sm text-muted">Demande validée par le Chef</span>
                                 </li>
                             </ul>
-                            <button class="w-full py-4 bg-gray-100 text-muted font-bold rounded-2xl cursor-not-allowed">
+                            <button class="w-full py-4 bg-surface text-muted font-bold rounded-2xl cursor-not-allowed">
                                 Faire ma demande
                             </button>
                         </div>
@@ -406,7 +406,7 @@
                                 </div>
                             </div>
 
-                            <button class="w-full py-3 text-xs font-bold text-primary border border-border rounded-xl hover:bg-gray-50">Voir le détail des sessions</button>
+                            <button class="w-full py-3 text-xs font-bold text-primary border border-border rounded-xl hover:bg-surface">Voir le détail des sessions</button>
                         </div>
                     </div>
                 </div>
@@ -455,5 +455,11 @@
         // Simple Intersection Observer for timeline sequential fade-in (if not using Tailwind delay)
         // Already handled with tailwind delays for this demo.
     </script>
+
+    <!-- Theme Toggle Floating Button -->
+    <button onclick="toggleTheme()" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-primary text-primary-text shadow-2xl flex items-center justify-center text-xl hover:scale-110 transition-transform border border-border">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+    </button>
 </body>
 </html>

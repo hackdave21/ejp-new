@@ -15,14 +15,14 @@
             --color-text-muted: #6B7280;
             --color-border: #E5E7EB;
         }
-        .dark {
+                .dark {
             --color-bg: #000000;
-            --color-surface: #111111;
+            --color-surface: #000000;
             --color-primary: #FFFFFF;
             --color-primary-text: #000000;
             --color-text: #F9FAFB;
             --color-text-muted: #9CA3AF;
-            --color-border: #374151;
+            --color-border: #1F2937;
         }
 
         @font-face {
@@ -157,7 +157,7 @@
     </script>
 </head>
 
-<body class="bg-[#F8F9FA] font-sans text-text overflow-hidden">
+<body class="bg-surface font-sans text-text overflow-hidden">
     
     <!-- Success Toast -->
     <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[100] hidden">
@@ -296,14 +296,14 @@
                     <form class="max-w-md space-y-6">
                         <div class="space-y-2">
                             <label class="text-xs font-bold text-muted uppercase">Ancien mot de passe</label>
-                            <input type="password" placeholder="••••••••" class="w-full bg-gray-50 border border-border rounded-xl py-3 px-4 focus:border-accent focus:outline-none">
+                            <input type="password" placeholder="••••••••" class="w-full bg-surface border border-border rounded-xl py-3 px-4 focus:border-accent focus:outline-none">
                         </div>
                         
                         <div class="space-y-2">
                             <label class="text-xs font-bold text-muted uppercase">Nouveau mot de passe</label>
-                            <input type="password" id="new-password" placeholder="••••••••" class="w-full bg-gray-50 border border-border rounded-xl py-3 px-4 focus:border-accent focus:outline-none">
+                            <input type="password" id="new-password" placeholder="••••••••" class="w-full bg-surface border border-border rounded-xl py-3 px-4 focus:border-accent focus:outline-none">
                             <!-- Strength Meter -->
-                            <div class="w-full h-1 bg-gray-100 rounded-full overflow-hidden mt-2">
+                            <div class="w-full h-1 bg-surface rounded-full overflow-hidden mt-2">
                                 <div id="strength-meter" class="strength-bar bg-danger"></div>
                             </div>
                             <p id="strength-text" class="text-[10px] font-bold text-muted uppercase">Trop faible</p>
@@ -311,7 +311,7 @@
 
                         <div class="space-y-2">
                             <label class="text-xs font-bold text-muted uppercase">Confirmer le nouveau mot de passe</label>
-                            <input type="password" placeholder="••••••••" class="w-full bg-gray-50 border border-border rounded-xl py-3 px-4 focus:border-accent focus:outline-none">
+                            <input type="password" placeholder="••••••••" class="w-full bg-surface border border-border rounded-xl py-3 px-4 focus:border-accent focus:outline-none">
                         </div>
 
                         <button type="submit" class="w-full py-4 bg-primary text-primary-text font-bold rounded-2xl hover:bg-dark transition-colors">Mettre à jour le mot de passe</button>
@@ -436,5 +436,11 @@
             }
         });
     </script>
+
+    <!-- Theme Toggle Floating Button -->
+    <button onclick="toggleTheme()" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-primary text-primary-text shadow-2xl flex items-center justify-center text-xl hover:scale-110 transition-transform border border-border">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+    </button>
 </body>
 </html>

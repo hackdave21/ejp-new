@@ -15,14 +15,14 @@
             --color-text-muted: #6B7280;
             --color-border: #E5E7EB;
         }
-        .dark {
+                .dark {
             --color-bg: #000000;
-            --color-surface: #111111;
+            --color-surface: #000000;
             --color-primary: #FFFFFF;
             --color-primary-text: #000000;
             --color-text: #F9FAFB;
             --color-text-muted: #9CA3AF;
-            --color-border: #374151;
+            --color-border: #1F2937;
         }
 
         @font-face {
@@ -234,7 +234,7 @@
 
                     <!-- Campaigns Table -->
                     <table class="w-full text-left text-sm">
-                        <thead class="bg-gray-50/50">
+                        <thead class="bg-surface/50">
                             <tr class="text-muted text-[10px] font-bold uppercase tracking-widest">
                                 <th class="py-4 px-8">Campagne / Objet</th>
                                 <th class="py-4 px-8">Cible</th>
@@ -246,7 +246,7 @@
                         </thead>
                         <tbody class="divide-y divide-gray-50">
                             <!-- Row 1 -->
-                            <tr class="hover:bg-gray-50 transition-colors group">
+                            <tr class="hover:bg-surface transition-colors group">
                                 <td class="py-4 px-8">
                                     <p class="font-bold text-primary font-serif">Rappel: Retraite des Leaders</p>
                                     <p class="text-[10px] text-muted">Newsletter Hebdo</p>
@@ -264,14 +264,14 @@
                                 </td>
                                 <td class="py-4 px-8 text-right">
                                     <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                        <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted hover:bg-primary hover:text-primary-text transition-all"><i class="fas fa-chart-bar text-xs"></i></button>
-                                        <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted hover:bg-primary hover:text-primary-text transition-all"><i class="fas fa-copy text-xs"></i></button>
+                                        <button class="w-8 h-8 rounded-lg bg-surface text-muted hover:bg-primary hover:text-primary-text transition-all"><i class="fas fa-chart-bar text-xs"></i></button>
+                                        <button class="w-8 h-8 rounded-lg bg-surface text-muted hover:bg-primary hover:text-primary-text transition-all"><i class="fas fa-copy text-xs"></i></button>
                                     </div>
                                 </td>
                             </tr>
                             
                             <!-- Row 2 -->
-                            <tr class="hover:bg-gray-50 transition-colors group">
+                            <tr class="hover:bg-surface transition-colors group">
                                 <td class="py-4 px-8">
                                     <p class="font-bold text-primary font-serif">Nouveau Module: Vie en Communauté</p>
                                     <p class="text-[10px] text-muted">Notification Formation</p>
@@ -284,14 +284,14 @@
                                 <td class="py-4 px-8 text-muted text-xs italic">-</td>
                                 <td class="py-4 px-8 text-right">
                                     <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                        <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted hover:bg-primary hover:text-primary-text transition-all"><i class="fas fa-edit text-xs"></i></button>
+                                        <button class="w-8 h-8 rounded-lg bg-surface text-muted hover:bg-primary hover:text-primary-text transition-all"><i class="fas fa-edit text-xs"></i></button>
                                         <button class="w-8 h-8 rounded-lg bg-danger/10 text-danger hover:bg-danger hover:text-white transition-all"><i class="fas fa-trash text-xs"></i></button>
                                     </div>
                                 </td>
                             </tr>
 
                             <!-- Row 3 -->
-                            <tr class="hover:bg-gray-50 transition-colors group">
+                            <tr class="hover:bg-surface transition-colors group">
                                 <td class="py-4 px-8">
                                     <p class="font-bold text-muted font-serif">Bilan Mensuel Avril</p>
                                     <p class="text-[10px] text-muted">Rapport</p>
@@ -299,12 +299,12 @@
                                 <td class="py-4 px-8 text-muted">Chefs de Groupe (8)</td>
                                 <td class="py-4 px-8 text-muted">-</td>
                                 <td class="py-4 px-8">
-                                    <span class="px-3 py-1 bg-gray-100 text-muted text-[10px] font-bold rounded-full uppercase tracking-widest">Brouillon</span>
+                                    <span class="px-3 py-1 bg-surface text-muted text-[10px] font-bold rounded-full uppercase tracking-widest">Brouillon</span>
                                 </td>
                                 <td class="py-4 px-8 text-muted text-xs italic">-</td>
                                 <td class="py-4 px-8 text-right">
                                     <div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                                        <button class="w-8 h-8 rounded-lg bg-gray-50 text-muted hover:bg-primary hover:text-primary-text transition-all"><i class="fas fa-edit text-xs"></i></button>
+                                        <button class="w-8 h-8 rounded-lg bg-surface text-muted hover:bg-primary hover:text-primary-text transition-all"><i class="fas fa-edit text-xs"></i></button>
                                     </div>
                                 </td>
                             </tr>
@@ -322,7 +322,7 @@
         <div class="absolute right-0 top-0 bottom-0 w-full max-w-3xl bg-surface shadow-2xl animate-slide-in-right flex flex-col">
             <header class="p-10 border-b border-border flex items-center justify-between shrink-0">
                 <h3 class="text-2xl font-bold text-primary font-serif">Nouvelle Campagne</h3>
-                <button onclick="document.getElementById('add-drawer').classList.add('hidden')" class="w-10 h-10 rounded-full hover:bg-gray-100 text-muted transition-colors"><i class="fas fa-times text-xl"></i></button>
+                <button onclick="document.getElementById('add-drawer').classList.add('hidden')" class="w-10 h-10 rounded-full hover:bg-surface text-muted transition-colors"><i class="fas fa-times text-xl"></i></button>
             </header>
             
             <div class="flex-1 overflow-y-auto p-10 custom-scrollbar space-y-8">
@@ -355,7 +355,7 @@
                 <div class="space-y-1">
                     <label class="text-[10px] font-bold text-muted uppercase tracking-widest">Contenu du message</label>
                     <div class="border border-border rounded-2xl overflow-hidden focus-within:ring-1 focus-within:ring-accent focus-within:border-accent transition-all">
-                        <div class="rich-text-toolbar bg-gray-50 border-b border-border p-2 flex gap-1 items-center">
+                        <div class="rich-text-toolbar bg-surface border-b border-border p-2 flex gap-1 items-center">
                             <button><i class="fas fa-bold"></i></button>
                             <button><i class="fas fa-italic"></i></button>
                             <button><i class="fas fa-underline"></i></button>
@@ -380,7 +380,7 @@
             </div>
 
             <footer class="p-10 border-t border-border shrink-0 flex gap-4">
-                <button type="button" class="flex-1 py-4 bg-surface border border-border text-muted font-bold rounded-2xl hover:bg-gray-50 transition-colors">Enregistrer Brouillon</button>
+                <button type="button" class="flex-1 py-4 bg-surface border border-border text-muted font-bold rounded-2xl hover:bg-surface transition-colors">Enregistrer Brouillon</button>
                 <button type="button" class="flex-[2] py-4 bg-primary text-primary-text font-bold rounded-2xl hover:bg-dark transition-colors shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
                     <i class="fas fa-paper-plane"></i> Envoyer la campagne
                 </button>
@@ -404,5 +404,11 @@
             }
         });
     </script>
+
+    <!-- Theme Toggle Floating Button -->
+    <button onclick="toggleTheme()" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-primary text-primary-text shadow-2xl flex items-center justify-center text-xl hover:scale-110 transition-transform border border-border">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+    </button>
 </body>
 </html>

@@ -15,14 +15,14 @@
             --color-text-muted: #6B7280;
             --color-border: #E5E7EB;
         }
-        .dark {
+                .dark {
             --color-bg: #000000;
-            --color-surface: #111111;
+            --color-surface: #000000;
             --color-primary: #FFFFFF;
             --color-primary-text: #000000;
             --color-text: #F9FAFB;
             --color-text-muted: #9CA3AF;
-            --color-border: #374151;
+            --color-border: #1F2937;
         }
 
         @font-face {
@@ -215,12 +215,12 @@
                                     <span class="font-bold text-muted">Inscrits</span>
                                     <span class="font-bold text-primary">345 / 500</span>
                                 </div>
-                                <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-4">
+                                <div class="w-full h-2 bg-surface rounded-full overflow-hidden mb-4">
                                     <div class="h-full bg-accent rounded-full" style="width: 69%"></div>
                                 </div>
                                 <div class="flex gap-2">
-                                    <button class="flex-1 py-2 bg-gray-50 text-muted font-bold text-xs rounded-xl hover:bg-primary hover:text-primary-text transition-all">Gérer</button>
-                                    <button class="flex-1 py-2 bg-gray-50 text-muted font-bold text-xs rounded-xl hover:bg-primary hover:text-primary-text transition-all">Participants</button>
+                                    <button class="flex-1 py-2 bg-surface text-muted font-bold text-xs rounded-xl hover:bg-primary hover:text-primary-text transition-all">Gérer</button>
+                                    <button class="flex-1 py-2 bg-surface text-muted font-bold text-xs rounded-xl hover:bg-primary hover:text-primary-text transition-all">Participants</button>
                                 </div>
                             </div>
                         </div>
@@ -251,12 +251,12 @@
                                     <span class="font-bold text-muted">Inscrits</span>
                                     <span class="font-bold text-danger">50 / 50</span>
                                 </div>
-                                <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden mb-4">
+                                <div class="w-full h-2 bg-surface rounded-full overflow-hidden mb-4">
                                     <div class="h-full bg-danger rounded-full" style="width: 100%"></div>
                                 </div>
                                 <div class="flex gap-2">
-                                    <button class="flex-1 py-2 bg-gray-50 text-muted font-bold text-xs rounded-xl hover:bg-primary hover:text-primary-text transition-all">Gérer</button>
-                                    <button class="flex-1 py-2 bg-gray-50 text-muted font-bold text-xs rounded-xl hover:bg-primary hover:text-primary-text transition-all">Participants</button>
+                                    <button class="flex-1 py-2 bg-surface text-muted font-bold text-xs rounded-xl hover:bg-primary hover:text-primary-text transition-all">Gérer</button>
+                                    <button class="flex-1 py-2 bg-surface text-muted font-bold text-xs rounded-xl hover:bg-primary hover:text-primary-text transition-all">Participants</button>
                                 </div>
                             </div>
                         </div>
@@ -268,14 +268,14 @@
                             <i class="fas fa-hands-helping text-muted text-6xl"></i>
                             <div class="absolute top-4 left-4 bg-surface/90 backdrop-blur-sm px-3 py-1.5 rounded-xl flex flex-col items-center justify-center shadow-lg opacity-50">
                                 <span class="text-xs font-bold text-muted uppercase">Avr</span>
-                                <span class="text-xl font-bold text-gray-600 leading-none">20</span>
+                                <span class="text-xl font-bold text-muted leading-none">20</span>
                             </div>
                             <div class="absolute top-4 right-4 bg-gray-400 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">Terminé</div>
                         </div>
                         <div class="p-6 flex-1 flex flex-col opacity-70">
                             <div class="mb-4">
                                 <span class="text-[10px] font-bold text-muted uppercase tracking-widest">Évangélisation</span>
-                                <h3 class="text-xl font-bold text-gray-600 font-serif leading-tight mt-1">Impact Abobo</h3>
+                                <h3 class="text-xl font-bold text-muted font-serif leading-tight mt-1">Impact Abobo</h3>
                             </div>
                             <div class="space-y-2 mb-6 text-sm text-muted">
                                 <p><i class="fas fa-clock w-5 text-muted"></i> 09:00 - 15:00</p>
@@ -285,10 +285,10 @@
                             <div class="mt-auto pt-6 border-t border-border">
                                 <div class="flex justify-between text-xs mb-2">
                                     <span class="font-bold text-muted">Participants finaux</span>
-                                    <span class="font-bold text-gray-600">120</span>
+                                    <span class="font-bold text-muted">120</span>
                                 </div>
                                 <div class="flex gap-2 mt-4">
-                                    <button class="flex-1 py-2 bg-gray-50 text-muted font-bold text-xs rounded-xl hover:bg-gray-200 transition-all">Voir le rapport</button>
+                                    <button class="flex-1 py-2 bg-surface text-muted font-bold text-xs rounded-xl hover:bg-gray-200 transition-all">Voir le rapport</button>
                                 </div>
                             </div>
                         </div>
@@ -305,13 +305,13 @@
         <div class="absolute right-0 top-0 bottom-0 w-full max-w-2xl bg-surface shadow-2xl animate-slide-in-right flex flex-col">
             <header class="p-10 border-b border-border flex items-center justify-between shrink-0">
                 <h3 class="text-2xl font-bold text-primary font-serif">Nouvel Événement</h3>
-                <button onclick="document.getElementById('add-drawer').classList.add('hidden')" class="w-10 h-10 rounded-full hover:bg-gray-100 text-muted transition-colors"><i class="fas fa-times text-xl"></i></button>
+                <button onclick="document.getElementById('add-drawer').classList.add('hidden')" class="w-10 h-10 rounded-full hover:bg-surface text-muted transition-colors"><i class="fas fa-times text-xl"></i></button>
             </header>
             
             <div class="flex-1 overflow-y-auto p-10 custom-scrollbar space-y-8">
                 
                 <!-- Image Upload Simulation -->
-                <div class="w-full h-48 border-2 border-dashed border-border rounded-3xl bg-gray-50 flex flex-col items-center justify-center text-muted hover:border-accent hover:text-accent transition-colors cursor-pointer">
+                <div class="w-full h-48 border-2 border-dashed border-border rounded-3xl bg-surface flex flex-col items-center justify-center text-muted hover:border-accent hover:text-accent transition-colors cursor-pointer">
                     <i class="fas fa-image text-4xl mb-2"></i>
                     <span class="text-sm font-bold">Ajouter une image de couverture</span>
                     <span class="text-xs opacity-60">1920x1080px recommandé</span>
@@ -374,5 +374,11 @@
             document.getElementById('add-drawer').classList.remove('hidden');
         };
     </script>
+
+    <!-- Theme Toggle Floating Button -->
+    <button onclick="toggleTheme()" class="fixed bottom-8 right-8 z-50 w-14 h-14 rounded-full bg-primary text-primary-text shadow-2xl flex items-center justify-center text-xl hover:scale-110 transition-transform border border-border">
+        <i class="fas fa-moon dark:hidden"></i>
+        <i class="fas fa-sun hidden dark:block"></i>
+    </button>
 </body>
 </html>
