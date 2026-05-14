@@ -6,6 +6,25 @@
     <title>Mes Formations | EJP - Église des Jeunes Prodiges</title>
     <!-- Fonts (FuturaStd) -->
     <style>
+        :root {
+            --color-bg: #FFFFFF;
+            --color-surface: #F9FAFB;
+            --color-primary: #000000;
+            --color-primary-text: #FFFFFF;
+            --color-text: #111827;
+            --color-text-muted: #6B7280;
+            --color-border: #E5E7EB;
+        }
+        .dark {
+            --color-bg: #000000;
+            --color-surface: #111111;
+            --color-primary: #FFFFFF;
+            --color-primary-text: #000000;
+            --color-text: #F9FAFB;
+            --color-text-muted: #9CA3AF;
+            --color-border: #374151;
+        }
+
         @font-face {
             font-family: 'FuturaStd';
             src: url('fonts/FuturaStdBook.otf') format('opentype');
@@ -46,15 +65,10 @@
     
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        primary: '#1E3A5F',
-                        accent: '#F5A623',
-                        success: '#27AE60',
-                        danger: '#E74C3C',
-                        dark: '#0F1B2D',
-                    },
+                    colors: { primary: 'var(--color-primary)', 'primary-text': 'var(--color-primary-text)', accent: '#F5A623', success: '#27AE60', danger: '#E74C3C', bg: 'var(--color-bg)', surface: 'var(--color-surface)', text: 'var(--color-text)', muted: 'var(--color-text-muted)', border: 'var(--color-border)', chef: '#115E59' },
                     fontFamily: {
                         sans: ['FuturaStd', 'sans-serif'],
                         serif: ['FuturaStd', 'sans-serif'],
@@ -123,8 +137,30 @@
             stroke-dashoffset: 100;
         }
     </style>
+
+    <script>
+        // Theme Toggle Script
+        function initTheme() {
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+        initTheme();
+        
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
 </head>
-<body class="bg-[#F8F9FA] font-sans text-[#1A1A2E] overflow-hidden">
+
+<body class="bg-[#F8F9FA] font-sans text-text overflow-hidden">
     
     <div class="flex h-screen overflow-hidden">
         
@@ -138,7 +174,7 @@
                     <span class="text-xl font-serif font-bold tracking-tight">EJP Member</span>
                 </div>
                 <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto custom-scrollbar">
-                    <a href="dashboard.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="dashboard.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-home w-5"></i>
                         <span class="font-medium">Tableau de bord</span>
                     </a>
@@ -146,24 +182,24 @@
                         <i class="fas fa-graduation-cap w-5"></i>
                         <span class="font-medium">Mes formations</span>
                     </a>
-                    <a href="progression.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="progression.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-chart-line w-5"></i>
                         <span class="font-medium">Ma progression</span>
                     </a>
-                    <a href="evenements.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="evenements.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-calendar-alt w-5"></i>
                         <span class="font-medium">Événements</span>
                     </a>
-                    <a href="notifications.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="notifications.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-bell w-5"></i>
                         <span class="font-medium">Notifications</span>
                     </a>
-                    <a href="compte.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="compte.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-cog w-5"></i>
                         <span class="font-medium">Mon compte</span>
                     </a>
                 </nav>
-                <div class="p-4 border-t border-white/10">
+                <div class="p-4 border-t border-border">
                     <a href="login.html" class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-danger hover:bg-danger/10">
                         <i class="fas fa-door-open w-5"></i>
                         <span class="font-medium">Déconnexion</span>
@@ -178,7 +214,7 @@
         <main class="flex-1 flex flex-col lg:ml-[260px] h-screen overflow-hidden">
             
             <!-- Top Header (Reused) -->
-            <header class="sticky top-0 z-30 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+            <header class="sticky top-0 z-30 bg-surface border-b border-border px-6 py-4 flex items-center justify-between">
                 <div class="flex items-center gap-4">
                     <button id="mobile-menu-btn" class="lg:hidden text-primary text-2xl">
                         <i class="fas fa-bars"></i>
@@ -200,7 +236,7 @@
             <div class="flex-1 overflow-y-auto p-6 custom-scrollbar">
                 
                 <!-- Page Header Stats -->
-                <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 mb-8">
+                <div class="bg-surface rounded-2xl p-6 shadow-sm border border-border mb-8">
                     <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
                         <div class="flex-1">
                             <div class="flex justify-between items-end mb-2">
@@ -212,26 +248,26 @@
                             </div>
                         </div>
                         <div class="flex gap-3">
-                            <span class="px-3 py-1 bg-success/10 text-success text-[10px] font-bold rounded-full border border-success/20 uppercase tracking-wider">Obligatoires ✅</span>
-                            <span class="px-3 py-1 bg-primary/5 text-primary/60 text-[10px] font-bold rounded-full border border-primary/10 uppercase tracking-wider">Optionnelles 📚</span>
+                            <span class="px-3 py-1 bg-success/10 text-success text-[10px] font-bold rounded-full border border-success/20 uppercase tracking-wider">Obligatoires <i class="fas fa-check-circle text-success"></i></span>
+                            <span class="px-3 py-1 bg-primary/5 text-primary/60 text-[10px] font-bold rounded-full border border-primary/10 uppercase tracking-wider">Optionnelles <i class="fas fa-book text-accent"></i></span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Filters -->
                 <div class="flex flex-wrap gap-2 mb-8">
-                    <button class="filter-pill active px-4 py-2 rounded-full border border-gray-200 text-sm font-medium transition-all hover:border-primary">Tous</button>
-                    <button class="filter-pill px-4 py-2 rounded-full border border-gray-200 text-sm font-medium transition-all hover:border-primary">Obligatoires</button>
-                    <button class="filter-pill px-4 py-2 rounded-full border border-gray-200 text-sm font-medium transition-all hover:border-primary">Optionnels</button>
-                    <button class="filter-pill px-4 py-2 rounded-full border border-gray-200 text-sm font-medium transition-all hover:border-primary">Complétés</button>
-                    <button class="filter-pill px-4 py-2 rounded-full border border-gray-200 text-sm font-medium transition-all hover:border-primary">Non commencés</button>
+                    <button class="filter-pill active px-4 py-2 rounded-full border border-border text-sm font-medium transition-all hover:border-primary">Tous</button>
+                    <button class="filter-pill px-4 py-2 rounded-full border border-border text-sm font-medium transition-all hover:border-primary">Obligatoires</button>
+                    <button class="filter-pill px-4 py-2 rounded-full border border-border text-sm font-medium transition-all hover:border-primary">Optionnels</button>
+                    <button class="filter-pill px-4 py-2 rounded-full border border-border text-sm font-medium transition-all hover:border-primary">Complétés</button>
+                    <button class="filter-pill px-4 py-2 rounded-full border border-border text-sm font-medium transition-all hover:border-primary">Non commencés</button>
                 </div>
 
                 <!-- Modules (Accordions) -->
                 <div class="space-y-4">
                     
                     <!-- Module 1 -->
-                    <div class="accordion-item bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden open">
+                    <div class="accordion-item bg-surface rounded-2xl shadow-sm border border-border overflow-hidden open">
                         <button class="accordion-trigger w-full px-6 py-5 flex items-center justify-between bg-gray-50/50 hover:bg-gray-50 transition-colors">
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 bg-primary text-accent rounded-xl flex items-center justify-center shadow-inner">
@@ -244,13 +280,13 @@
                             </div>
                             <div class="flex items-center gap-4">
                                 <span class="text-xs font-bold text-success hidden sm:block">2/3 Vidéos</span>
-                                <i class="fas fa-chevron-down text-gray-400 transition-transform chevron"></i>
+                                <i class="fas fa-chevron-down text-muted transition-transform chevron"></i>
                             </div>
                         </button>
                         <div class="accordion-content">
                             <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 <!-- Video Card 1 -->
-                                <div class="group bg-[#F8F9FA] rounded-xl border border-gray-100 p-4 transition-all hover:-translate-y-1 hover:shadow-md">
+                                <div class="group bg-[#F8F9FA] rounded-xl border border-border p-4 transition-all hover:-translate-y-1 hover:shadow-md">
                                     <div class="relative aspect-video bg-dark rounded-lg mb-4 overflow-hidden">
                                         <div class="absolute inset-0 flex items-center justify-center">
                                             <i class="fas fa-play text-white/50 text-4xl group-hover:scale-110 transition-transform"></i>
@@ -260,12 +296,12 @@
                                         </div>
                                     </div>
                                     <h4 class="font-bold text-primary mb-1">Introduction à la vision de l'EJP</h4>
-                                    <p class="text-xs text-gray-500 mb-4">Durée: 12:45 • Vue le 20/03/2026</p>
-                                    <button class="open-modal w-full py-2 bg-white border border-gray-200 text-primary text-sm font-bold rounded-lg hover:bg-gray-50 transition-colors">Revoir</button>
+                                    <p class="text-xs text-muted mb-4">Durée: 12:45 • Vue le 20/03/2026</p>
+                                    <button class="open-modal w-full py-2 bg-surface border border-border text-primary text-sm font-bold rounded-lg hover:bg-gray-50 transition-colors">Revoir</button>
                                 </div>
 
                                 <!-- Video Card 2 -->
-                                <div class="group bg-[#F8F9FA] rounded-xl border border-gray-100 p-4 transition-all hover:-translate-y-1 hover:shadow-md">
+                                <div class="group bg-[#F8F9FA] rounded-xl border border-border p-4 transition-all hover:-translate-y-1 hover:shadow-md">
                                     <div class="relative aspect-video bg-dark rounded-lg mb-4 overflow-hidden">
                                         <div class="absolute inset-0 flex items-center justify-center">
                                             <i class="fas fa-play text-white/50 text-4xl group-hover:scale-110 transition-transform"></i>
@@ -275,12 +311,12 @@
                                         </div>
                                     </div>
                                     <h4 class="font-bold text-primary mb-1">Les valeurs de l'église</h4>
-                                    <p class="text-xs text-gray-500 mb-4">Durée: 18:20 • Vue le 21/03/2026</p>
-                                    <button class="open-modal w-full py-2 bg-white border border-gray-200 text-primary text-sm font-bold rounded-lg hover:bg-gray-50 transition-colors">Revoir</button>
+                                    <p class="text-xs text-muted mb-4">Durée: 18:20 • Vue le 21/03/2026</p>
+                                    <button class="open-modal w-full py-2 bg-surface border border-border text-primary text-sm font-bold rounded-lg hover:bg-gray-50 transition-colors">Revoir</button>
                                 </div>
 
                                 <!-- Video Card 3 -->
-                                <div class="group bg-white rounded-xl border-2 border-accent/30 p-4 transition-all hover:-translate-y-1 hover:shadow-md">
+                                <div class="group bg-surface rounded-xl border-2 border-accent/30 p-4 transition-all hover:-translate-y-1 hover:shadow-md">
                                     <div class="relative aspect-video bg-dark rounded-lg mb-4 overflow-hidden">
                                         <div class="absolute inset-0 flex items-center justify-center bg-accent/10">
                                             <i class="fas fa-play text-accent text-4xl group-hover:scale-110 transition-transform"></i>
@@ -290,7 +326,7 @@
                                         </div>
                                     </div>
                                     <h4 class="font-bold text-primary mb-1">Le parcours du disciple</h4>
-                                    <p class="text-xs text-gray-500 mb-4">Durée: 15:10 • 75% complété</p>
+                                    <p class="text-xs text-muted mb-4">Durée: 15:10 • 75% complété</p>
                                     <button class="open-modal w-full py-2 bg-accent text-primary text-sm font-bold rounded-lg hover:bg-accent/90 transition-all shadow-sm shadow-accent/20">Reprendre</button>
                                 </div>
                             </div>
@@ -298,7 +334,7 @@
                     </div>
 
                     <!-- Module 2 -->
-                    <div class="accordion-item bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="accordion-item bg-surface rounded-2xl shadow-sm border border-border overflow-hidden">
                         <button class="accordion-trigger w-full px-6 py-5 flex items-center justify-between bg-gray-50/50 hover:bg-gray-50 transition-colors">
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 bg-primary/80 text-accent rounded-xl flex items-center justify-center">
@@ -310,29 +346,29 @@
                                 </div>
                             </div>
                             <div class="flex items-center gap-4">
-                                <span class="text-xs font-bold text-gray-400 hidden sm:block">0/2 Vidéos</span>
-                                <i class="fas fa-chevron-down text-gray-400 transition-transform chevron"></i>
+                                <span class="text-xs font-bold text-muted hidden sm:block">0/2 Vidéos</span>
+                                <i class="fas fa-chevron-down text-muted transition-transform chevron"></i>
                             </div>
                         </button>
                         <div class="accordion-content">
                             <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 <!-- Video Card -->
-                                <div class="group bg-white rounded-xl border border-gray-100 p-4 transition-all hover:-translate-y-1 hover:shadow-md">
+                                <div class="group bg-surface rounded-xl border border-border p-4 transition-all hover:-translate-y-1 hover:shadow-md">
                                     <div class="relative aspect-video bg-gray-200 rounded-lg mb-4 overflow-hidden">
                                         <div class="absolute inset-0 flex items-center justify-center">
-                                            <i class="fas fa-lock text-gray-400 text-3xl"></i>
+                                            <i class="fas fa-lock text-muted text-3xl"></i>
                                         </div>
                                     </div>
                                     <h4 class="font-bold text-primary mb-1">Comprendre le service</h4>
-                                    <p class="text-xs text-gray-500 mb-4">Durée: 22:00</p>
-                                    <button class="open-modal w-full py-2 bg-primary text-white text-sm font-bold rounded-lg hover:bg-primary/90 transition-all">Regarder</button>
+                                    <p class="text-xs text-muted mb-4">Durée: 22:00</p>
+                                    <button class="open-modal w-full py-2 bg-primary text-primary-text text-sm font-bold rounded-lg hover:bg-primary/90 transition-all">Regarder</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- Module 3 -->
-                    <div class="accordion-item bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="accordion-item bg-surface rounded-2xl shadow-sm border border-border overflow-hidden">
                         <button class="accordion-trigger w-full px-6 py-5 flex items-center justify-between bg-gray-50/50 hover:bg-gray-50 transition-colors">
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 bg-primary/60 text-accent rounded-xl flex items-center justify-center">
@@ -344,12 +380,12 @@
                                 </div>
                             </div>
                             <div class="flex items-center gap-4">
-                                <span class="text-xs font-bold text-gray-400 hidden sm:block">0/4 Vidéos</span>
-                                <i class="fas fa-chevron-down text-gray-400 transition-transform chevron"></i>
+                                <span class="text-xs font-bold text-muted hidden sm:block">0/4 Vidéos</span>
+                                <i class="fas fa-chevron-down text-muted transition-transform chevron"></i>
                             </div>
                         </button>
                         <div class="accordion-content">
-                            <div class="p-12 text-center text-gray-400 italic">
+                            <div class="p-12 text-center text-muted italic">
                                 <i class="fas fa-info-circle mb-2 block text-2xl"></i>
                                 Plus de modules seront ajoutés prochainement.
                             </div>
@@ -366,7 +402,7 @@
         <div class="absolute inset-0 bg-dark/95 backdrop-blur-sm animate-fade-in"></div>
         <div class="relative w-full max-w-4xl bg-black rounded-3xl overflow-hidden shadow-2xl transform transition-all animate-fade-in">
             <!-- Close Button -->
-            <button id="close-modal" class="absolute top-4 right-4 z-10 w-10 h-10 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center transition-colors">
+            <button id="close-modal" class="absolute top-4 right-4 z-10 w-10 h-10 bg-surface/10 hover:bg-surface/20 text-white rounded-full flex items-center justify-center transition-colors">
                 <i class="fas fa-times text-xl"></i>
             </button>
             
@@ -376,7 +412,7 @@
             </div>
 
             <!-- Video Info -->
-            <div class="p-6 bg-dark text-white border-t border-white/10 flex items-center justify-between">
+            <div class="p-6 bg-dark text-white border-t border-border flex items-center justify-between">
                 <div>
                     <h3 id="modal-video-title" class="text-xl font-bold font-serif">Titre de la vidéo</h3>
                     <p class="text-sm text-white/60">Module : Les Fondements de la Foi</p>

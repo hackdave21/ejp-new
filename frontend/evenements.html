@@ -6,6 +6,25 @@
     <title>Événements | EJP - Église des Jeunes Prodiges</title>
     <!-- Fonts (FuturaStd) -->
     <style>
+        :root {
+            --color-bg: #FFFFFF;
+            --color-surface: #F9FAFB;
+            --color-primary: #000000;
+            --color-primary-text: #FFFFFF;
+            --color-text: #111827;
+            --color-text-muted: #6B7280;
+            --color-border: #E5E7EB;
+        }
+        .dark {
+            --color-bg: #000000;
+            --color-surface: #111111;
+            --color-primary: #FFFFFF;
+            --color-primary-text: #000000;
+            --color-text: #F9FAFB;
+            --color-text-muted: #9CA3AF;
+            --color-border: #374151;
+        }
+
         @font-face {
             font-family: 'FuturaStd';
             src: url('fonts/FuturaStdBook.otf') format('opentype');
@@ -44,15 +63,10 @@
     
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        primary: '#1E3A5F',
-                        accent: '#F5A623',
-                        success: '#27AE60',
-                        danger: '#E74C3C',
-                        dark: '#0F1B2D',
-                    },
+                    colors: { primary: 'var(--color-primary)', 'primary-text': 'var(--color-primary-text)', accent: '#F5A623', success: '#27AE60', danger: '#E74C3C', bg: 'var(--color-bg)', surface: 'var(--color-surface)', text: 'var(--color-text)', muted: 'var(--color-text-muted)', border: 'var(--color-border)', chef: '#115E59' },
                     fontFamily: {
                         sans: ['FuturaStd', 'sans-serif'],
                         serif: ['FuturaStd', 'sans-serif'],
@@ -92,8 +106,30 @@
         
         .modal-overlay { background: rgba(15, 27, 45, 0.8); backdrop-filter: blur(4px); }
     </style>
+
+    <script>
+        // Theme Toggle Script
+        function initTheme() {
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+        initTheme();
+        
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
 </head>
-<body class="bg-[#F8F9FA] font-sans text-[#1A1A2E] overflow-hidden">
+
+<body class="bg-[#F8F9FA] font-sans text-text overflow-hidden">
     
     <div class="flex h-screen overflow-hidden">
         
@@ -107,15 +143,15 @@
                     <span class="text-xl font-serif font-bold tracking-tight">EJP Member</span>
                 </div>
                 <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto custom-scrollbar">
-                    <a href="dashboard.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="dashboard.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-home w-5"></i>
                         <span class="font-medium">Tableau de bord</span>
                     </a>
-                    <a href="formations.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="formations.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-graduation-cap w-5"></i>
                         <span class="font-medium">Mes formations</span>
                     </a>
-                    <a href="progression.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="progression.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-chart-line w-5"></i>
                         <span class="font-medium">Ma progression</span>
                     </a>
@@ -123,11 +159,11 @@
                         <i class="fas fa-calendar-alt w-5"></i>
                         <span class="font-medium">Événements</span>
                     </a>
-                    <a href="notifications.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="notifications.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-bell w-5"></i>
                         <span class="font-medium">Notifications</span>
                     </a>
-                    <a href="compte.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="compte.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-cog w-5"></i>
                         <span class="font-medium">Mon compte</span>
                     </a>
@@ -141,10 +177,10 @@
         <main class="flex-1 flex flex-col lg:ml-[260px] h-screen overflow-hidden">
             
             <!-- Top Header -->
-            <header class="sticky top-0 z-30 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+            <header class="sticky top-0 z-30 bg-surface border-b border-border px-6 py-4 flex items-center justify-between">
                 <div class="flex items-center gap-4">
                     <button id="mobile-menu-btn" class="lg:hidden text-primary text-2xl"><i class="fas fa-bars"></i></button>
-                    <h2 class="text-xl font-bold text-primary">📅 Événements</h2>
+                    <h2 class="text-xl font-bold text-primary"><i class="fas fa-calendar-alt text-accent"></i> Événements</h2>
                 </div>
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-primary font-bold">JK</div>
@@ -167,7 +203,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
                     
                     <!-- Event 1 -->
-                    <div class="event-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transition-all hover:shadow-md animate-fade-in-stagger" style="animation-delay: 0.1s">
+                    <div class="event-card bg-surface rounded-2xl shadow-sm border border-border overflow-hidden transition-all hover:shadow-md animate-fade-in-stagger" style="animation-delay: 0.1s">
                         <div class="relative aspect-video overflow-hidden bg-primary">
                             <!-- Placeholder Image -->
                             <div class="absolute inset-0 bg-gradient-to-br from-primary to-marine-light flex items-center justify-center p-6 text-center">
@@ -184,22 +220,22 @@
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-primary font-serif mb-3">Culte de Pentecôte 2026</h3>
                             <div class="space-y-2 mb-6">
-                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                <div class="flex items-center gap-2 text-sm text-muted">
                                     <i class="far fa-calendar-alt w-4 text-accent"></i>
                                     <span>Dimanche 24 Mai • 09:00</span>
                                 </div>
-                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                <div class="flex items-center gap-2 text-sm text-muted">
                                     <i class="fas fa-map-marker-alt w-4 text-accent"></i>
                                     <span>Temple Central EJP</span>
                                 </div>
                             </div>
-                            <p class="text-gray-400 text-sm mb-6 line-clamp-2 italic">Un moment de communion intense et de louange pour célébrer la descente de l'Esprit Saint.</p>
-                            <button class="open-modal-btn w-full py-3 bg-primary text-white font-bold rounded-xl hover:bg-dark transition-colors">En savoir plus</button>
+                            <p class="text-muted text-sm mb-6 line-clamp-2 italic">Un moment de communion intense et de louange pour célébrer la descente de l'Esprit Saint.</p>
+                            <button class="open-modal-btn w-full py-3 bg-primary text-primary-text font-bold rounded-xl hover:bg-dark transition-colors">En savoir plus</button>
                         </div>
                     </div>
 
                     <!-- Event 2 -->
-                    <div class="event-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transition-all hover:shadow-md animate-fade-in-stagger" style="animation-delay: 0.2s">
+                    <div class="event-card bg-surface rounded-2xl shadow-sm border border-border overflow-hidden transition-all hover:shadow-md animate-fade-in-stagger" style="animation-delay: 0.2s">
                         <div class="relative aspect-video overflow-hidden bg-green-900">
                             <div class="absolute inset-0 bg-gradient-to-br from-green-900 to-green-700 flex items-center justify-center p-6 text-center">
                                 <div class="border-2 border-accent/30 p-4 rounded-lg">
@@ -208,28 +244,28 @@
                                 </div>
                             </div>
                             <div class="absolute top-4 left-4">
-                                <span class="bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">À venir</span>
+                                <span class="bg-primary text-primary-text text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">À venir</span>
                             </div>
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-primary font-serif mb-3">Retraite Spirituelle</h3>
                             <div class="space-y-2 mb-6">
-                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                <div class="flex items-center gap-2 text-sm text-muted">
                                     <i class="far fa-calendar-alt w-4 text-accent"></i>
                                     <span>12 - 14 Juin 2026</span>
                                 </div>
-                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                <div class="flex items-center gap-2 text-sm text-muted">
                                     <i class="fas fa-map-marker-alt w-4 text-accent"></i>
                                     <span>Mont de l'Espoir</span>
                                 </div>
                             </div>
-                            <p class="text-gray-400 text-sm mb-6 line-clamp-2 italic">Trois jours de jeûne, de prière et d'enseignement pour approfondir votre foi.</p>
-                            <button class="open-modal-btn w-full py-3 bg-primary text-white font-bold rounded-xl hover:bg-dark transition-colors">En savoir plus</button>
+                            <p class="text-muted text-sm mb-6 line-clamp-2 italic">Trois jours de jeûne, de prière et d'enseignement pour approfondir votre foi.</p>
+                            <button class="open-modal-btn w-full py-3 bg-primary text-primary-text font-bold rounded-xl hover:bg-dark transition-colors">En savoir plus</button>
                         </div>
                     </div>
 
                     <!-- Event 3 -->
-                    <div class="event-card bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transition-all hover:shadow-md animate-fade-in-stagger" style="animation-delay: 0.3s">
+                    <div class="event-card bg-surface rounded-2xl shadow-sm border border-border overflow-hidden transition-all hover:shadow-md animate-fade-in-stagger" style="animation-delay: 0.3s">
                         <div class="relative aspect-video overflow-hidden bg-dark">
                             <div class="absolute inset-0 bg-gradient-to-br from-dark to-primary flex items-center justify-center p-6 text-center">
                                 <div class="border-2 border-accent/30 p-4 rounded-lg">
@@ -238,23 +274,23 @@
                                 </div>
                             </div>
                             <div class="absolute top-4 left-4">
-                                <span class="bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">À venir</span>
+                                <span class="bg-primary text-primary-text text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">À venir</span>
                             </div>
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-primary font-serif mb-3">Soirée de Louange</h3>
                             <div class="space-y-2 mb-6">
-                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                <div class="flex items-center gap-2 text-sm text-muted">
                                     <i class="far fa-calendar-alt w-4 text-accent"></i>
                                     <span>Samedi 04 Juillet • 18:00</span>
                                 </div>
-                                <div class="flex items-center gap-2 text-sm text-gray-500">
+                                <div class="flex items-center gap-2 text-sm text-muted">
                                     <i class="fas fa-map-marker-alt w-4 text-accent"></i>
                                     <span>Auditorium EJP</span>
                                 </div>
                             </div>
-                            <p class="text-gray-400 text-sm mb-6 line-clamp-2 italic">Une soirée inoubliable avec nos chorales pour célébrer la gloire de Dieu.</p>
-                            <button class="open-modal-btn w-full py-3 bg-primary text-white font-bold rounded-xl hover:bg-dark transition-colors">En savoir plus</button>
+                            <p class="text-muted text-sm mb-6 line-clamp-2 italic">Une soirée inoubliable avec nos chorales pour célébrer la gloire de Dieu.</p>
+                            <button class="open-modal-btn w-full py-3 bg-primary text-primary-text font-bold rounded-xl hover:bg-dark transition-colors">En savoir plus</button>
                         </div>
                     </div>
 
@@ -265,36 +301,36 @@
                     <div class="flex items-center justify-between mb-8">
                         <h3 class="text-2xl font-bold text-primary">Archives</h3>
                         <div class="flex gap-2">
-                            <select class="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-500 outline-none">
+                            <select class="bg-surface border border-border rounded-lg px-3 py-2 text-sm text-muted outline-none">
                                 <option>2026</option>
                                 <option>2025</option>
                             </select>
                         </div>
                     </div>
                     
-                    <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="bg-surface rounded-2xl shadow-sm border border-border overflow-hidden">
                         <div class="overflow-x-auto">
                             <table class="w-full text-left">
                                 <tbody class="text-sm">
-                                    <tr class="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+                                    <tr class="border-b border-border hover:bg-gray-50 transition-colors">
                                         <td class="p-4 w-12"><i class="fas fa-history text-gray-300"></i></td>
                                         <td class="py-4 font-bold text-primary">Célébration de Pâques</td>
-                                        <td class="py-4 text-gray-500 italic">12 Avril 2026</td>
-                                        <td class="py-4 text-gray-400">Temple Central</td>
+                                        <td class="py-4 text-muted italic">12 Avril 2026</td>
+                                        <td class="py-4 text-muted">Temple Central</td>
                                         <td class="py-4 pr-6 text-right"><button class="text-accent font-bold hover:underline">Détails</button></td>
                                     </tr>
-                                    <tr class="border-b border-gray-50 hover:bg-gray-50 transition-colors">
+                                    <tr class="border-b border-border hover:bg-gray-50 transition-colors">
                                         <td class="p-4 w-12"><i class="fas fa-history text-gray-300"></i></td>
                                         <td class="py-4 font-bold text-primary">Forum des Jeunes</td>
-                                        <td class="py-4 text-gray-500 italic">28 Mars 2026</td>
-                                        <td class="py-4 text-gray-400">Salle Polyvalente</td>
+                                        <td class="py-4 text-muted italic">28 Mars 2026</td>
+                                        <td class="py-4 text-muted">Salle Polyvalente</td>
                                         <td class="py-4 pr-6 text-right"><button class="text-accent font-bold hover:underline">Détails</button></td>
                                     </tr>
                                     <tr class="hover:bg-gray-50 transition-colors">
                                         <td class="p-4 w-12"><i class="fas fa-history text-gray-300"></i></td>
                                         <td class="py-4 font-bold text-primary">Journée d'Évangélisation</td>
-                                        <td class="py-4 text-gray-500 italic">15 Février 2026</td>
-                                        <td class="py-4 text-gray-400">Quartier Nord</td>
+                                        <td class="py-4 text-muted italic">15 Février 2026</td>
+                                        <td class="py-4 text-muted">Quartier Nord</td>
                                         <td class="py-4 pr-6 text-right"><button class="text-accent font-bold hover:underline">Détails</button></td>
                                     </tr>
                                 </tbody>
@@ -310,7 +346,7 @@
     <!-- Event Modal -->
     <div id="event-modal" class="fixed inset-0 z-[100] hidden flex items-end justify-center sm:items-center p-4">
         <div class="modal-overlay absolute inset-0"></div>
-        <div class="relative w-full max-w-2xl bg-white rounded-t-3xl sm:rounded-3xl overflow-hidden shadow-2xl transform transition-all animate-slide-up-modal">
+        <div class="relative w-full max-w-2xl bg-surface rounded-t-3xl sm:rounded-3xl overflow-hidden shadow-2xl transform transition-all animate-slide-up-modal">
             <!-- Modal Header / Image -->
             <div class="h-64 bg-primary relative">
                 <div id="modal-bg" class="absolute inset-0 bg-gradient-to-br from-primary to-dark flex items-center justify-center">
@@ -335,11 +371,11 @@
                 </div>
                 
                 <h3 id="modal-title" class="text-2xl font-bold text-primary font-serif mb-4"></h3>
-                <p id="modal-description" class="text-gray-500 leading-relaxed mb-8"></p>
+                <p id="modal-description" class="text-muted leading-relaxed mb-8"></p>
                 
                 <div class="flex gap-4">
-                    <button class="flex-1 py-4 bg-primary text-white font-bold rounded-2xl hover:bg-dark transition-colors">S'inscrire</button>
-                    <button id="share-btn" class="w-16 h-16 flex items-center justify-center border-2 border-gray-100 rounded-2xl hover:bg-gray-50 text-primary transition-colors">
+                    <button class="flex-1 py-4 bg-primary text-primary-text font-bold rounded-2xl hover:bg-dark transition-colors">S'inscrire</button>
+                    <button id="share-btn" class="w-16 h-16 flex items-center justify-center border-2 border-border rounded-2xl hover:bg-gray-50 text-primary transition-colors">
                         <i class="fas fa-share-alt"></i>
                     </button>
                 </div>

@@ -6,6 +6,25 @@
     <title>Connexion Chef | EJP</title>
     <!-- Fonts (FuturaStd) -->
     <style>
+        :root {
+            --color-bg: #FFFFFF;
+            --color-surface: #F9FAFB;
+            --color-primary: #000000;
+            --color-primary-text: #FFFFFF;
+            --color-text: #111827;
+            --color-text-muted: #6B7280;
+            --color-border: #E5E7EB;
+        }
+        .dark {
+            --color-bg: #000000;
+            --color-surface: #111111;
+            --color-primary: #FFFFFF;
+            --color-primary-text: #000000;
+            --color-text: #F9FAFB;
+            --color-text-muted: #9CA3AF;
+            --color-border: #374151;
+        }
+
         @font-face {
             font-family: 'FuturaStd';
             src: url('fonts/FuturaStdBook.otf') format('opentype');
@@ -44,16 +63,10 @@
     
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        primary: '#1E3A5F', // Navy
-                        accent: '#F5A623',  // Gold
-                        success: '#27AE60',
-                        danger: '#E74C3C',
-                        dark: '#0F1B2D',
-                        chef: '#115E59', // Deep Teal to distinguish Chef portal
-                    },
+                    colors: { primary: 'var(--color-primary)', 'primary-text': 'var(--color-primary-text)', accent: '#F5A623', success: '#27AE60', danger: '#E74C3C', bg: 'var(--color-bg)', surface: 'var(--color-surface)', text: 'var(--color-text)', muted: 'var(--color-text-muted)', border: 'var(--color-border)', chef: '#115E59' },
                     fontFamily: {
                         sans: ['FuturaStd', 'sans-serif'],
                         serif: ['FuturaStd', 'sans-serif'],
@@ -122,7 +135,29 @@
             opacity: 0.03;
         }
     </style>
+
+    <script>
+        // Theme Toggle Script
+        function initTheme() {
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+        initTheme();
+        
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
 </head>
+
 <body class="min-h-screen flex font-sans text-white relative overflow-hidden bg-gradient-to-br from-chef to-dark">
     
     <!-- Background Elements -->
@@ -139,7 +174,7 @@
                 <div class="w-20 h-20 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center border-2 border-accent shadow-lg shadow-accent/20">
                     <span class="text-accent font-serif font-bold text-3xl">EJP</span>
                 </div>
-                <div class="inline-block px-3 py-1 bg-white/10 rounded-full mb-3 border border-white/20">
+                <div class="inline-block px-3 py-1 bg-surface/10 rounded-full mb-3 border border-white/20">
                     <span class="text-xs font-bold uppercase tracking-widest text-emerald-400 flex items-center gap-2"><i class="fas fa-shield-alt"></i> Portail Responsables</span>
                 </div>
                 <h2 class="font-serif text-3xl font-bold mb-2">Bon retour, Chef</h2>
@@ -150,7 +185,7 @@
                 <!-- Username -->
                 <div class="space-y-2">
                     <label class="text-xs font-bold uppercase tracking-widest text-white/70 ml-1">Identifiant Chef</label>
-                    <div class="relative input-glow rounded-xl transition-all duration-300 border border-white/10 bg-white/5">
+                    <div class="relative input-glow rounded-xl transition-all duration-300 border border-white/10 bg-surface/5">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-white/40">
                             <i class="fas fa-user-tie"></i>
                         </div>
@@ -164,7 +199,7 @@
                         <label class="text-xs font-bold uppercase tracking-widest text-white/70">Mot de passe</label>
                         <a href="#" class="text-xs text-accent hover:text-white transition-colors">Oublié ?</a>
                     </div>
-                    <div class="relative input-glow rounded-xl transition-all duration-300 border border-white/10 bg-white/5">
+                    <div class="relative input-glow rounded-xl transition-all duration-300 border border-white/10 bg-surface/5">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-white/40">
                             <i class="fas fa-lock"></i>
                         </div>

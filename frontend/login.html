@@ -6,6 +6,25 @@
     <title>Connexion | EJP - Église des Jeunes Prodiges</title>
     <!-- Fonts (FuturaStd) -->
     <style>
+        :root {
+            --color-bg: #FFFFFF;
+            --color-surface: #F9FAFB;
+            --color-primary: #000000;
+            --color-primary-text: #FFFFFF;
+            --color-text: #111827;
+            --color-text-muted: #6B7280;
+            --color-border: #E5E7EB;
+        }
+        .dark {
+            --color-bg: #000000;
+            --color-surface: #111111;
+            --color-primary: #FFFFFF;
+            --color-primary-text: #000000;
+            --color-text: #F9FAFB;
+            --color-text-muted: #9CA3AF;
+            --color-border: #374151;
+        }
+
         @font-face {
             font-family: 'FuturaStd';
             src: url('fonts/FuturaStdBook.otf') format('opentype');
@@ -44,15 +63,10 @@
     
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        primary: '#1E3A5F',
-                        accent: '#F5A623',
-                        success: '#27AE60',
-                        danger: '#E74C3C',
-                        dark: '#0F1B2D',
-                    },
+                    colors: { primary: 'var(--color-primary)', 'primary-text': 'var(--color-primary-text)', accent: '#F5A623', success: '#27AE60', danger: '#E74C3C', bg: 'var(--color-bg)', surface: 'var(--color-surface)', text: 'var(--color-text)', muted: 'var(--color-text-muted)', border: 'var(--color-border)', chef: '#115E59' },
                     fontFamily: {
                         sans: ['FuturaStd', 'sans-serif'],
                         serif: ['FuturaStd', 'sans-serif'],
@@ -153,7 +167,29 @@
             box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.2) !important;
         }
     </style>
+
+    <script>
+        // Theme Toggle Script
+        function initTheme() {
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+        initTheme();
+        
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
 </head>
+
 <body class="flex items-center justify-center p-4">
     <div class="bg-pattern"></div>
 
@@ -172,7 +208,7 @@
         </div>
 
         <!-- Login Form Side -->
-        <div class="w-full lg:w-1/2 p-8 lg:p-16 flex flex-col justify-center bg-white/5 backdrop-blur-sm">
+        <div class="w-full lg:w-1/2 p-8 lg:p-16 flex flex-col justify-center bg-surface/5 backdrop-blur-sm">
             <div class="text-center mb-10">
                 <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-accent shadow-lg shadow-accent/20">
                     <span class="text-accent text-3xl font-serif tracking-widest font-bold">EJP</span>
@@ -186,11 +222,11 @@
                 <div>
                     <label class="block text-white/80 text-sm font-medium mb-2 ml-1" for="identifier">Identifiant ou e-mail</label>
                     <div class="relative group">
-                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-white/40 group-focus-within:text-accent transition-colors">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted group-focus-within:text-accent transition-colors">
                             <i class="fas fa-user text-sm"></i>
                         </div>
                         <input type="text" id="identifier" placeholder="Votre identifiant" 
-                            class="w-full bg-white/10 border border-white/20 rounded-xl py-3 pl-11 pr-4 text-white placeholder-white/30 transition-all duration-300">
+                            class="w-full bg-surface/10 border border-white/20 rounded-xl py-3 pl-11 pr-4 text-white placeholder-white/30 transition-all duration-300">
                     </div>
                     <p id="identifierError" class="text-danger text-xs mt-1 ml-1 hidden animate-fade-in">Ce champ est obligatoire</p>
                 </div>
@@ -202,12 +238,12 @@
                         <a href="#" class="text-accent text-xs hover:underline">Mot de passe oublié ?</a>
                     </div>
                     <div class="relative group">
-                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-white/40 group-focus-within:text-accent transition-colors">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted group-focus-within:text-accent transition-colors">
                             <i class="fas fa-lock text-sm"></i>
                         </div>
                         <input type="password" id="password" placeholder="••••••••" 
-                            class="w-full bg-white/10 border border-white/20 rounded-xl py-3 pl-11 pr-12 text-white placeholder-white/30 transition-all duration-300">
-                        <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-4 flex items-center text-white/40 hover:text-white transition-colors">
+                            class="w-full bg-surface/10 border border-white/20 rounded-xl py-3 pl-11 pr-12 text-white placeholder-white/30 transition-all duration-300">
+                        <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-4 flex items-center text-muted hover:text-white transition-colors">
                             <i class="fas fa-eye text-sm" id="eyeIcon"></i>
                         </button>
                     </div>
@@ -216,7 +252,7 @@
 
                 <!-- Remember Me -->
                 <div class="flex items-center">
-                    <input type="checkbox" id="remember" class="w-4 h-4 rounded border-white/20 bg-white/10 text-accent focus:ring-accent accent-accent">
+                    <input type="checkbox" id="remember" class="w-4 h-4 rounded border-white/20 bg-surface/10 text-accent focus:ring-accent accent-accent">
                     <label for="remember" class="ml-2 text-white/60 text-sm cursor-pointer select-none">Rester connecté</label>
                 </div>
 
@@ -233,7 +269,7 @@
             </form>
 
             <div class="mt-8 text-center">
-                <p class="text-white/40 text-sm">Pas encore membre ? <a href="#" class="text-white hover:text-accent font-medium transition-colors">Rejoignez-nous</a></p>
+                <p class="text-muted text-sm">Pas encore membre ? <a href="#" class="text-white hover:text-accent font-medium transition-colors">Rejoignez-nous</a></p>
             </div>
         </div>
     </div>

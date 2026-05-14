@@ -6,6 +6,25 @@
     <title>Tableau de bord | EJP - Église des Jeunes Prodiges</title>
     <!-- Fonts (FuturaStd) -->
     <style>
+        :root {
+            --color-bg: #FFFFFF;
+            --color-surface: #F9FAFB;
+            --color-primary: #000000;
+            --color-primary-text: #FFFFFF;
+            --color-text: #111827;
+            --color-text-muted: #6B7280;
+            --color-border: #E5E7EB;
+        }
+        .dark {
+            --color-bg: #000000;
+            --color-surface: #111111;
+            --color-primary: #FFFFFF;
+            --color-primary-text: #000000;
+            --color-text: #F9FAFB;
+            --color-text-muted: #9CA3AF;
+            --color-border: #374151;
+        }
+
         @font-face {
             font-family: 'FuturaStd';
             src: url('fonts/FuturaStdBook.otf') format('opentype');
@@ -44,16 +63,10 @@
     
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        primary: '#1E3A5F',
-                        accent: '#F5A623',
-                        success: '#27AE60',
-                        danger: '#E74C3C',
-                        dark: '#0F1B2D',
-                        'marine-light': '#2A4A7F',
-                    },
+                    colors: { primary: 'var(--color-primary)', 'primary-text': 'var(--color-primary-text)', accent: '#F5A623', success: '#27AE60', danger: '#E74C3C', bg: 'var(--color-bg)', surface: 'var(--color-surface)', text: 'var(--color-text)', muted: 'var(--color-text-muted)', border: 'var(--color-border)', chef: '#115E59' },
                     fontFamily: {
                         sans: ['FuturaStd', 'sans-serif'],
                         serif: ['FuturaStd', 'sans-serif'],
@@ -126,8 +139,30 @@
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
         }
     </style>
+
+    <script>
+        // Theme Toggle Script
+        function initTheme() {
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+        initTheme();
+        
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
 </head>
-<body class="bg-[#F8F9FA] font-sans text-[#1A1A2E] overflow-hidden">
+
+<body class="bg-[#F8F9FA] font-sans text-text overflow-hidden">
     
     <div class="flex h-screen overflow-hidden">
         
@@ -148,30 +183,30 @@
                         <i class="fas fa-home w-5"></i>
                         <span class="font-medium">Tableau de bord</span>
                     </a>
-                    <a href="formations.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="formations.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-graduation-cap w-5"></i>
                         <span class="font-medium">Mes formations</span>
                     </a>
-                    <a href="progression.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="progression.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-chart-line w-5"></i>
                         <span class="font-medium">Ma progression</span>
                     </a>
-                    <a href="evenements.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="evenements.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-calendar-alt w-5"></i>
                         <span class="font-medium">Événements</span>
                     </a>
-                    <a href="notifications.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="notifications.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-bell w-5"></i>
                         <span class="font-medium">Notifications</span>
                     </a>
-                    <a href="compte.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="compte.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-cog w-5"></i>
                         <span class="font-medium">Mon compte</span>
                     </a>
                 </nav>
 
                 <!-- Logout -->
-                <div class="p-4 border-t border-white/10">
+                <div class="p-4 border-t border-border">
                     <a href="login.html" class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-danger hover:bg-danger/10">
                         <i class="fas fa-door-open w-5"></i>
                         <span class="font-medium">Déconnexion</span>
@@ -187,7 +222,7 @@
         <main class="flex-1 flex flex-col lg:ml-[260px] h-screen overflow-hidden">
             
             <!-- Top Header -->
-            <header class="sticky top-0 z-30 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+            <header class="sticky top-0 z-30 bg-surface border-b border-border px-6 py-4 flex items-center justify-between">
                 <div class="flex items-center gap-4">
                     <button id="mobile-menu-btn" class="lg:hidden text-primary text-2xl">
                         <i class="fas fa-bars"></i>
@@ -197,13 +232,13 @@
                 
                 <div class="flex items-center gap-6">
                     <!-- Notifications -->
-                    <button class="relative text-gray-400 hover:text-primary transition-colors">
+                    <button class="relative text-muted hover:text-primary transition-colors">
                         <i class="fas fa-bell text-xl"></i>
                         <span class="absolute -top-1 -right-1 w-4 h-4 bg-danger text-white text-[10px] flex items-center justify-center rounded-full border-2 border-white">3</span>
                     </button>
                     
                     <!-- Profile -->
-                    <div class="flex items-center gap-3 border-l border-gray-200 pl-6">
+                    <div class="flex items-center gap-3 border-l border-border pl-6">
                         <div class="text-right hidden sm:block">
                             <p class="text-sm font-bold text-primary">Jean Kodjo</p>
                             <p class="text-[10px] font-semibold text-accent uppercase tracking-wider">Statut : Star ⭐</p>
@@ -227,7 +262,7 @@
                         
                         <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
                             <div class="text-center md:text-left">
-                                <h1 class="text-4xl font-serif mb-2">Bonjour, Jean 👋</h1>
+                                <h1 class="text-4xl font-serif mb-2">Bonjour, Jean <i class="fas fa-hand-sparkles text-accent"></i></h1>
                                 <div class="flex items-center justify-center md:justify-start gap-3 mb-4">
                                     <span class="inline-flex items-center gap-2 bg-accent/20 border border-accent/30 px-3 py-1 rounded-full text-accent text-sm font-bold">
                                         <i class="fas fa-star animate-pulse-soft"></i>
@@ -254,41 +289,41 @@
                 <!-- Stats Grid -->
                 <section class="grid grid-cols-2 lg:grid-cols-4 gap-6">
                     <!-- Stat Card 1 -->
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 card-hover animate-fade-in-up" style="animation-delay: 0.1s">
+                    <div class="bg-surface p-6 rounded-2xl shadow-sm border border-border card-hover animate-fade-in-up" style="animation-delay: 0.1s">
                         <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 mb-4">
                             <i class="fas fa-video text-xl"></i>
                         </div>
-                        <p class="text-gray-500 text-sm font-medium">Formations</p>
+                        <p class="text-muted text-sm font-medium">Formations</p>
                         <h3 class="text-2xl font-bold text-primary">7/10</h3>
                         <p class="text-[10px] text-success font-bold mt-1">70% complété</p>
                     </div>
 
                     <!-- Stat Card 2 -->
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 card-hover animate-fade-in-up" style="animation-delay: 0.2s">
+                    <div class="bg-surface p-6 rounded-2xl shadow-sm border border-border card-hover animate-fade-in-up" style="animation-delay: 0.2s">
                         <div class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center text-green-600 mb-4">
                             <i class="fas fa-check-circle text-xl"></i>
                         </div>
-                        <p class="text-gray-500 text-sm font-medium">Services</p>
+                        <p class="text-muted text-sm font-medium">Services</p>
                         <h3 class="text-2xl font-bold text-primary">8 sessions</h3>
-                        <p class="text-[10px] text-gray-400 font-bold mt-1">Besoin : 12 pour Pilote</p>
+                        <p class="text-[10px] text-muted font-bold mt-1">Besoin : 12 pour Pilote</p>
                     </div>
 
                     <!-- Stat Card 3 -->
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 card-hover animate-fade-in-up" style="animation-delay: 0.3s">
+                    <div class="bg-surface p-6 rounded-2xl shadow-sm border border-border card-hover animate-fade-in-up" style="animation-delay: 0.3s">
                         <div class="w-12 h-12 bg-amber-100 rounded-xl flex items-center justify-center text-amber-600 mb-4">
                             <i class="fas fa-calendar-check text-xl"></i>
                         </div>
-                        <p class="text-gray-500 text-sm font-medium">Ancienneté</p>
+                        <p class="text-muted text-sm font-medium">Ancienneté</p>
                         <h3 class="text-2xl font-bold text-primary">3 mois</h3>
-                        <p class="text-[10px] text-gray-400 font-bold mt-1">EJP Template</p>
+                        <p class="text-[10px] text-muted font-bold mt-1">EJP Template</p>
                     </div>
 
                     <!-- Stat Card 4 -->
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 card-hover animate-fade-in-up" style="animation-delay: 0.4s">
+                    <div class="bg-surface p-6 rounded-2xl shadow-sm border border-border card-hover animate-fade-in-up" style="animation-delay: 0.4s">
                         <div class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center text-purple-600 mb-4">
                             <i class="fas fa-trophy text-xl"></i>
                         </div>
-                        <p class="text-gray-500 text-sm font-medium">Niveau</p>
+                        <p class="text-muted text-sm font-medium">Niveau</p>
                         <h3 class="text-2xl font-bold text-primary">Star</h3>
                         <p class="text-[10px] text-accent font-bold mt-1">Prochain : Pilote</p>
                     </div>
@@ -298,7 +333,7 @@
                     
                     <!-- Progression & Formations -->
                     <div class="lg:col-span-2 space-y-8">
-                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+                        <div class="bg-surface p-8 rounded-3xl shadow-sm border border-border">
                             <div class="flex items-center justify-between mb-8">
                                 <h3 class="text-xl font-bold text-primary">Ma progression dans les formations</h3>
                                 <a href="formations.html" class="text-accent text-sm font-bold hover:underline">Voir tout →</a>
@@ -317,49 +352,49 @@
 
                             <!-- Modules List -->
                             <div class="space-y-4">
-                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-accent/30 transition-colors">
+                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-border hover:border-accent/30 transition-colors">
                                     <div class="flex items-center gap-4">
                                         <div class="w-10 h-10 bg-success/10 text-success rounded-lg flex items-center justify-center">
                                             <i class="fas fa-check"></i>
                                         </div>
                                         <div>
                                             <p class="font-bold text-primary">Les Fondements de la Foi</p>
-                                            <p class="text-xs text-gray-500">Module obligatoire</p>
+                                            <p class="text-xs text-muted">Module obligatoire</p>
                                         </div>
                                     </div>
                                     <span class="text-xs font-bold text-success">Complété</span>
                                 </div>
 
-                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-100 hover:border-accent/30 transition-colors">
+                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-border hover:border-accent/30 transition-colors">
                                     <div class="flex items-center gap-4">
                                         <div class="w-10 h-10 bg-amber-500/10 text-amber-500 rounded-lg flex items-center justify-center">
                                             <i class="fas fa-sync animate-spin" style="animation-duration: 3s"></i>
                                         </div>
                                         <div>
                                             <p class="font-bold text-primary">Vie Communautaire</p>
-                                            <p class="text-xs text-gray-500">Module obligatoire</p>
+                                            <p class="text-xs text-muted">Module obligatoire</p>
                                         </div>
                                     </div>
                                     <span class="text-xs font-bold text-amber-500">En cours</span>
                                 </div>
 
-                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-gray-100 group opacity-60">
+                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-xl border border-border group opacity-60">
                                     <div class="flex items-center gap-4">
-                                        <div class="w-10 h-10 bg-gray-200 text-gray-400 rounded-lg flex items-center justify-center">
+                                        <div class="w-10 h-10 bg-gray-200 text-muted rounded-lg flex items-center justify-center">
                                             <i class="fas fa-lock"></i>
                                         </div>
                                         <div>
                                             <p class="font-bold text-primary">Développement Personnel</p>
-                                            <p class="text-xs text-gray-500">Module optionnel</p>
+                                            <p class="text-xs text-muted">Module optionnel</p>
                                         </div>
                                     </div>
-                                    <span class="text-xs font-bold text-gray-400">Verrouillé</span>
+                                    <span class="text-xs font-bold text-muted">Verrouillé</span>
                                 </div>
                             </div>
 
                             <!-- CTA Button -->
                             <div class="mt-10">
-                                <button class="w-full bg-gray-200 text-gray-500 font-bold py-4 rounded-2xl cursor-not-allowed group relative" disabled>
+                                <button class="w-full bg-gray-200 text-muted font-bold py-4 rounded-2xl cursor-not-allowed group relative" disabled>
                                     Faire une demande de progression vers Pilote
                                     <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-dark text-white text-[10px] rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
                                         Complétez 100% des formations obligatoires et 12 sessions de service.
@@ -371,7 +406,7 @@
 
                     <!-- Side Feed: Notifications -->
                     <div class="space-y-8">
-                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 h-full">
+                        <div class="bg-surface p-8 rounded-3xl shadow-sm border border-border h-full">
                             <div class="flex items-center justify-between mb-8">
                                 <h3 class="text-xl font-bold text-primary">Notifications</h3>
                                 <button class="text-primary/40 hover:text-primary"><i class="fas fa-ellipsis-h"></i></button>
@@ -385,8 +420,8 @@
                                     </div>
                                     <div>
                                         <p class="text-sm font-bold text-primary">Nouvel événement ajouté</p>
-                                        <p class="text-xs text-gray-500 mt-1">Culte de Pentecôte 2026 - Inscrivez-vous !</p>
-                                        <p class="text-[10px] text-gray-400 mt-2">Il y a 2 heures</p>
+                                        <p class="text-xs text-muted mt-1">Culte de Pentecôte 2026 - Inscrivez-vous !</p>
+                                        <p class="text-[10px] text-muted mt-2">Il y a 2 heures</p>
                                     </div>
                                 </div>
 
@@ -397,8 +432,8 @@
                                     </div>
                                     <div>
                                         <p class="text-sm font-bold text-primary">Session de service validée</p>
-                                        <p class="text-xs text-gray-500 mt-1">Votre session du 12/05 a été approuvée par Chef Amos.</p>
-                                        <p class="text-[10px] text-gray-400 mt-2">Hier, 18:30</p>
+                                        <p class="text-xs text-muted mt-1">Votre session du 12/05 a été approuvée par Chef Amos.</p>
+                                        <p class="text-[10px] text-muted mt-2">Hier, 18:30</p>
                                     </div>
                                 </div>
 
@@ -409,13 +444,13 @@
                                     </div>
                                     <div>
                                         <p class="text-sm font-bold text-primary">Nouveau module disponible</p>
-                                        <p class="text-xs text-gray-500 mt-1">"Leadership Spirituel" est désormais accessible.</p>
-                                        <p class="text-[10px] text-gray-400 mt-2">12 mai 2026</p>
+                                        <p class="text-xs text-muted mt-1">"Leadership Spirituel" est désormais accessible.</p>
+                                        <p class="text-[10px] text-muted mt-2">12 mai 2026</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <button class="w-full mt-8 py-3 text-sm font-bold text-primary hover:bg-gray-50 rounded-xl border border-gray-100 transition-colors">
+                            <button class="w-full mt-8 py-3 text-sm font-bold text-primary hover:bg-gray-50 rounded-xl border border-border transition-colors">
                                 Tout marquer comme lu
                             </button>
                         </div>
@@ -450,9 +485,9 @@
                 if (link.getAttribute('href') === 'login.html') return;
                 
                 // For demo purposes, we stay on the same page unless we'll create the others
-                // sidebarLinks.forEach(l => l.classList.remove('active', 'text-white/70'));
+                // sidebarLinks.forEach(l => l.classList.remove('active', 'text-muted'));
                 // link.classList.add('active');
-                // link.classList.remove('text-white/70');
+                // link.classList.remove('text-muted');
             });
         });
 

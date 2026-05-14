@@ -6,6 +6,25 @@
     <title>Dashboard Admin | EJP</title>
     <!-- Fonts (FuturaStd) -->
     <style>
+        :root {
+            --color-bg: #FFFFFF;
+            --color-surface: #F9FAFB;
+            --color-primary: #000000;
+            --color-primary-text: #FFFFFF;
+            --color-text: #111827;
+            --color-text-muted: #6B7280;
+            --color-border: #E5E7EB;
+        }
+        .dark {
+            --color-bg: #000000;
+            --color-surface: #111111;
+            --color-primary: #FFFFFF;
+            --color-primary-text: #000000;
+            --color-text: #F9FAFB;
+            --color-text-muted: #9CA3AF;
+            --color-border: #374151;
+        }
+
         @font-face {
             font-family: 'FuturaStd';
             src: url('fonts/FuturaStdBook.otf') format('opentype');
@@ -44,16 +63,10 @@
     
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        primary: '#1E3A5F',
-                        accent: '#F5A623',
-                        success: '#27AE60',
-                        danger: '#E74C3C',
-                        dark: '#0F1B2D',
-                        'admin-card': '#FFFFFF',
-                    },
+                    colors: { primary: 'var(--color-primary)', 'primary-text': 'var(--color-primary-text)', accent: '#F5A623', success: '#27AE60', danger: '#E74C3C', bg: 'var(--color-bg)', surface: 'var(--color-surface)', text: 'var(--color-text)', muted: 'var(--color-text-muted)', border: 'var(--color-border)', chef: '#115E59' },
                     fontFamily: {
                         sans: ['FuturaStd', 'sans-serif'],
                         serif: ['FuturaStd', 'sans-serif'],
@@ -94,13 +107,35 @@
         
         .chart-bar { transition: height 1s ease-out; }
     </style>
+
+    <script>
+        // Theme Toggle Script
+        function initTheme() {
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+        initTheme();
+        
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
 </head>
-<body class="bg-[#F4F7FE] font-sans text-[#1A1A2E] overflow-hidden">
+
+<body class="bg-bg font-sans text-text overflow-hidden">
     
     <div class="flex h-screen overflow-hidden">
         
         <!-- Sidebar Admin -->
-        <aside class="w-[280px] bg-dark text-white flex flex-col h-full z-50">
+        <aside class="w-[280px] bg-surface border-r border-border flex flex-col h-full z-50">
             <!-- Logo -->
             <div class="p-8 flex items-center gap-4">
                 <div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center border border-accent">
@@ -108,7 +143,7 @@
                 </div>
                 <div>
                     <h1 class="font-serif font-bold text-lg leading-tight">Admin Panel</h1>
-                    <p class="text-[10px] text-white/40 uppercase tracking-widest">Back-Office</p>
+                    <p class="text-[10px] text-muted uppercase tracking-widest">Back-Office</p>
                 </div>
             </div>
 
@@ -118,42 +153,42 @@
                     <i class="fas fa-chart-pie w-5"></i>
                     <span class="font-medium">Tableau de bord</span>
                 </a>
-                <a href="membres.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/50">
+                <a href="membres.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                     <i class="fas fa-users w-5"></i>
                     <span class="font-medium">Membres</span>
                 </a>
-                <a href="chefs.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/50">
+                <a href="chefs.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                     <i class="fas fa-user-tie w-5"></i>
                     <span class="font-medium">Chefs & Groupes</span>
                 </a>
-                <a href="formations.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/50">
+                <a href="formations.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                     <i class="fas fa-graduation-cap w-5"></i>
                     <span class="font-medium">Formations</span>
                 </a>
-                <a href="cultes.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/50">
+                <a href="cultes.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                     <i class="fas fa-church w-5"></i>
                     <span class="font-medium">Cultes</span>
                 </a>
-                <a href="reunions.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/50">
+                <a href="reunions.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                     <i class="fas fa-file-alt w-5"></i>
                     <span class="font-medium">PV Réunions</span>
                 </a>
-                <a href="evenements.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/50">
+                <a href="evenements.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                     <i class="fas fa-calendar-check w-5"></i>
                     <span class="font-medium">Événements</span>
                 </a>
-                <a href="communications.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/50">
+                <a href="communications.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                     <i class="fas fa-paper-plane w-5"></i>
                     <span class="font-medium">Communications</span>
                 </a>
-                <a href="parametres.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/50">
+                <a href="parametres.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                     <i class="fas fa-sliders-h w-5"></i>
                     <span class="font-medium">Paramètres</span>
                 </a>
             </nav>
 
             <!-- Bottom Actions -->
-            <div class="p-4 border-t border-white/5">
+            <div class="p-4 border-t border-border">
                 <a href="login.html" class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-danger hover:bg-danger/10">
                     <i class="fas fa-sign-out-alt w-5"></i>
                     <span class="font-medium">Déconnexion</span>
@@ -165,18 +200,18 @@
         <main class="flex-1 flex flex-col h-screen overflow-hidden">
             
             <!-- Top Navbar -->
-            <header class="h-20 bg-white border-b border-gray-100 flex items-center justify-between px-8 shrink-0">
+            <header class="h-20 bg-surface border-b border-border flex items-center justify-between px-8 shrink-0">
                 <h2 class="text-xl font-bold text-primary">Vue d'ensemble</h2>
                 
                 <div class="flex items-center gap-6">
                     <!-- Search -->
                     <div class="relative hidden lg:block">
-                        <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                        <input type="text" placeholder="Rechercher..." class="bg-[#F4F7FE] border-none rounded-xl py-2.5 pl-12 pr-4 w-64 text-sm focus:ring-2 focus:ring-accent/20">
+                        <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-muted"></i>
+                        <input type="text" placeholder="Rechercher..." class="bg-bg border-none rounded-xl py-2.5 pl-12 pr-4 w-64 text-sm focus:ring-2 focus:ring-accent/20">
                     </div>
                     
                     <!-- Notifs -->
-                    <button class="w-10 h-10 bg-[#F4F7FE] rounded-xl flex items-center justify-center text-gray-500 relative">
+                    <button class="w-10 h-10 bg-bg rounded-xl flex items-center justify-center text-muted relative">
                         <i class="fas fa-bell"></i>
                         <span class="absolute top-2 right-2 w-2 h-2 bg-danger rounded-full border-2 border-white"></span>
                     </button>
@@ -198,43 +233,43 @@
                 <!-- Ligne 1: KPI Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
                     <!-- Card 1 -->
-                    <div class="kpi-card bg-white p-6 rounded-3xl shadow-sm border border-gray-50 animate-fade-in-up" style="animation-delay: 0.1s">
+                    <div class="kpi-card bg-surface p-6 rounded-3xl shadow-sm border border-border animate-fade-in-up" style="animation-delay: 0.1s">
                         <div class="w-12 h-12 bg-blue-50 text-blue-500 rounded-2xl flex items-center justify-center mb-4">
                             <i class="fas fa-users text-xl"></i>
                         </div>
-                        <p class="text-gray-400 text-xs font-bold uppercase mb-1">Total Membres</p>
+                        <p class="text-muted text-xs font-bold uppercase mb-1">Total Membres</p>
                         <h3 class="text-3xl font-bold text-primary counter" data-target="124">0</h3>
                     </div>
                     <!-- Card 2 -->
-                    <div class="kpi-card bg-white p-6 rounded-3xl shadow-sm border border-gray-50 animate-fade-in-up" style="animation-delay: 0.2s">
+                    <div class="kpi-card bg-surface p-6 rounded-3xl shadow-sm border border-border animate-fade-in-up" style="animation-delay: 0.2s">
                         <div class="w-12 h-12 bg-amber-50 text-accent rounded-2xl flex items-center justify-center mb-4">
                             <i class="fas fa-star text-xl"></i>
                         </div>
-                        <p class="text-gray-400 text-xs font-bold uppercase mb-1">Stars</p>
+                        <p class="text-muted text-xs font-bold uppercase mb-1">Stars</p>
                         <h3 class="text-3xl font-bold text-primary counter" data-target="45">0</h3>
                     </div>
                     <!-- Card 3 -->
-                    <div class="kpi-card bg-white p-6 rounded-3xl shadow-sm border border-gray-50 animate-fade-in-up" style="animation-delay: 0.3s">
+                    <div class="kpi-card bg-surface p-6 rounded-3xl shadow-sm border border-border animate-fade-in-up" style="animation-delay: 0.3s">
                         <div class="w-12 h-12 bg-blue-50 text-primary rounded-2xl flex items-center justify-center mb-4">
                             <i class="fas fa-plane text-xl"></i>
                         </div>
-                        <p class="text-gray-400 text-xs font-bold uppercase mb-1">Pilotes</p>
+                        <p class="text-muted text-xs font-bold uppercase mb-1">Pilotes</p>
                         <h3 class="text-3xl font-bold text-primary counter" data-target="23">0</h3>
                     </div>
                     <!-- Card 4 -->
-                    <div class="kpi-card bg-white p-6 rounded-3xl shadow-sm border border-gray-50 animate-fade-in-up" style="animation-delay: 0.4s">
+                    <div class="kpi-card bg-surface p-6 rounded-3xl shadow-sm border border-border animate-fade-in-up" style="animation-delay: 0.4s">
                         <div class="w-12 h-12 bg-purple-50 text-purple-500 rounded-2xl flex items-center justify-center mb-4">
                             <i class="fas fa-monument text-xl"></i>
                         </div>
-                        <p class="text-gray-400 text-xs font-bold uppercase mb-1">Piliers</p>
+                        <p class="text-muted text-xs font-bold uppercase mb-1">Piliers</p>
                         <h3 class="text-3xl font-bold text-primary counter" data-target="8">0</h3>
                     </div>
                     <!-- Card 5 -->
-                    <div class="kpi-card bg-white p-6 rounded-3xl shadow-sm border border-gray-50 animate-fade-in-up" style="animation-delay: 0.5s">
+                    <div class="kpi-card bg-surface p-6 rounded-3xl shadow-sm border border-border animate-fade-in-up" style="animation-delay: 0.5s">
                         <div class="w-12 h-12 bg-green-50 text-success rounded-2xl flex items-center justify-center mb-4">
                             <i class="fas fa-globe text-xl"></i>
                         </div>
-                        <p class="text-gray-400 text-xs font-bold uppercase mb-1">Missionnaires</p>
+                        <p class="text-muted text-xs font-bold uppercase mb-1">Missionnaires</p>
                         <h3 class="text-3xl font-bold text-primary counter" data-target="3">0</h3>
                     </div>
                 </div>
@@ -245,7 +280,7 @@
                     <div class="lg:col-span-2 space-y-8">
                         
                         <!-- Demandes en attente -->
-                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-50">
+                        <div class="bg-surface p-8 rounded-3xl shadow-sm border border-border">
                             <div class="flex items-center justify-between mb-8">
                                 <div class="flex items-center gap-3">
                                     <h3 class="text-lg font-bold text-primary font-serif">⏳ Demandes en attente</h3>
@@ -255,12 +290,12 @@
                             </div>
 
                             <div class="space-y-4">
-                                <div class="flex items-center justify-between p-4 bg-[#F8F9FA] rounded-2xl border border-gray-100 hover:border-accent/20 transition-all group">
+                                <div class="flex items-center justify-between p-4 bg-[#F8F9FA] rounded-2xl border border-border hover:border-accent/20 transition-all group">
                                     <div class="flex items-center gap-4">
                                         <div class="w-10 h-10 rounded-full bg-blue-100 text-primary flex items-center justify-center font-bold">MK</div>
                                         <div>
                                             <p class="font-bold text-sm text-primary">Marie Koné</p>
-                                            <p class="text-[10px] text-gray-400 uppercase tracking-wider">Passage vers : <span class="text-primary font-bold">Pilote ✈️</span></p>
+                                            <p class="text-[10px] text-muted uppercase tracking-wider">Passage vers : <span class="text-primary font-bold">Pilote ✈️</span></p>
                                         </div>
                                     </div>
                                     <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -269,12 +304,12 @@
                                     </div>
                                 </div>
 
-                                <div class="flex items-center justify-between p-4 bg-[#F8F9FA] rounded-2xl border border-gray-100 hover:border-accent/20 transition-all group">
+                                <div class="flex items-center justify-between p-4 bg-[#F8F9FA] rounded-2xl border border-border hover:border-accent/20 transition-all group">
                                     <div class="flex items-center gap-4">
                                         <div class="w-10 h-10 rounded-full bg-amber-100 text-accent flex items-center justify-center font-bold">JS</div>
                                         <div>
                                             <p class="font-bold text-sm text-primary">Jean Soro</p>
-                                            <p class="text-[10px] text-gray-400 uppercase tracking-wider">Passage vers : <span class="text-primary font-bold">Star ⭐</span></p>
+                                            <p class="text-[10px] text-muted uppercase tracking-wider">Passage vers : <span class="text-primary font-bold">Star ⭐</span></p>
                                         </div>
                                     </div>
                                     <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -288,31 +323,31 @@
                         <!-- Graphiques -->
                         <div class="grid md:grid-cols-2 gap-8">
                             <!-- Bar Chart: Statuts -->
-                            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-50">
-                                <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-8">Répartition par statut</h3>
+                            <div class="bg-surface p-8 rounded-3xl shadow-sm border border-border">
+                                <h3 class="text-sm font-bold text-muted uppercase tracking-widest mb-8">Répartition par statut</h3>
                                 <div class="flex items-end justify-between h-48 gap-4 px-2">
                                     <div class="flex-1 flex flex-col items-center gap-3">
                                         <div class="w-full bg-accent rounded-t-xl chart-bar" style="height: 0%" data-height="60%"></div>
-                                        <span class="text-[10px] font-bold text-gray-400">Star</span>
+                                        <span class="text-[10px] font-bold text-muted">Star</span>
                                     </div>
                                     <div class="flex-1 flex flex-col items-center gap-3">
                                         <div class="w-full bg-primary rounded-t-xl chart-bar" style="height: 0%" data-height="30%"></div>
-                                        <span class="text-[10px] font-bold text-gray-400">Pilote</span>
+                                        <span class="text-[10px] font-bold text-muted">Pilote</span>
                                     </div>
                                     <div class="flex-1 flex flex-col items-center gap-3">
                                         <div class="w-full bg-purple-500 rounded-t-xl chart-bar" style="height: 0%" data-height="12%"></div>
-                                        <span class="text-[10px] font-bold text-gray-400">Pilier</span>
+                                        <span class="text-[10px] font-bold text-muted">Pilier</span>
                                     </div>
                                     <div class="flex-1 flex flex-col items-center gap-3">
                                         <div class="w-full bg-success rounded-t-xl chart-bar" style="height: 0%" data-height="5%"></div>
-                                        <span class="text-[10px] font-bold text-gray-400">Miss.</span>
+                                        <span class="text-[10px] font-bold text-muted">Miss.</span>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Line Chart: New Members -->
-                            <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-50">
-                                <h3 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-8">Nouveaux membres / mois</h3>
+                            <div class="bg-surface p-8 rounded-3xl shadow-sm border border-border">
+                                <h3 class="text-sm font-bold text-muted uppercase tracking-widest mb-8">Nouveaux membres / mois</h3>
                                 <div class="relative h-48 w-full">
                                     <svg viewBox="0 0 400 100" class="w-full h-full overflow-visible">
                                         <path d="M0,80 Q50,70 100,50 T200,60 T300,20 T400,40" fill="none" stroke="#1E3A5F" stroke-width="3" stroke-linecap="round" class="animate-draw-path"></path>
@@ -322,7 +357,7 @@
                                         <circle cx="300" cy="20" r="4" fill="#1E3A5F"></circle>
                                         <circle cx="400" cy="40" r="4" fill="#1E3A5F"></circle>
                                     </svg>
-                                    <div class="flex justify-between mt-4 text-[10px] font-bold text-gray-400 px-1 uppercase tracking-tighter">
+                                    <div class="flex justify-between mt-4 text-[10px] font-bold text-muted px-1 uppercase tracking-tighter">
                                         <span>Jan</span><span>Fev</span><span>Mar</span><span>Avr</span><span>Mai</span><span>Juin</span>
                                     </div>
                                 </div>
@@ -333,7 +368,7 @@
 
                     <!-- Right Column: Recent Activity -->
                     <div class="space-y-8">
-                        <div class="bg-white p-8 rounded-3xl shadow-sm border border-gray-50 h-full">
+                        <div class="bg-surface p-8 rounded-3xl shadow-sm border border-border h-full">
                             <h3 class="text-lg font-bold text-primary font-serif mb-8">Activité récente</h3>
                             
                             <div class="space-y-8 relative">
@@ -348,7 +383,7 @@
                                     <p class="text-sm text-primary font-medium leading-relaxed">
                                         <span class="font-bold">Jean Kodjo</span> a demandé une progression vers <span class="font-bold text-accent">Pilote</span>
                                     </p>
-                                    <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-wider">Il y a 2 heures</p>
+                                    <p class="text-[10px] text-muted mt-1 uppercase tracking-wider">Il y a 2 heures</p>
                                 </div>
 
                                 <!-- Activity 2 -->
@@ -359,7 +394,7 @@
                                     <p class="text-sm text-primary font-medium leading-relaxed">
                                         <span class="font-bold">Chef Amos</span> a validé la demande de <span class="font-bold">Marie Doe</span>
                                     </p>
-                                    <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-wider">Hier</p>
+                                    <p class="text-[10px] text-muted mt-1 uppercase tracking-wider">Hier</p>
                                 </div>
 
                                 <!-- Activity 3 -->
@@ -370,11 +405,11 @@
                                     <p class="text-sm text-primary font-medium leading-relaxed">
                                         Nouvel événement ajouté : <span class="font-bold">Culte de Pentecôte</span>
                                     </p>
-                                    <p class="text-[10px] text-gray-400 mt-1 uppercase tracking-wider">Il y a 3 jours</p>
+                                    <p class="text-[10px] text-muted mt-1 uppercase tracking-wider">Il y a 3 jours</p>
                                 </div>
                             </div>
 
-                            <button class="w-full mt-12 py-3 text-xs font-bold text-primary/40 hover:text-primary transition-colors border border-gray-50 rounded-xl">Voir toute l'activité</button>
+                            <button class="w-full mt-12 py-3 text-xs font-bold text-primary/40 hover:text-primary transition-colors border border-border rounded-xl">Voir toute l'activité</button>
                         </div>
                     </div>
 

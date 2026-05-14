@@ -6,6 +6,25 @@
     <title>Mon Compte | EJP - Église des Jeunes Prodiges</title>
     <!-- Fonts (FuturaStd) -->
     <style>
+        :root {
+            --color-bg: #FFFFFF;
+            --color-surface: #F9FAFB;
+            --color-primary: #000000;
+            --color-primary-text: #FFFFFF;
+            --color-text: #111827;
+            --color-text-muted: #6B7280;
+            --color-border: #E5E7EB;
+        }
+        .dark {
+            --color-bg: #000000;
+            --color-surface: #111111;
+            --color-primary: #FFFFFF;
+            --color-primary-text: #000000;
+            --color-text: #F9FAFB;
+            --color-text-muted: #9CA3AF;
+            --color-border: #374151;
+        }
+
         @font-face {
             font-family: 'FuturaStd';
             src: url('fonts/FuturaStdBook.otf') format('opentype');
@@ -46,15 +65,10 @@
     
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        primary: '#1E3A5F',
-                        accent: '#F5A623',
-                        success: '#27AE60',
-                        danger: '#E74C3C',
-                        dark: '#0F1B2D',
-                    },
+                    colors: { primary: 'var(--color-primary)', 'primary-text': 'var(--color-primary-text)', accent: '#F5A623', success: '#27AE60', danger: '#E74C3C', bg: 'var(--color-bg)', surface: 'var(--color-surface)', text: 'var(--color-text)', muted: 'var(--color-text-muted)', border: 'var(--color-border)', chef: '#115E59' },
                     fontFamily: {
                         sans: ['FuturaStd', 'sans-serif'],
                         serif: ['FuturaStd', 'sans-serif'],
@@ -120,12 +134,34 @@
         .custom-scrollbar::-webkit-scrollbar { width: 6px; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
     </style>
+
+    <script>
+        // Theme Toggle Script
+        function initTheme() {
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+        initTheme();
+        
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
 </head>
-<body class="bg-[#F8F9FA] font-sans text-[#1A1A2E] overflow-hidden">
+
+<body class="bg-[#F8F9FA] font-sans text-text overflow-hidden">
     
     <!-- Success Toast -->
     <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-[100] hidden">
-        <div class="bg-primary text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4 border border-accent/30 animate-toast-in">
+        <div class="bg-primary text-primary-text px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-4 border border-accent/30 animate-toast-in">
             <div class="w-10 h-10 bg-success rounded-full flex items-center justify-center text-white">
                 <i class="fas fa-check"></i>
             </div>
@@ -148,23 +184,23 @@
                     <span class="text-xl font-serif font-bold tracking-tight">EJP Member</span>
                 </div>
                 <nav class="flex-1 px-4 py-6 space-y-2 overflow-y-auto custom-scrollbar">
-                    <a href="dashboard.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="dashboard.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-home w-5"></i>
                         <span class="font-medium">Tableau de bord</span>
                     </a>
-                    <a href="formations.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="formations.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-graduation-cap w-5"></i>
                         <span class="font-medium">Mes formations</span>
                     </a>
-                    <a href="progression.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="progression.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-chart-line w-5"></i>
                         <span class="font-medium">Ma progression</span>
                     </a>
-                    <a href="evenements.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="evenements.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-calendar-alt w-5"></i>
                         <span class="font-medium">Événements</span>
                     </a>
-                    <a href="notifications.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-white/70">
+                    <a href="notifications.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                         <i class="fas fa-bell w-5"></i>
                         <span class="font-medium">Notifications</span>
                     </a>
@@ -182,10 +218,10 @@
         <main class="flex-1 flex flex-col lg:ml-[260px] h-screen overflow-hidden">
             
             <!-- Top Header -->
-            <header class="sticky top-0 z-30 bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between">
+            <header class="sticky top-0 z-30 bg-surface border-b border-border px-6 py-4 flex items-center justify-between">
                 <div class="flex items-center gap-4">
                     <button id="mobile-menu-btn" class="lg:hidden text-primary text-2xl"><i class="fas fa-bars"></i></button>
-                    <h2 class="text-xl font-bold text-primary">⚙️ Mon Compte</h2>
+                    <h2 class="text-xl font-bold text-primary"><i class="fas fa-cog text-accent"></i> Mon Compte</h2>
                 </div>
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-primary font-bold">JK</div>
@@ -196,7 +232,7 @@
             <div class="flex-1 overflow-y-auto p-6 custom-scrollbar space-y-8">
                 
                 <!-- Section 1: Personal Info -->
-                <section class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
+                <section class="bg-surface rounded-3xl p-8 shadow-sm border border-border">
                     <div class="flex items-center justify-between mb-8">
                         <h3 class="text-xl font-bold text-primary">Informations personnelles</h3>
                         <button id="edit-btn" class="text-accent font-bold hover:underline">Modifier</button>
@@ -217,34 +253,34 @@
                                     <circle cx="72" cy="72" r="70" fill="none" stroke="#F5A623" stroke-width="2" class="dashed-border"></circle>
                                 </svg>
                             </div>
-                            <p class="mt-4 text-xs text-gray-400 font-medium">JPG, PNG max 2MB</p>
+                            <p class="mt-4 text-xs text-muted font-medium">JPG, PNG max 2MB</p>
                         </div>
 
                         <!-- Form Column -->
                         <form id="profile-form" class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div class="space-y-2">
-                                <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">Nom</label>
-                                <input type="text" value="Kodjo" readonly class="w-full py-2 px-0 border-b border-gray-100 text-primary font-medium focus:border-accent focus:outline-none transition-all">
+                                <label class="text-xs font-bold text-muted uppercase tracking-wider">Nom</label>
+                                <input type="text" value="Kodjo" readonly class="w-full py-2 px-0 border-b border-border text-primary font-medium focus:border-accent focus:outline-none transition-all">
                             </div>
                             <div class="space-y-2">
-                                <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">Prénom</label>
-                                <input type="text" value="Jean" readonly class="w-full py-2 px-0 border-b border-gray-100 text-primary font-medium focus:border-accent focus:outline-none transition-all">
+                                <label class="text-xs font-bold text-muted uppercase tracking-wider">Prénom</label>
+                                <input type="text" value="Jean" readonly class="w-full py-2 px-0 border-b border-border text-primary font-medium focus:border-accent focus:outline-none transition-all">
                             </div>
                             <div class="space-y-2">
-                                <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">Téléphone</label>
-                                <input type="text" value="+225 01 02 03 04 05" readonly class="w-full py-2 px-0 border-b border-gray-100 text-primary font-medium focus:border-accent focus:outline-none transition-all">
+                                <label class="text-xs font-bold text-muted uppercase tracking-wider">Téléphone</label>
+                                <input type="text" value="+225 01 02 03 04 05" readonly class="w-full py-2 px-0 border-b border-border text-primary font-medium focus:border-accent focus:outline-none transition-all">
                             </div>
                             <div class="space-y-2">
-                                <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">E-mail</label>
-                                <input type="email" value="jean.kodjo@ejp.ci" readonly class="w-full py-2 px-0 border-b border-gray-100 text-primary font-medium focus:border-accent focus:outline-none transition-all">
+                                <label class="text-xs font-bold text-muted uppercase tracking-wider">E-mail</label>
+                                <input type="email" value="jean.kodjo@ejp.ci" readonly class="w-full py-2 px-0 border-b border-border text-primary font-medium focus:border-accent focus:outline-none transition-all">
                             </div>
                             <div class="space-y-2">
-                                <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">Date d'arrivée</label>
-                                <input type="text" value="15 Janvier 2026" readonly class="w-full py-2 px-0 text-gray-400 font-medium bg-transparent">
+                                <label class="text-xs font-bold text-muted uppercase tracking-wider">Date d'arrivée</label>
+                                <input type="text" value="15 Janvier 2026" readonly class="w-full py-2 px-0 text-muted font-medium bg-transparent">
                             </div>
                             <div class="space-y-2">
-                                <label class="text-xs font-bold text-gray-400 uppercase tracking-wider">Chef responsable</label>
-                                <input type="text" value="Chef Amos" readonly class="w-full py-2 px-0 text-gray-400 font-medium bg-transparent">
+                                <label class="text-xs font-bold text-muted uppercase tracking-wider">Chef responsable</label>
+                                <input type="text" value="Chef Amos" readonly class="w-full py-2 px-0 text-muted font-medium bg-transparent">
                             </div>
                             <div class="md:col-span-2 pt-4">
                                 <button type="submit" id="save-btn" class="hidden bg-accent text-primary font-bold px-8 py-3 rounded-xl hover:scale-105 transition-transform shadow-lg shadow-accent/20">Enregistrer les modifications</button>
@@ -254,57 +290,57 @@
                 </section>
 
                 <!-- Section 2: Security -->
-                <section class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
+                <section class="bg-surface rounded-3xl p-8 shadow-sm border border-border">
                     <h3 class="text-xl font-bold text-primary mb-8">Sécurité</h3>
                     
                     <form class="max-w-md space-y-6">
                         <div class="space-y-2">
-                            <label class="text-xs font-bold text-gray-400 uppercase">Ancien mot de passe</label>
-                            <input type="password" placeholder="••••••••" class="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 px-4 focus:border-accent focus:outline-none">
+                            <label class="text-xs font-bold text-muted uppercase">Ancien mot de passe</label>
+                            <input type="password" placeholder="••••••••" class="w-full bg-gray-50 border border-border rounded-xl py-3 px-4 focus:border-accent focus:outline-none">
                         </div>
                         
                         <div class="space-y-2">
-                            <label class="text-xs font-bold text-gray-400 uppercase">Nouveau mot de passe</label>
-                            <input type="password" id="new-password" placeholder="••••••••" class="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 px-4 focus:border-accent focus:outline-none">
+                            <label class="text-xs font-bold text-muted uppercase">Nouveau mot de passe</label>
+                            <input type="password" id="new-password" placeholder="••••••••" class="w-full bg-gray-50 border border-border rounded-xl py-3 px-4 focus:border-accent focus:outline-none">
                             <!-- Strength Meter -->
                             <div class="w-full h-1 bg-gray-100 rounded-full overflow-hidden mt-2">
                                 <div id="strength-meter" class="strength-bar bg-danger"></div>
                             </div>
-                            <p id="strength-text" class="text-[10px] font-bold text-gray-400 uppercase">Trop faible</p>
+                            <p id="strength-text" class="text-[10px] font-bold text-muted uppercase">Trop faible</p>
                         </div>
 
                         <div class="space-y-2">
-                            <label class="text-xs font-bold text-gray-400 uppercase">Confirmer le nouveau mot de passe</label>
-                            <input type="password" placeholder="••••••••" class="w-full bg-gray-50 border border-gray-100 rounded-xl py-3 px-4 focus:border-accent focus:outline-none">
+                            <label class="text-xs font-bold text-muted uppercase">Confirmer le nouveau mot de passe</label>
+                            <input type="password" placeholder="••••••••" class="w-full bg-gray-50 border border-border rounded-xl py-3 px-4 focus:border-accent focus:outline-none">
                         </div>
 
-                        <button type="submit" class="w-full py-4 bg-primary text-white font-bold rounded-2xl hover:bg-dark transition-colors">Mettre à jour le mot de passe</button>
+                        <button type="submit" class="w-full py-4 bg-primary text-primary-text font-bold rounded-2xl hover:bg-dark transition-colors">Mettre à jour le mot de passe</button>
                     </form>
                 </section>
 
                 <!-- Section 3: Notifications -->
-                <section class="bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
+                <section class="bg-surface rounded-3xl p-8 shadow-sm border border-border">
                     <h3 class="text-xl font-bold text-primary mb-8">Préférences de notifications</h3>
                     
                     <div class="space-y-6">
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="font-bold text-primary">Rappels d'événements</p>
-                                <p class="text-sm text-gray-500">Recevoir des notifications avant le début d'un culte ou événement.</p>
+                                <p class="text-sm text-muted">Recevoir des notifications avant le début d'un culte ou événement.</p>
                             </div>
                             <div class="toggle-switch active" onclick="this.classList.toggle('active')"></div>
                         </div>
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="font-bold text-primary">Demandes de progression</p>
-                                <p class="text-sm text-gray-500">Être notifié quand ma demande est traitée par un Chef ou l'Admin.</p>
+                                <p class="text-sm text-muted">Être notifié quand ma demande est traitée par un Chef ou l'Admin.</p>
                             </div>
                             <div class="toggle-switch active" onclick="this.classList.toggle('active')"></div>
                         </div>
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="font-bold text-primary">Newsletter EJP</p>
-                                <p class="text-sm text-gray-500">Recevoir les actualités hebdomadaires de l'église.</p>
+                                <p class="text-sm text-muted">Recevoir les actualités hebdomadaires de l'église.</p>
                             </div>
                             <div class="toggle-switch" onclick="this.classList.toggle('active')"></div>
                         </div>

@@ -6,6 +6,25 @@
     <title>Demandes de Progression | EJP Chef</title>
     <!-- Fonts (FuturaStd) -->
     <style>
+        :root {
+            --color-bg: #FFFFFF;
+            --color-surface: #F9FAFB;
+            --color-primary: #000000;
+            --color-primary-text: #FFFFFF;
+            --color-text: #111827;
+            --color-text-muted: #6B7280;
+            --color-border: #E5E7EB;
+        }
+        .dark {
+            --color-bg: #000000;
+            --color-surface: #111111;
+            --color-primary: #FFFFFF;
+            --color-primary-text: #000000;
+            --color-text: #F9FAFB;
+            --color-text-muted: #9CA3AF;
+            --color-border: #374151;
+        }
+
         @font-face {
             font-family: 'FuturaStd';
             src: url('fonts/FuturaStdBook.otf') format('opentype');
@@ -44,16 +63,10 @@
     
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
-                    colors: {
-                        primary: '#1E3A5F', // Navy
-                        accent: '#F5A623',  // Gold
-                        success: '#27AE60',
-                        danger: '#E74C3C',
-                        dark: '#0F1B2D',
-                        chef: '#115E59', // Deep Teal
-                    },
+                    colors: { primary: 'var(--color-primary)', 'primary-text': 'var(--color-primary-text)', accent: '#F5A623', success: '#27AE60', danger: '#E74C3C', bg: 'var(--color-bg)', surface: 'var(--color-surface)', text: 'var(--color-text)', muted: 'var(--color-text-muted)', border: 'var(--color-border)', chef: '#115E59' },
                     fontFamily: {
                         sans: ['FuturaStd', 'sans-serif'],
                         serif: ['FuturaStd', 'sans-serif'],
@@ -85,13 +98,35 @@
         .request-card { transition: all 0.3s ease; border: 1px solid rgba(30, 58, 95, 0.05); }
         .request-card:hover { transform: translateY(-3px); border-color: rgba(17, 94, 89, 0.2); box-shadow: 0 12px 30px -10px rgba(0,0,0,0.1); }
     </style>
+
+    <script>
+        // Theme Toggle Script
+        function initTheme() {
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            } else {
+                document.documentElement.classList.remove('dark');
+            }
+        }
+        initTheme();
+        
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        }
+    </script>
 </head>
-<body class="bg-[#F4F7FE] font-sans text-[#1A1A2E] overflow-hidden">
+
+<body class="bg-bg font-sans text-text overflow-hidden">
     
     <div class="flex h-screen overflow-hidden">
         
         <!-- Sidebar Chef -->
-        <aside class="w-[280px] bg-white border-r border-gray-100 flex flex-col h-full z-50 shrink-0">
+        <aside class="w-[280px] bg-surface border-r border-border flex flex-col h-full z-50 shrink-0">
             <div class="p-8 flex items-center gap-4">
                 <div class="w-12 h-12 bg-chef rounded-xl flex items-center justify-center border border-white shadow-md">
                     <span class="text-white font-serif font-bold text-xl">EJP</span>
@@ -103,20 +138,20 @@
             </div>
             
             <div class="px-8 pb-4">
-                <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-xl border border-gray-100">
-                    <div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm">AM</div>
+                <div class="flex items-center gap-3 bg-gray-50 p-3 rounded-xl border border-border">
+                    <div class="w-10 h-10 rounded-full bg-primary text-primary-text flex items-center justify-center font-bold text-sm">AM</div>
                     <div>
                         <p class="font-bold text-sm text-primary">Chef Amos</p>
-                        <p class="text-xs text-gray-500">Famille Béthanie</p>
+                        <p class="text-xs text-muted">Famille Béthanie</p>
                     </div>
                 </div>
             </div>
 
             <nav class="flex-1 px-4 py-4 space-y-1 overflow-y-auto custom-scrollbar">
-                <a href="dashboard.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-gray-500">
+                <a href="dashboard.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                     <i class="fas fa-chart-pie w-5"></i><span class="font-medium">Vue d'ensemble</span>
                 </a>
-                <a href="membres.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-gray-500">
+                <a href="membres.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                     <i class="fas fa-users w-5"></i><span class="font-medium">Ma Famille</span>
                 </a>
                 <a href="demandes.html" class="sidebar-link active flex items-center gap-3 px-4 py-3 rounded-lg transition-all">
@@ -124,7 +159,7 @@
                     <span class="font-medium">Demandes</span>
                     <span class="ml-auto bg-danger text-white text-[10px] font-bold px-2 py-0.5 rounded-full" id="sidebar-badge">3</span>
                 </a>
-                <a href="reunions.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-gray-500">
+                <a href="reunions.html" class="sidebar-link flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-muted">
                     <i class="fas fa-file-alt w-5"></i><span class="font-medium">PV Réunions</span>
                 </a>
             </nav>
@@ -134,16 +169,16 @@
         <main class="flex-1 flex flex-col h-screen overflow-hidden">
             
             <!-- Top Navbar -->
-            <header class="h-20 bg-white/80 backdrop-blur-md border-b border-gray-100 flex items-center justify-between px-8 shrink-0">
+            <header class="h-20 bg-surface/80 backdrop-blur-md border-b border-border flex items-center justify-between px-8 shrink-0">
                 <div>
                     <h2 class="text-xl font-bold text-primary font-serif flex items-center gap-3">
-                        📋 Demandes de Progression
+                        <i class="fas fa-clipboard-list text-accent"></i> Demandes de Progression
                         <span class="px-2 py-1 bg-danger/10 text-danger text-xs font-bold rounded-lg" id="header-badge">3 en attente</span>
                     </h2>
                 </div>
                 <div class="flex items-center gap-4">
-                    <div class="bg-gray-100 p-1 rounded-xl flex text-sm font-bold text-gray-500">
-                        <button class="px-4 py-1.5 bg-white text-primary rounded-lg shadow-sm">En attente (3)</button>
+                    <div class="bg-gray-100 p-1 rounded-xl flex text-sm font-bold text-muted">
+                        <button class="px-4 py-1.5 bg-surface text-primary rounded-lg shadow-sm">En attente (3)</button>
                         <button class="px-4 py-1.5 hover:text-primary transition-colors">Traitées</button>
                     </div>
                 </div>
@@ -153,7 +188,7 @@
             <div class="flex-1 overflow-y-auto p-8 custom-scrollbar space-y-6" id="requests-container">
                 
                 <!-- Request Card 1 (Fully Eligible) -->
-                <div class="request-card bg-white p-6 rounded-3xl animate-fade-in-up" id="req-1" style="animation-delay: 0.1s">
+                <div class="request-card bg-surface p-6 rounded-3xl animate-fade-in-up" id="req-1" style="animation-delay: 0.1s">
                     <div class="flex items-start justify-between">
                         
                         <div class="flex gap-6 w-full">
@@ -165,9 +200,9 @@
                                 <div class="flex items-center justify-between mb-2">
                                     <div>
                                         <h3 class="text-lg font-bold text-primary">Marie L.</h3>
-                                        <p class="text-xs text-gray-400">Demande soumise hier à 15:45</p>
+                                        <p class="text-xs text-muted">Demande soumise hier à 15:45</p>
                                     </div>
-                                    <div class="flex items-center gap-3 bg-[#F4F7FE] px-4 py-2 rounded-xl border border-gray-100">
+                                    <div class="flex items-center gap-3 bg-bg px-4 py-2 rounded-xl border border-border">
                                         <span class="flex items-center gap-1 text-xs font-bold text-amber-500"><i class="fas fa-star"></i> Star</span>
                                         <i class="fas fa-arrow-right text-gray-300"></i>
                                         <span class="flex items-center gap-1 text-xs font-bold text-blue-600"><i class="fas fa-plane"></i> Pilote</span>
@@ -178,22 +213,22 @@
                                     <div class="p-3 rounded-xl border border-success/20 bg-success/5 flex items-start gap-3">
                                         <i class="fas fa-check-circle text-success mt-0.5"></i>
                                         <div>
-                                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Formations</p>
-                                            <p class="text-sm font-bold text-primary">10/10 <span class="font-normal text-xs text-gray-500">Modules</span></p>
+                                            <p class="text-[10px] font-bold text-muted uppercase tracking-widest">Formations</p>
+                                            <p class="text-sm font-bold text-primary">10/10 <span class="font-normal text-xs text-muted">Modules</span></p>
                                         </div>
                                     </div>
                                     <div class="p-3 rounded-xl border border-success/20 bg-success/5 flex items-start gap-3">
                                         <i class="fas fa-check-circle text-success mt-0.5"></i>
                                         <div>
-                                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Assiduité</p>
-                                            <p class="text-sm font-bold text-primary">95% <span class="font-normal text-xs text-gray-500">Présence</span></p>
+                                            <p class="text-[10px] font-bold text-muted uppercase tracking-widest">Assiduité</p>
+                                            <p class="text-sm font-bold text-primary">95% <span class="font-normal text-xs text-muted">Présence</span></p>
                                         </div>
                                     </div>
                                     <div class="p-3 rounded-xl border border-success/20 bg-success/5 flex items-start gap-3">
                                         <i class="fas fa-check-circle text-success mt-0.5"></i>
                                         <div>
-                                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Ancienneté</p>
-                                            <p class="text-sm font-bold text-primary">6 <span class="font-normal text-xs text-gray-500">Mois</span></p>
+                                            <p class="text-[10px] font-bold text-muted uppercase tracking-widest">Ancienneté</p>
+                                            <p class="text-sm font-bold text-primary">6 <span class="font-normal text-xs text-muted">Mois</span></p>
                                         </div>
                                     </div>
                                 </div>
@@ -202,8 +237,8 @@
                     </div>
 
                     <!-- Actions -->
-                    <div class="mt-6 pt-6 border-t border-gray-100 flex justify-end gap-3">
-                        <button onclick="openRejectModal('req-1', 'Marie L.')" class="px-6 py-2.5 bg-white border border-danger/20 text-danger hover:bg-danger/5 font-bold rounded-xl transition-colors text-sm">Refuser</button>
+                    <div class="mt-6 pt-6 border-t border-border flex justify-end gap-3">
+                        <button onclick="openRejectModal('req-1', 'Marie L.')" class="px-6 py-2.5 bg-surface border border-danger/20 text-danger hover:bg-danger/5 font-bold rounded-xl transition-colors text-sm">Refuser</button>
                         <button onclick="approveRequest('req-1')" class="px-6 py-2.5 bg-success hover:bg-[#219653] text-white font-bold rounded-xl transition-colors text-sm shadow-md shadow-success/20 flex items-center gap-2">
                             <i class="fas fa-check"></i> Valider la progression
                         </button>
@@ -211,7 +246,7 @@
                 </div>
 
                 <!-- Request Card 2 (Partially Eligible - Needs pastoral judgment) -->
-                <div class="request-card bg-white p-6 rounded-3xl animate-fade-in-up" id="req-2" style="animation-delay: 0.2s">
+                <div class="request-card bg-surface p-6 rounded-3xl animate-fade-in-up" id="req-2" style="animation-delay: 0.2s">
                     <div class="flex items-start justify-between">
                         <div class="flex gap-6 w-full">
                             <div class="w-14 h-14 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-lg shrink-0 shadow-md">DK</div>
@@ -219,9 +254,9 @@
                                 <div class="flex items-center justify-between mb-2">
                                     <div>
                                         <h3 class="text-lg font-bold text-primary">David K.</h3>
-                                        <p class="text-xs text-gray-400">Demande soumise il y a 3 jours</p>
+                                        <p class="text-xs text-muted">Demande soumise il y a 3 jours</p>
                                     </div>
-                                    <div class="flex items-center gap-3 bg-[#F4F7FE] px-4 py-2 rounded-xl border border-gray-100">
+                                    <div class="flex items-center gap-3 bg-bg px-4 py-2 rounded-xl border border-border">
                                         <span class="flex items-center gap-1 text-xs font-bold text-blue-600"><i class="fas fa-plane"></i> Pilote</span>
                                         <i class="fas fa-arrow-right text-gray-300"></i>
                                         <span class="flex items-center gap-1 text-xs font-bold text-purple-600"><i class="fas fa-university"></i> Pilier</span>
@@ -232,30 +267,30 @@
                                     <div class="p-3 rounded-xl border border-success/20 bg-success/5 flex items-start gap-3">
                                         <i class="fas fa-check-circle text-success mt-0.5"></i>
                                         <div>
-                                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Formations</p>
+                                            <p class="text-[10px] font-bold text-muted uppercase tracking-widest">Formations</p>
                                             <p class="text-sm font-bold text-primary">Complet</p>
                                         </div>
                                     </div>
                                     <div class="p-3 rounded-xl border border-amber-200 bg-amber-50 flex items-start gap-3">
                                         <i class="fas fa-exclamation-triangle text-amber-500 mt-0.5"></i>
                                         <div>
-                                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Service</p>
-                                            <p class="text-sm font-bold text-primary">9/12 <span class="font-normal text-xs text-gray-500">Sessions</span></p>
+                                            <p class="text-[10px] font-bold text-muted uppercase tracking-widest">Service</p>
+                                            <p class="text-sm font-bold text-primary">9/12 <span class="font-normal text-xs text-muted">Sessions</span></p>
                                         </div>
                                     </div>
                                     <div class="p-3 rounded-xl border border-success/20 bg-success/5 flex items-start gap-3">
                                         <i class="fas fa-check-circle text-success mt-0.5"></i>
                                         <div>
-                                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Ancienneté</p>
-                                            <p class="text-sm font-bold text-primary">14 <span class="font-normal text-xs text-gray-500">Mois</span></p>
+                                            <p class="text-[10px] font-bold text-muted uppercase tracking-widest">Ancienneté</p>
+                                            <p class="text-sm font-bold text-primary">14 <span class="font-normal text-xs text-muted">Mois</span></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="mt-6 pt-6 border-t border-gray-100 flex justify-end gap-3">
-                        <button onclick="openRejectModal('req-2', 'David K.')" class="px-6 py-2.5 bg-white border border-danger/20 text-danger hover:bg-danger/5 font-bold rounded-xl transition-colors text-sm">Refuser</button>
+                    <div class="mt-6 pt-6 border-t border-border flex justify-end gap-3">
+                        <button onclick="openRejectModal('req-2', 'David K.')" class="px-6 py-2.5 bg-surface border border-danger/20 text-danger hover:bg-danger/5 font-bold rounded-xl transition-colors text-sm">Refuser</button>
                         <button onclick="approveRequest('req-2')" class="px-6 py-2.5 bg-success hover:bg-[#219653] text-white font-bold rounded-xl transition-colors text-sm shadow-md shadow-success/20 flex items-center gap-2">
                             <i class="fas fa-check"></i> Valider par dérogation
                         </button>
@@ -263,18 +298,18 @@
                 </div>
 
                 <!-- Request Card 3 -->
-                <div class="request-card bg-white p-6 rounded-3xl animate-fade-in-up" id="req-3" style="animation-delay: 0.3s">
+                <div class="request-card bg-surface p-6 rounded-3xl animate-fade-in-up" id="req-3" style="animation-delay: 0.3s">
                     <div class="flex items-start justify-between">
                         <div class="flex gap-6 w-full">
-                            <div class="w-14 h-14 rounded-full bg-gray-200 text-gray-500 flex items-center justify-center font-bold text-lg shrink-0 shadow-md">ET</div>
+                            <div class="w-14 h-14 rounded-full bg-gray-200 text-muted flex items-center justify-center font-bold text-lg shrink-0 shadow-md">ET</div>
                             <div class="flex-1">
                                 <div class="flex items-center justify-between mb-2">
                                     <div>
                                         <h3 class="text-lg font-bold text-primary">Esther T.</h3>
-                                        <p class="text-xs text-gray-400">Demande soumise il y a 5 jours</p>
+                                        <p class="text-xs text-muted">Demande soumise il y a 5 jours</p>
                                     </div>
-                                    <div class="flex items-center gap-3 bg-[#F4F7FE] px-4 py-2 rounded-xl border border-gray-100">
-                                        <span class="flex items-center gap-1 text-xs font-bold text-gray-500"><i class="fas fa-seedling"></i> Nouveau</span>
+                                    <div class="flex items-center gap-3 bg-bg px-4 py-2 rounded-xl border border-border">
+                                        <span class="flex items-center gap-1 text-xs font-bold text-muted"><i class="fas fa-seedling"></i> Nouveau</span>
                                         <i class="fas fa-arrow-right text-gray-300"></i>
                                         <span class="flex items-center gap-1 text-xs font-bold text-amber-500"><i class="fas fa-star"></i> Star</span>
                                     </div>
@@ -283,30 +318,30 @@
                                     <div class="p-3 rounded-xl border border-danger/20 bg-danger/5 flex items-start gap-3">
                                         <i class="fas fa-times-circle text-danger mt-0.5"></i>
                                         <div>
-                                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Formations</p>
+                                            <p class="text-[10px] font-bold text-muted uppercase tracking-widest">Formations</p>
                                             <p class="text-sm font-bold text-danger">4/10 <span class="font-normal text-xs text-danger/60">Modules</span></p>
                                         </div>
                                     </div>
                                     <div class="p-3 rounded-xl border border-success/20 bg-success/5 flex items-start gap-3">
                                         <i class="fas fa-check-circle text-success mt-0.5"></i>
                                         <div>
-                                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Assiduité</p>
+                                            <p class="text-[10px] font-bold text-muted uppercase tracking-widest">Assiduité</p>
                                             <p class="text-sm font-bold text-primary">100%</p>
                                         </div>
                                     </div>
                                     <div class="p-3 rounded-xl border border-success/20 bg-success/5 flex items-start gap-3">
                                         <i class="fas fa-check-circle text-success mt-0.5"></i>
                                         <div>
-                                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Ancienneté</p>
-                                            <p class="text-sm font-bold text-primary">2 <span class="font-normal text-xs text-gray-500">Mois</span></p>
+                                            <p class="text-[10px] font-bold text-muted uppercase tracking-widest">Ancienneté</p>
+                                            <p class="text-sm font-bold text-primary">2 <span class="font-normal text-xs text-muted">Mois</span></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="mt-6 pt-6 border-t border-gray-100 flex justify-end gap-3">
-                        <button onclick="openRejectModal('req-3', 'Esther T.')" class="px-6 py-2.5 bg-white border border-danger/20 text-danger hover:bg-danger/5 font-bold rounded-xl transition-colors text-sm">Refuser</button>
+                    <div class="mt-6 pt-6 border-t border-border flex justify-end gap-3">
+                        <button onclick="openRejectModal('req-3', 'Esther T.')" class="px-6 py-2.5 bg-surface border border-danger/20 text-danger hover:bg-danger/5 font-bold rounded-xl transition-colors text-sm">Refuser</button>
                         <button onclick="approveRequest('req-3')" class="px-6 py-2.5 bg-success hover:bg-[#219653] text-white font-bold rounded-xl transition-colors text-sm shadow-md shadow-success/20 flex items-center gap-2 opacity-50 cursor-not-allowed">
                             <i class="fas fa-check"></i> Valider
                         </button>
@@ -320,14 +355,14 @@
     <!-- Modal: Reject Request -->
     <div id="reject-modal" class="fixed inset-0 z-[100] flex items-center justify-center hidden">
         <div class="absolute inset-0 bg-dark/60 backdrop-blur-sm" onclick="closeRejectModal()"></div>
-        <div class="relative w-full max-w-lg bg-white rounded-3xl p-8 shadow-2xl animate-fade-in-up">
+        <div class="relative w-full max-w-lg bg-surface rounded-3xl p-8 shadow-2xl animate-fade-in-up">
             <h3 class="text-xl font-bold text-primary font-serif mb-2">Refuser la demande</h3>
-            <p class="text-sm text-gray-500 mb-6">Fournissez un motif à <span id="reject-name" class="font-bold"></span> pour l'aider à comprendre ce qui manque pour progresser.</p>
+            <p class="text-sm text-muted mb-6">Fournissez un motif à <span id="reject-name" class="font-bold"></span> pour l'aider à comprendre ce qui manque pour progresser.</p>
             
-            <textarea id="reject-reason" class="w-full bg-[#F4F7FE] border-none rounded-2xl py-4 px-6 text-sm text-primary min-h-[120px] focus:ring-1 focus:ring-chef outline-none mb-6" placeholder="Ex: Il te manque encore 2 modules de formation à valider..."></textarea>
+            <textarea id="reject-reason" class="w-full bg-bg border-none rounded-2xl py-4 px-6 text-sm text-primary min-h-[120px] focus:ring-1 focus:ring-chef outline-none mb-6" placeholder="Ex: Il te manque encore 2 modules de formation à valider..."></textarea>
             
             <div class="flex gap-4">
-                <button onclick="closeRejectModal()" class="flex-1 py-3 bg-white border border-gray-200 text-gray-500 font-bold rounded-xl hover:bg-gray-50 transition-colors">Annuler</button>
+                <button onclick="closeRejectModal()" class="flex-1 py-3 bg-surface border border-border text-muted font-bold rounded-xl hover:bg-gray-50 transition-colors">Annuler</button>
                 <button onclick="submitReject()" class="flex-1 py-3 bg-danger text-white font-bold rounded-xl hover:bg-red-700 transition-colors shadow-md shadow-danger/20">Confirmer le refus</button>
             </div>
         </div>
@@ -351,7 +386,7 @@
                 // Show empty state
                 if(document.querySelectorAll('.request-card:not(.hidden)').length === 0) {
                     const emptyState = document.createElement('div');
-                    emptyState.className = "flex flex-col items-center justify-center h-64 text-gray-400 animate-fade-in-up";
+                    emptyState.className = "flex flex-col items-center justify-center h-64 text-muted animate-fade-in-up";
                     emptyState.innerHTML = `
                         <i class="fas fa-check-circle text-5xl mb-4 text-success/50"></i>
                         <p class="text-lg font-medium">Toutes les demandes ont été traitées.</p>
