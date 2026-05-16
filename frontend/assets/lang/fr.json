@@ -1,0 +1,103 @@
+{
+  "nav": {
+    "title": "Église des Jeunes Prodiges",
+    "home": "Accueil",
+    "about": "À propos",
+    "parcours": "Parcours",
+    "events": "Événements",
+    "formations": "Formations",
+    "login": "Se connecter"
+  },
+  "hero": {
+    "welcome": "BIENVENUE À L'ÉGLISE DES JEUNES PRODIGES",
+    "title1": "Une Génération",
+    "title2": "Consacrée",
+    "cta": "Se connecter à mon espace",
+    "slide1": "Une communauté soudée par la foi",
+    "slide2": "Grandissez dans votre parcours spirituel",
+    "slide3": "La jeunesse au service de Dieu",
+    "slide4": "Formez-vous. Progressez. Servez.",
+    "slide5": "Impactez votre génération et le monde"
+  },
+  "about": {
+    "subtitle": "Qui sommes-nous ?",
+    "title": "Une famille en Christ, unie pour servir et grandir ensemble.",
+    "p1": "L'Église des Jeunes Prodiges est plus qu'un simple lieu de rassemblement. C'est une communauté vibrante où chaque jeune est appelé à découvrir son potentiel divin et à l'utiliser pour la gloire de Dieu.",
+    "p2": "Notre mission est de bâtir une génération consacrée, ancrée dans la Parole, et équipée pour impacter positivement son environnement à travers le monde.",
+    "verse": "« Que personne ne méprise ta jeunesse; mais sois un modèle pour les fidèles, en parole, en conduite, en charité, en foi, en pureté. »",
+    "verse_ref": "— 1 Timothée 4:12",
+    "stat1_val": "5+",
+    "stat1_lbl": "Niveaux de parcours",
+    "stat2_val": "20+",
+    "stat2_lbl": "Formations",
+    "stat3_val": "100%",
+    "stat3_lbl": "Engagement"
+  },
+  "parcours": {
+    "subtitle": "Votre Parcours",
+    "title": "De Nouveau Membre à Missionnaire",
+    "desc": "Un chemin de croissance pensé pour chaque disciple",
+    "level1_title": "Nouveau Membre",
+    "level1_desc": "Accueil et intégration dans la famille.",
+    "level2_title": "Star",
+    "level2_desc": "Fondements validés, membre actif.",
+    "level3_title": "Pilote",
+    "level3_desc": "Engagé dans le service de l'église.",
+    "level4_title": "Pilier",
+    "level4_desc": "Leader solide et modèle pour la communauté.",
+    "level5_title": "Missionnaire",
+    "level5_desc": "Envoyé pour implanter ou diriger au-delà."
+  },
+  "events": {
+    "subtitle": "Calendrier",
+    "title": "Nos Prochains Événements",
+    "desc": "Rejoignez-nous lors de nos prochains rassemblements",
+    "ev1_date": "15 Nov",
+    "ev1_title": "Culte d'Actions de Grâce",
+    "ev1_time": "09:00 - 12:00",
+    "ev1_loc": "Sanctuaire Principal",
+    "ev2_date": "20 Nov",
+    "ev2_title": "Veillée de Prière",
+    "ev2_time": "22:00 - 04:00",
+    "ev2_loc": "Chapelle",
+    "ev3_date": "25 Nov",
+    "ev3_title": "Séminaire des Leaders",
+    "ev3_time": "14:00 - 18:00",
+    "ev3_loc": "Salle de Conférence"
+  },
+  "formations": {
+    "subtitle": "Espace Formation",
+    "title": "Développez Vos Compétences",
+    "desc": "Connectez-vous pour reprendre là où vous en étiez et découvrir de nouveaux modules exclusifs.",
+    "cta": "Reprendre mes formations"
+  },
+  "suggestions": {
+    "subtitle": "Votre Voix",
+    "title": "Boîte à Suggestions",
+    "desc": "Une idée pour améliorer la plateforme ou pour l'EJP ? Votre avis compte énormément pour nous. N'hésitez pas à nous en faire part (anonymement si vous le souhaitez).",
+    "cta": "Faire une suggestion"
+  },
+  "footer": {
+    "verse": "« Vous, au contraire, vous êtes une race élue, un sacerdoce royal, une nation sainte, un peuple acquis, afin que vous annonciez les vertus de celui qui vous a appelés des ténèbres à son admirable lumière. »",
+    "verse_ref": "— 1 Pierre 2:9",
+    "rights": "© 2026 Église des Jeunes Prodiges.<br>Tous droits réservés.",
+    "contact": "Vous n'avez pas de compte ou vous rencontrez un problème ? Contactez-nous au :",
+    "made_by": "Made by EJP · Version 1.0 · 2026"
+  },
+  "login": {
+    "verse": "\"Que personne ne méprise ta jeunesse.\"",
+    "verse_ref": "1 Timothée 4:12",
+    "welcome": "Bienvenue",
+    "subtitle": "Accédez à votre espace membre",
+    "id_label": "Identifiant ou e-mail",
+    "id_placeholder": "Votre identifiant",
+    "id_error": "Ce champ est obligatoire",
+    "pw_label": "Mot de passe",
+    "pw_forgot": "Mot de passe oublié ?",
+    "pw_error": "Le mot de passe est requis",
+    "remember": "Rester connecté",
+    "submit": "Se connecter",
+    "no_account": "Pas encore membre ?",
+    "join": "Rejoignez-nous"
+  }
+}

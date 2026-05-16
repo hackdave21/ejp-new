@@ -98,7 +98,7 @@
 
     <style>
         body {
-            background: linear-gradient(135deg, #1E3A5F 0%, #0F1B2D 100%);
+            background-color: #000000;
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -197,68 +197,68 @@
         
         <!-- Illustration Side (Desktop Only) -->
         <div class="hidden lg:flex lg:w-1/2 bg-primary relative items-center justify-center p-12 overflow-hidden">
-            <div class="absolute inset-0 opacity-40 mix-blend-overlay">
-                <img src="assets/login_illustration.png" alt="EJP Community" class="w-full h-full object-cover">
+            <div class="absolute inset-0 opacity-40">
+                <img src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?q=80&w=1000&auto=format&fit=crop" alt="EJP Community" class="w-full h-full object-cover">
             </div>
             <div class="relative z-10 text-center">
-                <h2 class="text-white text-4xl font-serif mb-6 leading-tight">"Que personne ne méprise ta jeunesse."</h2>
-                <p class="text-accent text-xl font-light">1 Timothée 4:12</p>
+                <h2 class="text-white text-4xl font-serif mb-6 leading-tight" data-i18n="login.verse">"Que personne ne méprise ta jeunesse."</h2>
+                <p class="text-accent text-xl font-light" data-i18n="login.verse_ref">1 Timothée 4:12</p>
                 <div class="mt-12 w-24 h-1 bg-accent mx-auto rounded-full"></div>
             </div>
         </div>
 
         <!-- Login Form Side -->
-        <div class="w-full lg:w-1/2 p-8 lg:p-16 flex flex-col justify-center bg-surface/5 backdrop-blur-sm">
+        <div class="w-full lg:w-1/2 p-8 lg:p-16 flex flex-col justify-center bg-white/5 backdrop-blur-sm">
             <div class="text-center mb-10">
                 <div class="w-20 h-20 bg-primary rounded-full flex items-center justify-center mx-auto mb-6 border-2 border-accent shadow-lg shadow-accent/20">
                     <span class="text-accent text-3xl font-serif tracking-widest font-bold">EJP</span>
                 </div>
-                <h1 class="text-white text-2xl font-serif mb-2">Bienvenue</h1>
-                <p class="text-white/60 font-light">Accédez à votre espace membre</p>
+                <h1 class="text-white text-2xl font-serif mb-2" data-i18n="login.welcome">Bienvenue</h1>
+                <p class="text-white/60 font-light" data-i18n="login.subtitle">Accédez à votre espace membre</p>
             </div>
 
             <form id="loginForm" class="space-y-6">
                 <!-- Username/Email -->
                 <div>
-                    <label class="block text-white/80 text-sm font-medium mb-2 ml-1" for="identifier">Identifiant ou e-mail</label>
+                    <label class="block text-white/80 text-sm font-medium mb-2 ml-1" for="identifier" data-i18n="login.id_label">Identifiant ou e-mail</label>
                     <div class="relative group">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted group-focus-within:text-accent transition-colors">
                             <i class="fas fa-user text-sm"></i>
                         </div>
-                        <input type="text" id="identifier" placeholder="Votre identifiant" 
-                            class="w-full bg-surface/10 border border-white/20 rounded-xl py-3 pl-11 pr-4 text-white placeholder-white/30 transition-all duration-300">
+                        <input type="text" id="identifier" placeholder="Votre identifiant" data-i18n="login.id_placeholder" 
+                            class="w-full bg-white/10 border border-white/20 rounded-xl py-3 pl-11 pr-4 text-white placeholder-white/30 transition-all duration-300">
                     </div>
-                    <p id="identifierError" class="text-danger text-xs mt-1 ml-1 hidden animate-fade-in">Ce champ est obligatoire</p>
+                    <p id="identifierError" class="text-danger text-xs mt-1 ml-1 hidden animate-fade-in" data-i18n="login.id_error">Ce champ est obligatoire</p>
                 </div>
 
                 <!-- Password -->
                 <div>
                     <div class="flex justify-between items-center mb-2 ml-1">
-                        <label class="block text-white/80 text-sm font-medium" for="password">Mot de passe</label>
-                        <a href="#" class="text-accent text-xs hover:underline">Mot de passe oublié ?</a>
+                        <label class="block text-white/80 text-sm font-medium" for="password" data-i18n="login.pw_label">Mot de passe</label>
+                        <a href="#" class="text-accent text-xs hover:underline" data-i18n="login.pw_forgot">Mot de passe oublié ?</a>
                     </div>
                     <div class="relative group">
                         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-muted group-focus-within:text-accent transition-colors">
                             <i class="fas fa-lock text-sm"></i>
                         </div>
                         <input type="password" id="password" placeholder="••••••••" 
-                            class="w-full bg-surface/10 border border-white/20 rounded-xl py-3 pl-11 pr-12 text-white placeholder-white/30 transition-all duration-300">
+                            class="w-full bg-white/10 border border-white/20 rounded-xl py-3 pl-11 pr-12 text-white placeholder-white/30 transition-all duration-300">
                         <button type="button" id="togglePassword" class="absolute inset-y-0 right-0 pr-4 flex items-center text-muted hover:text-white transition-colors">
                             <i class="fas fa-eye text-sm" id="eyeIcon"></i>
                         </button>
                     </div>
-                    <p id="passwordError" class="text-danger text-xs mt-1 ml-1 hidden animate-fade-in">Le mot de passe est requis</p>
+                    <p id="passwordError" class="text-danger text-xs mt-1 ml-1 hidden animate-fade-in" data-i18n="login.pw_error">Le mot de passe est requis</p>
                 </div>
 
                 <!-- Remember Me -->
                 <div class="flex items-center">
-                    <input type="checkbox" id="remember" class="w-4 h-4 rounded border-white/20 bg-surface/10 text-accent focus:ring-accent accent-accent">
-                    <label for="remember" class="ml-2 text-white/60 text-sm cursor-pointer select-none">Rester connecté</label>
+                    <input type="checkbox" id="remember" class="w-4 h-4 rounded border-white/20 bg-white/10 text-accent focus:ring-accent accent-accent">
+                    <label for="remember" class="ml-2 text-white/60 text-sm cursor-pointer select-none" data-i18n="login.remember">Rester connecté</label>
                 </div>
 
                 <!-- Submit Button -->
                 <button type="submit" id="submitBtn" class="shimmer-btn w-full bg-accent hover:bg-accent/90 text-primary font-bold py-4 rounded-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-accent/20 flex items-center justify-center">
-                    <span id="btnText">Se connecter</span>
+                    <span id="btnText" data-i18n="login.submit">Se connecter</span>
                     <div id="btnLoader" class="hidden">
                         <svg class="animate-spin h-5 w-5 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -269,7 +269,7 @@
             </form>
 
             <div class="mt-8 text-center">
-                <p class="text-muted text-sm">Pas encore membre ? <a href="#" class="text-white hover:text-accent font-medium transition-colors">Rejoignez-nous</a></p>
+                <p class="text-muted text-sm" data-i18n="login.no_account">Pas encore membre ? <a href="#" class="text-white hover:text-accent font-medium transition-colors" data-i18n="login.join">Rejoignez-nous</a></p>
             </div>
         </div>
     </div>
@@ -376,5 +376,15 @@
         <i class="fas fa-moon dark:hidden"></i>
         <i class="fas fa-sun hidden dark:block"></i>
     </button>
+
+    <!-- Language Switcher Floating -->
+    <div class="fixed top-8 right-8 z-50 flex items-center gap-2 text-sm font-mono tracking-widest bg-black/20 backdrop-blur-md px-4 py-2 rounded-full border border-white/10 shadow-lg">
+        <button class="lang-switcher text-accent font-bold transition-colors" data-lang="fr">FR</button>
+        <span class="text-white/30">|</span>
+        <button class="lang-switcher text-white opacity-70 hover:opacity-100 transition-colors" data-lang="en">EN</button>
+    </div>
+
+    <!-- i18n Script -->
+    <script src="assets/js/i18n.js"></script>
 </body>
 </html>
